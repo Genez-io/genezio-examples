@@ -1,4 +1,4 @@
-name: todo-list
+name: getting-started-genezio
 region: us-east-1
 sdk:
   language: js
