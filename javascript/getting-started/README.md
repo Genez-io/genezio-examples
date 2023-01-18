@@ -1,6 +1,6 @@
-# Todo App example
+# Getting started example
 
-This is an example of a todo application with users, auth and tasks that uses React for the frontend application and Genezio for deploying and developing the backend.
+This is an example of a TODO application that introduces the user to the Genezio infrastructure.
 
 ## Initialization
 
