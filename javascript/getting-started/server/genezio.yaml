@@ -1,5 +1,5 @@
 name: getting-started-genezio
-region: us-east-1
+region: eu-central-1
 sdk:
   language: js
   runtime: browser
