@@ -32,10 +32,8 @@ export class Task {
     console.log(`Get all tasks by user request received with token ${token}`)
 
     const tasks = await TaskModel.find({ token: token });
-    console.log("Tasks = ", tasks, tasks.length === 0)
 
     if (tasks.length === 0) {
-      console.log("Intra aici")
       await TaskModel.create({
         token: token,
         title: "Check the other example projects",
@@ -61,8 +59,6 @@ export class Task {
       })
 
       const initTasks = await TaskModel.find({ token: token });
-
-      console.log("Tasks de aici = ", initTasks)
 
       return { success: true, tasks: initTasks };
     }

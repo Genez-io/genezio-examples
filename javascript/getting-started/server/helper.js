@@ -1,5 +1,4 @@
 import bcrypt from "bcryptjs"
-import { ActiveSession } from "./models/activeSession"
 
 
 export async function validatePassword(saltedPassword, password) {

@@ -1,15 +1,5 @@
 import {
-  Button,
-  Card,
-  Container,
-  Row,
-  Col,
   Input,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  ButtonGroup
 } from "reactstrap";
 import { ReactComponent as Icon } from './trash.svg';
 

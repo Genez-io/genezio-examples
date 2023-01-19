@@ -1,6 +1,5 @@
 import {
   Button,
-  Card,
   Container,
   Row,
   Col,
@@ -9,9 +8,8 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  ButtonGroup
 } from "reactstrap";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Task } from "../sdk/task.sdk.js";
 import { useNavigate } from "react-router-dom";
 import TaskView from './TaskView.js'
