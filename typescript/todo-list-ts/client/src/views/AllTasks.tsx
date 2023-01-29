@@ -11,13 +11,13 @@ import {
   ModalFooter,
   ButtonGroup
 } from "reactstrap";
-import React, { useState, useEffect } from "react";
-import { TaskService, Task, GetTasksResponse } from "../sdk/task.sdk";
+import { useState, useEffect } from "react";
+import { TaskService, Task, GetTasksResponse } from "./../sdk/taskService.sdk";
 import { useNavigate } from "react-router-dom";
-import { User } from "../backend-sdk/user.sdk";
+import { User } from "./../sdk/userService.sdk";
 
 
-export default () => {
+export default function AllTasks() {
   const navigate = useNavigate();
 
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -44,6 +44,7 @@ export default () => {
 
     setUser(JSON.parse(localStorage.getItem("user")!))
     setToken(token)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

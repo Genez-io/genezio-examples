@@ -1,10 +1,8 @@
-import { Row, Col } from "reactstrap";
 import { useEffect, useState } from "react";
 import Pagination from '@mui/material/Pagination';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import './App.css';
 import { BlockchainServer } from "./sdk/blockchainServer.sdk"
 
