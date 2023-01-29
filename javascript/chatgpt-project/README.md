@@ -2,7 +2,7 @@
 In this project we are creating a project using ChatGPT API from a genezio backend with a frontend in React.
 
 ### Prerequisites
-- npm instaled
+- npm installed
 - node installed
 
 ## Getting Started local
