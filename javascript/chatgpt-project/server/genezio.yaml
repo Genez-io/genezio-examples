@@ -1,0 +1,11 @@
+name: chatgpt-project
+region: us-east-1
+sdk:
+  language: js
+  options:
+    runtime: browser
+  path: ./../client/src/sdk
+classes:
+  - path: gptCaller.js
+    type: jsonrpc
+    methods: []
