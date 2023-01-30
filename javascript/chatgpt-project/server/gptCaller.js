@@ -5,12 +5,17 @@ dotenv.config();
 export class GptCaller {
   openai = null;
 
-  async askChatGPT(requestText) {
+  constructor() {
     const configuration = new Configuration({
       apiKey: process.env.OPENAI_SECRET_KEY
     });
     const openai = new OpenAIApi(configuration);
-    const completion = await openai.createCompletion({
+    this.openai = openai;
+  }
+
+
+  async askChatGPT(requestText) {
+    const completion = await this.openai.createCompletion({
       model: "text-davinci-003",
       prompt: "rephrase this:" + requestText,
       max_tokens: 2048
