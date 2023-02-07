@@ -14,6 +14,7 @@ import { Task } from "../sdk/task.sdk.js";
 import { useNavigate } from "react-router-dom";
 import TaskView from './TaskView.js'
 import uuid from 'react-uuid';
+import logo from './logo.png';
 
 
 export default (props) => {
@@ -126,14 +127,17 @@ export default (props) => {
         </form>
       </Modal>
       <Container className="mt-2">
+
         <Row className="mt-2">
           <Col sm="12">
-
             <Row>
               <Col sm="2" className="mt-4">
               </Col>
               <Col sm="8" style={{ backgroundColor: "white" }}>
-                <h3 style={{ marginBottom: "30px", marginTop: "30px", textAlign: "center" }}>Welcome to genezio!</h3>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <img style={{width: "50px" }} src={logo} />
+                </div>
+                <h3 style={{ marginBottom: "30px", marginTop: "15px", textAlign: "center" }}>Welcome to genezio!</h3>
                 <p style={{ marginBottom: "30px", textAlign: "center" }}>You have successfully deployed your first genezio project!</p>
                 <p style={{ marginBottom: "30px", textAlign: "center" }}>Here you have a list of resources that you can use to learn how to continue building awesome projects with genezio:</p>
 
