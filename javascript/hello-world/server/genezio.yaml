@@ -2,7 +2,8 @@ name: hello-world
 region: eu-central-1
 sdk:
   language: js
-  runtime: node
+  options:
+    runtime: node
   path: ../client/sdk/
 classes:
   - path: ./hello.js

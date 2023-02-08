@@ -1,6 +1,6 @@
 import { Button, Card, Container, Row, Col, Input } from "reactstrap";
 import { useState } from "react";
-import { UserService } from "./../sdk/userService.sdk";
+import { UserService } from "../sdk/user.sdk";
 import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
