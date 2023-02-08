@@ -1,6 +1,11 @@
 # Webhook example
 
-Sometimes we might need to communicate directly over HTTP instead of JSONRPC. In this example, the `helloWorldOverHttp` implemented in `HelloWorldCronExample` class will be triggered by an HTTP request.
+Sometimes we might need to communicate directly over HTTP instead of JSONRPC. In this example, the `helloWorldOverHttp` implemented in `HelloWorldHttpExample` class will be triggered by an HTTP request.
+
+## Initialization
+
+1. Run `npm install` in the `server/` folder to install the dependencies.
+2. Run `npm install` in the `client/` folder to install the dependencies.
 
 ## Run the example locally
 
@@ -9,3 +14,5 @@ Run `genezio local` in the `server/` folder. This will start a local web server.
 ## Deploy the example in the Genezio infrastructure
 
 Run `genezio deploy` in the `/server` folder.
+
+In the `/client` folder you can find a `test-webhook-example.js` that sends different types of HTTP requests. You can run it with `node test-webhook-example.js`.

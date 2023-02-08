@@ -11,10 +11,10 @@ import {
   ModalFooter,
   ButtonGroup
 } from "reactstrap";
-import { useState, useEffect } from "react";
-import { TaskService, Task, GetTasksResponse } from "./../sdk/taskService.sdk";
+import React, { useState, useEffect } from "react";
+import { TaskService, Task, GetTasksResponse } from "../sdk/task.sdk";
 import { useNavigate } from "react-router-dom";
-import { User } from "./../sdk/userService.sdk";
+import { User } from "../sdk/user.sdk";
 
 
 export default function AllTasks() {
