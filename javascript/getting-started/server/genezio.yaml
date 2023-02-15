@@ -2,8 +2,11 @@ name: getting-started-genezio
 region: eu-central-1
 sdk:
   language: js
-  runtime: browser
+  options:
+    runtime: null
   path: ../client/src/sdk
+frontend:
+  path: ../client/build
 classes:
   - path: ./task.js
     type: jsonrpc

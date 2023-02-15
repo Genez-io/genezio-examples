@@ -16,3 +16,7 @@ This is an example of a todo application with users, auth and tasks that uses Re
 
 1. Run `genezio deploy` in the `server/` folder that contains also the `genezio.yaml` file. This will deploy your code in the Genezio infrastructure and it will also create an SDK that can be used to call the methods remotely.
 2. Start the React app by going to the `client/` folder and run `npm start`.
+
+## Deploy the frontend in Genezio Infrastructure
+1. Run `npm i && npm run build` in the `client` folder to build the React app.
+2. Run `genezio deploy --frontend` in the `server` folder to deploy the frontend in the Genezio infrastructure.

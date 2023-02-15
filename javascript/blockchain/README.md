@@ -18,3 +18,7 @@ The class is implemented in the `./server/blockchainServer.js` file.
 
 1. Run `genezio deploy` in the `server/` folder. This will deploy the code to Genezio infrastructure and it will create the SDK.
 2. Open a new terminal and run the React app in the `client/` folder.
+
+## Deploy the frontend in Genezio Infrastructure
+1. Run `npm i && npm run build` in the `client` folder to build the React app.
+2. Run `genezio deploy --frontend` in the `server` folder to deploy the frontend in the Genezio infrastructure.

@@ -41,6 +41,7 @@ export default (props) => {
         localStorage.setItem("apiToken", token)
       }
   
+      // eslint-disable-next-line no-inner-declarations
       async function fetchTasks() {
         const res = await Task.getAllTasksByUser(
           localStorage.getItem("apiToken"),
