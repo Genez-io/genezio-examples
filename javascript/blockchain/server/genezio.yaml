@@ -1,20 +1,22 @@
-# File that configures what classes will be deployed in Genezio Infrastructure. 
-# Add the paths to classes that you want to deploy in "classes".
 name: genezio-blockchain
+region: us-east-1
 sdk:
   language: js
   options:
     runtime: browser
   path: ../client/src/sdk/
+frontend:
+  path: ../client/build/
 classes:
   - path: ./blockchainServer.js
+    type: jsonrpc
     methods:
       - name: sync
         type: cron
-        cronString: "* * * * ? *"
+        cronString: "* * * * *"
   - path: ./cron.js
     type: jsonrpc
     methods:
-      - name: "deleteAllData"
+      - name: deleteAllData
         type: cron
-        cronString: "* * * * ? *"
+        cronString: "* * * * *"

@@ -5,6 +5,8 @@ sdk:
   options:
     runtime: browser
   path: ../client/src/sdk
+frontend:
+  path: ../client/build
 classes:
   - path: ./task.js
     type: jsonrpc
@@ -15,6 +17,6 @@ classes:
   - path: ./cron.js
     type: jsonrpc
     methods:
-      - name: "deleteAllData"
+      - name: deleteAllData
         type: cron
-        cronString: "0 12 * * ? *"
+        cronString: 0 12 * * *
