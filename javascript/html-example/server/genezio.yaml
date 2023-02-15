@@ -1,12 +1,12 @@
-name: getting-started-genezio
+name: html-example
 region: eu-central-1
 sdk:
   language: js
   options:
     runtime: browser
-  path: ../client/src/sdk
+  path: ../client/sdk
 frontend:
-  path: ../client/build
+  path: ../client
 classes:
   - path: ./task.js
     type: jsonrpc
