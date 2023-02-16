@@ -9,7 +9,4 @@ sdk:
   path: ../client/sdk/
 classes:
   - path: "./index.js"
-    type: jsonrpc
-    methods:
-      - name: "helloWorldOverHttp"
-        type: http
+    type: http 
