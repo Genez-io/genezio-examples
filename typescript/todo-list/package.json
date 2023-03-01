@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "mongoose": "~7.0.0"
+  }
+}
