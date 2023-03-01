@@ -1,0 +1,31 @@
+<div class="col-sm-12 col-md-6 offset-md-3">
+    <div class="p-4 mt-5 card">
+        <form>
+            <h3>Register</h3>
+            <ngb-alert type="danger" *ngIf="registerFailed">{{registerFailedMsg}}</ngb-alert>
+
+            <div class="mb-3">
+                <label>Name</label>
+                <input placeholder="Name" #name autocomplete="name" type="text" class="form-control form-control" value="">
+            </div>
+
+            <div class="mb-3">
+                <label>Email address</label>
+                <input placeholder="Email" #email autocomplete="email" type="email" class="form-control form-control" value="">
+            </div>
+            
+            <div class="mb-3">
+                <label>Password</label>
+                <input placeholder="Password" #password autocomplete="password" type="password" class="form-control form-control" value="">
+            </div>
+            
+            <div class="text-left">
+                <button type='button' class="btn btn-primary" (click)="submitRegister(name.value, email.value, password.value)">Submit</button>
+            </div>
+
+            <div class="mt-2">   
+                <span>Already have an account? <a routerLink="/login">Login</a></span>
+            </div>
+        </form>
+    </div>
+</div>
