@@ -1,5 +1,5 @@
 name: genezio-blockchain
-region: us-east-1
+region: eu-central-1
 sdk:
   language: js
   options:
@@ -7,16 +7,11 @@ sdk:
   path: ../client/src/sdk/
 frontend:
   path: ../client/build/
+  subdomain: cyan-light-owl
 classes:
   - path: ./blockchainServer.js
     type: jsonrpc
     methods:
       - name: sync
-        type: cron
-        cronString: "* * * * *"
-  - path: ./cron.js
-    type: jsonrpc
-    methods:
-      - name: deleteAllData
         type: cron
         cronString: "* * * * *"

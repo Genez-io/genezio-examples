@@ -2,8 +2,7 @@ import Web3 from "web3"
 import { abi } from "./abi.js";
 import { EventModel } from "./models/event.js"
 import { mongoose } from "mongoose";
-import { MONGO_DB_URI, CONTRACT_ADDRESS, BWARE_URL } from "./config.js";
-
+import { MONGO_DB_URI, CONTRACT_ADDRESS, BLAST_API_RPC_ENDPOINT } from "./config.js";
 
 /**
  * The Blockchain server class that will be deployed on the genezio infrastructure.
@@ -12,7 +11,7 @@ export class BlockchainServer {
 
     constructor() {
         mongoose.connect(MONGO_DB_URI);
-        this.web3 = new Web3(BWARE_URL);
+        this.web3 = new Web3(BLAST_API_RPC_ENDPOINT);
         this.contract = new this.web3.eth.Contract(JSON.parse(abi), CONTRACT_ADDRESS);
         this.knownEventTokens = this.contract.options.jsonInterface.filter((token) => {
             return token.type === 'event';
@@ -34,7 +33,6 @@ export class BlockchainServer {
         });
         if (!eventToken) {
             console.log('cannot process log %d', event.logIndex);
-
             return undefined;
         }
 
@@ -60,8 +58,6 @@ export class BlockchainServer {
     /**
      * Method used to get all the events in a paginated way.
      * 
-     * The method will be part of the SDK.
-     * 
      * @param {*} from The starting index of the first event.
      * @param {*} limit The number of events that will be part of the response.
      * @returns 
@@ -81,13 +77,15 @@ export class BlockchainServer {
     /**
      * Method that will be called periodically by the genezio infrastructure to index the events.
      * 
+     * The creation of an Ethereum block will take up to 12 seconds.
+     *
      * The frequency with which the method will be called can be modified from the genezio YAML file.
      * 
      */
     async sync() {
         // Get the current block number and request the last 100 blocks
         const blockNumber = await this.web3.eth.getBlockNumber()
-        let events = await this.web3.eth.getPastLogs({ address: CONTRACT_ADDRESS, fromBlock: blockNumber - 50, toBlock: blockNumber });
+        let events = await this.web3.eth.getPastLogs({ address: CONTRACT_ADDRESS, fromBlock: blockNumber - 100, toBlock: blockNumber });
 
         console.log(`New sync started with ${events.length} to save`)
 
