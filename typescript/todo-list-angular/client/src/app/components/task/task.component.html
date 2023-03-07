@@ -1,0 +1,14 @@
+<div class="col-sm-12">
+    <div class="mb-3">
+        <p class="mb-0">
+            <span class="h4">{{title}}</span> -
+            <span *ngIf="!solved">Not Solved</span>
+            <span *ngIf="solved">Solved</span>
+        </p>
+        <div aria-label="Basic example" role="group" class="btn-group">
+            <button (click)="delete()" type="button" class="btn btn-danger">Delete Task</button>
+            <button *ngIf="!solved" (click)="setSolved(true)" type="button" class="btn btn-primary">Mark as Solved</button>
+            <button *ngIf="solved" (click)="setSolved(false)" type="button" class="btn btn-primary">Mark as Unsolved</button>
+        </div>
+    </div>
+</div>

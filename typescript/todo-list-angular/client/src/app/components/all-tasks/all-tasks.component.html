@@ -1,0 +1,42 @@
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Add new task</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('closeBtn')"></button>
+	</div>
+	<div class="modal-body">
+        <div class="mb-3">
+            <label for="taskTitle">Task title</label>
+            <div class="input-group">
+                <input
+                    #taskTitle
+                    type="text"
+                    class="form-control"
+                    placeholder="Title"
+                    name="taskTitle"
+                />
+            </div>
+        </div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="modal.close(taskTitle.value)">Save</button>
+	</div>
+</ng-template>
+
+<div class="p-4 mt-2 card">
+    <div class="mt-2 row">
+        <div class="col-sm-11">
+            <h3>All Tasks</h3>
+            <div class="row">
+                <app-task *ngFor="let task of allTasks" [title]='task.title' [id]="task._id" [solved]="task.solved" (onDelete)="taskDeleted(task._id)"></app-task>
+
+                <div class="mt-4 col-sm-3">
+                    <button type="button" class="btn btn-primary" (click)="openModal(content)">Add Task</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-right col-sm-1">
+            <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
+        </div>
+    </div>
+</div>
