@@ -1,4 +1,4 @@
-# Todo Angular App example
+# Todo VueJS App example
 
 This is an example of a todo application with users, auth and tasks that uses VueJS for the frontend application and Genezio for deploying and developing the backend.
 
