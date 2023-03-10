@@ -8,11 +8,14 @@ The list of available projects can be found below.
  - Javascript:
      - [hello-world](javascript/hello-world)
      - [todo-list](javascript/todo-list)
+     - [todo-list-sql](javascript/todo-list-sql)
+     - [todo-list-vue](javascript/todo-list-vue)
      - [cron](javascript/cron)
      - [webhook](javascript/webhook)
      - [blockchain](javascript/blockchain)
  - Typescript
-     - [hello-world](typescript/hello-world-ts)
-     - [todo-list](typescript/todo-list-ts)
+     - [hello-world](typescript/hello-world)
+     - [todo-list](typescript/todo-list)
+     - [todo-list-angular](typescript/todo-list-angular)
 
 For more details, you can check out the [documentation](https://docs.genez.io/genezio-documentation/).

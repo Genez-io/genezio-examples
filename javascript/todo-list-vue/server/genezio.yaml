@@ -1,0 +1,18 @@
+name: todo-list-angular
+region: us-east-1
+cloudProvider: aws
+sdk:
+  language: js
+  options:
+    runtime: browser
+  path: ../client/src/sdk
+frontend:
+  path: ../client/dist
+  subdomain: gold-awful-bear
+classes:
+  - path: ./task.js
+    type: jsonrpc
+    methods: []
+  - path: ./user.js
+    type: jsonrpc
+    methods: []
