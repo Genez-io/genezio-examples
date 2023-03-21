@@ -1,0 +1,20 @@
+name: todo-list-swift
+region: us-east-1
+sdk:
+  language: swift
+  path: ../client/GenezioTodoList/sdk
+frontend:
+  path: ../client/build
+classes:
+  - path: ./task.ts
+    type: jsonrpc
+    methods: []
+  - path: ./user.ts
+    type: jsonrpc
+    methods: []
+  - path: ./cron.ts
+    type: jsonrpc
+    methods:
+      - name: deleteAllData
+        type: cron
+        cronString: 0 12 * * *
