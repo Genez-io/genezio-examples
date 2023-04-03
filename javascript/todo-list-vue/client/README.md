@@ -1,4 +1,4 @@
-# todo-list-angular-client
+# todo-list-vue-client
 
 > A Vue.js project
 

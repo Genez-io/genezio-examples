@@ -4,6 +4,10 @@ In this example, we have implemented a class that queries periodically using Bla
 
 The class is implemented in the `./server/blockchainServer.js` file.
 
+Note: `genezio deploy` deploys both backend and frontend. If you want to test this example out-of-the-box by running 1 command, head to the `server` directory and run `genezio deploy`.
+
+If you want to deploy your application step-by-step, follow the guidelines below.
+
 ## Initialization
 
 1. Run `npm install` in the `server/` folder to install the dependencies.
@@ -16,7 +20,7 @@ The class is implemented in the `./server/blockchainServer.js` file.
 
 ## Deploy the example in the Genezio infrastructure
 
-1. Run `genezio deploy` in the `server/` folder. This will deploy the code to Genezio infrastructure and it will create the SDK.
+1. Run `genezio deploy --backend` in the `server/` folder. This will deploy the code to Genezio infrastructure and it will create the SDK.
 2. Open a new terminal and run the React app in the `client/` folder.
 
 ## Deploy the frontend in Genezio Infrastructure

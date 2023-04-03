@@ -8,7 +8,9 @@ sdk:
   path: ../client/src/sdk
 frontend:
   path: ../client/build
-  subdomain: sapphire-marginal-blackbird
+scripts:
+  preBackendDeploy: "npm install"
+  preFrontendDeploy: "cd ../client && npm install && npm run build"
 classes:
   - path: ./index.ts
     type: jsonrpc

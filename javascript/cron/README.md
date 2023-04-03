@@ -8,4 +8,4 @@ Run `genezio local`. This will start a local web server.
 
 ## Deploy the example in the Genezio infrastructure
 
-Run `genezio deploy`.
+Run `genezio deploy --backend`.
