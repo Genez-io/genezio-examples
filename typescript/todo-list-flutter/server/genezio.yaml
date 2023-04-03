@@ -1,0 +1,16 @@
+name: todo-list-ts-flutter
+region: eu-central-1
+sdk:
+  language: ts
+  options:
+    runtime: browser
+  path: ../client/src/sdk
+frontend:
+  path: ../client/build
+classes:
+  - path: ./task.ts
+    type: jsonrpc
+    methods: []
+  - path: ./user.ts
+    type: jsonrpc
+    methods: []
