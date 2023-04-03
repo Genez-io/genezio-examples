@@ -4,7 +4,7 @@ In this example, we have a class with two functions that return a welcome messag
 
 The class is implemented in the `./server/hello.js` file.
 
-To deploy and test it run `genezio deploy`. Once the command was successfully executed you can run `node ./client/test-hello-sdk.js`.
+To deploy and test it run `genezio deploy --backend`. Once the command was successfully executed you can run `node ./client/test-hello-sdk.js`.
 
 ## Run the example locally
 
@@ -14,6 +14,6 @@ To deploy and test it run `genezio deploy`. Once the command was successfully ex
 
 ## Deploy the example in the Genezio infrastructure
 
-1. Run `genezio deploy` in the `server/` folder. This will deploy the code to Genezio infrastructure and it will create the SDK.
+1. Run `genezio deploy --backend` in the `server/` folder. This will deploy the code to Genezio infrastructure and it will create the SDK.
 2. Run `node ./client/test-hello-sdk.js`. Now the script will use the SDK to call the methods that you have previously deployed in the Genezio infrastructure.
 3. You should see the greeting messages.

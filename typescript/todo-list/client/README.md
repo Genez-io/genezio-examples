@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Note: `genezio deploy` deploys both backend and frontend. If you want to test this example out-of-the-box by running 1 command, head to the `server` directory and run `genezio deploy`.
+
+If you want to deploy your application step-by-step, follow the guidelines below.
+
 ## Available Scripts
 
 In the project directory, you can run:
