@@ -7,6 +7,9 @@ sdk:
   path: ../client/sdk
 frontend:
   path: ../client
+scripts:
+  preBackendDeploy: "npm install"
+  preFrontendDeploy: "cd ../client && npm install"
 classes:
   - path: ./task.js
     type: jsonrpc

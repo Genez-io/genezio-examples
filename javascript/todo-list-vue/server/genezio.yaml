@@ -6,9 +6,11 @@ sdk:
   options:
     runtime: browser
   path: ../client/src/sdk
+scripts:
+  preBackendDeploy: "npm install"
+  preFrontendDeploy: "cd ../client && npm install && npm run build"
 frontend:
   path: ../client/dist
-  subdomain: gold-awful-bear
 classes:
   - path: ./task.js
     type: jsonrpc

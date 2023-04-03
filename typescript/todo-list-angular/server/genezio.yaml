@@ -7,7 +7,9 @@ sdk:
   path: ../client/src/sdk
 frontend:
   path: ../client/dist/todo-list
-  subdomain: todo-list-angular
+scripts:
+  preBackendDeploy: "npm install"
+  preFrontendDeploy: "cd ../client && npm install && npm run build"
 classes:
   - path: ./task.ts
     type: jsonrpc
