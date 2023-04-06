@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import 'package:todo_list/add_task_alert_dialog.dart';
+import 'package:todo_list/delete_task_alert_dialog.dart';
+import 'package:todo_list/update_task_alert_dialog.dart';
+
+import 'package:todo_list/sdk/task.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,39 +19,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Todo List',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        // useMaterial3: true,
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple[400]),
         primarySwatch: Colors.deepPurple,
       ),
-      home:
-          const MyHomePage(title: 'Flutter Todo List with Flutter and genezio'),
+      home: const MyHomePage(title: 'Getting started with Flutter and genezio'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -51,68 +38,195 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  final PageController pageController = PageController(initialPage: 0);
+  late int _selectedIndex = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        centerTitle: true,
+      ),
+      body: PageView(
+        controller: pageController,
+        children: const <Widget>[
+          Center(
+            child: Tasks(),
+          ),
+        ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return const AddTaskAlertDialog();
+            },
+          );
+        },
+        tooltip: 'Add a new task',
+        child: const Icon(Icons.add),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 6.0,
+        clipBehavior: Clip.antiAlias,
+        child: SizedBox(
+          height: kBottomNavigationBarHeight,
+          child: BottomNavigationBar(
+            currentIndex: _selectedIndex,
+            selectedItemColor: Colors.deepPurple,
+            unselectedItemColor: Colors.black,
+            onTap: (index) {
+              setState(() {
+                _selectedIndex = index;
+                pageController.jumpToPage(index);
+              });
+            },
+            items: const [
+              BottomNavigationBarItem(
+                  icon: Icon(CupertinoIcons.square_list),
+                  label: 'tasks',
+                  tooltip: 'List all of your tasks'),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.tag),
+                label: 'tags',
+                tooltip: 'Check your tags',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Tasks extends StatefulWidget {
+  const Tasks({Key? key}) : super(key: key);
+  @override
+  State<Tasks> createState() => _TasksState();
+}
+
+class _TasksState extends State<Tasks> {
+  late List<dynamic> tasks = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _getTasks();
+  }
+
+  Future<void> _getTasks() async {
+    try {
+      final allTasks = await Task.getAllTasks();
+
+      setState(() {
+        tasks = allTasks.values.toList()[1];
+      });
+    } catch (error) {
+      print(error);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have clicked the button this many times:',
+    return Container(
+      margin: const EdgeInsets.all(10.0),
+      child: ListView.builder(
+        itemCount: tasks.length,
+        itemBuilder: (context, index) {
+          final task = tasks[index];
+          return Container(
+            height: 100,
+            margin: const EdgeInsets.only(bottom: 15.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              color: Colors.white,
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 5.0,
+                  offset: Offset(0, 5), // shadow direction: bottom right
+                ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            child: ListTile(
+              leading: Checkbox(
+                value: task?['solved'],
+                onChanged: (value) {
+                  final id = task?['_id'] ?? '';
+                  final title = task?['title'] ?? '';
+                  final description = task?['description'] ?? '';
+                  setState(() {
+                    Task.updateTask(id, title, description, value.toString())
+                        .catchError((error) {
+                      Fluttertoast.showToast(
+                          msg: "Update failed: $error",
+                          toastLength: Toast.LENGTH_LONG,
+                          gravity: ToastGravity.SNACKBAR,
+                          backgroundColor: Colors.black54,
+                          textColor: Colors.white,
+                          fontSize: 14.0);
+                    });
+                    task?['solved'] = value;
+                  });
+                },
+              ),
+              title: SelectableText(
+                task?['title'] ?? '',
+                style: task?['solved'] == true
+                    ? TextStyle(decoration: TextDecoration.lineThrough)
+                    : null,
+              ),
+              subtitle: SelectableText(task?['description'] ?? '',
+                  style: task?['solved'] == true
+                      ? TextStyle(decoration: TextDecoration.lineThrough)
+                      : null),
+              isThreeLine: true,
+              trailing: PopupMenuButton(
+                icon: const Icon(Icons.more_vert),
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: 'update',
+                    child: Text('Update Task'),
+                    onTap: () {
+                      String taskId = task?['_id'] ?? '';
+                      String taskName = task?['title'] ?? '';
+                      String taskDescription = task?['description'] ?? '';
+                      Future.delayed(Duration.zero, () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => UpdateTaskAlertDialog(
+                              taskId: taskId,
+                              taskName: taskName,
+                              taskDescription: taskDescription),
+                        );
+                      });
+                    },
+                  ),
+                  PopupMenuItem(
+                    value: 'delete',
+                    child: Text('Delete'),
+                    onTap: () {
+                      String taskId = task?['_id'] ?? '';
+                      String taskName = task?['title'] ?? '';
+                      Future.delayed(Duration.zero, () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => DeleteTaskDialog(
+                              taskId: taskId, taskName: taskName),
+                        );
+                      });
+                    },
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
+          );
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

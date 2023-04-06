@@ -1,16 +1,14 @@
-name: todo-list-ts-flutter
+name: getting-started-flutter
 region: eu-central-1
 sdk:
-  language: ts
-  options:
-    runtime: browser
-  path: ../client/src/sdk
+  language: dart
+  path: ../client/todo_list/lib/sdk
+scripts:
+  preBackendDeploy: "npm install --legacy-per-deps"
+  preFrontendDeploy: "cd ../client/todo_list/ && flutter clean && flutter pub get && flutter build web"
 frontend:
-  path: ../client/build
+  path: ../client/todo_list/build/web
 classes:
   - path: ./task.ts
-    type: jsonrpc
-    methods: []
-  - path: ./user.ts
     type: jsonrpc
     methods: []
