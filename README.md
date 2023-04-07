@@ -19,6 +19,7 @@ The list of available projects can be found below.
      - [hello-world](typescript/hello-world)
      - [todo-list](typescript/todo-list)
      - [todo-list-angular](typescript/todo-list-angular)
+     - [todo-list-flutter](typescript/todo-list-flutter)
      - [multiversX](typescript/multiversx)
  - Swift
      - [todo-list](swift/todo-list)
