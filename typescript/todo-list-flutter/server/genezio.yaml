@@ -1,0 +1,14 @@
+name: getting-started-flutter
+region: eu-central-1
+sdk:
+  language: dart
+  path: ../client/todo_list/lib/sdk
+scripts:
+  preBackendDeploy: "npm install --legacy-per-deps"
+  preFrontendDeploy: "cd ../client/todo_list/ && flutter clean && flutter pub get && flutter build web"
+frontend:
+  path: ../client/todo_list/build/web
+classes:
+  - path: ./task.ts
+    type: jsonrpc
+    methods: []
