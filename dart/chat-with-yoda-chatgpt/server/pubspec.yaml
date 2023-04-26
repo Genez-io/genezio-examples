@@ -1,0 +1,12 @@
+name: chat_with_chatgpt
+description: A chat app with chatgpt deployed with genezio.
+version: 1.0.0
+repository: https://github.com/andreia-oca/dart_fullstack_chat_with_chatgpt
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+dependencies:
+  dart_openai: ^1.9.1
+  dotenv: ^4.1.0
+  mongo_dart: ^0.9.1
+
