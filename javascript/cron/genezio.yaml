@@ -4,8 +4,6 @@
 name: cron-example
 sdk:
   language: js
-  options:
-    runtime: node
   path: ./sdk/
 classes:
   - path: "./index.js"

@@ -2,8 +2,6 @@ name: html-example
 region: eu-central-1
 sdk:
   language: js
-  options:
-    runtime: browser
   path: ../client/sdk
 frontend:
   path: ../client

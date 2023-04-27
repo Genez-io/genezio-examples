@@ -3,8 +3,6 @@ region: us-east-1
 cloudProvider: aws
 sdk:
   language: js
-  options:
-    runtime: browser
   path: ./../client/src/sdk/
 frontend:
   path: ./../client/build/
