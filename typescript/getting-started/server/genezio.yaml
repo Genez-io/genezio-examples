@@ -1,0 +1,17 @@
+name: getting-started-genezio-typescript
+region: eu-central-1
+cloudProvider: aws
+sdk:
+  language: ts
+  options:
+    runtime: browser
+  path: ../client/src/sdk
+scripts:
+  preBackendDeploy: "npm install"
+  preFrontendDeploy: "cd ../client && npm install && npm run build"
+frontend:
+  path: ../client/build
+classes:
+  - path: ./task.ts
+    type: jsonrpc
+    methods: []
