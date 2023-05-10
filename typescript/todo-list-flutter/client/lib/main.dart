@@ -1,36 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:todo_list/add_task_alert_dialog.dart';
 import 'package:todo_list/delete_task_alert_dialog.dart';
 import 'package:todo_list/update_task_alert_dialog.dart';
 
-import 'package:todo_list/sdk/task.dart';
+import 'package:todo_list/sdk/task_service.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Todo List',
+      title: 'Todo List with Flutter',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: const MyHomePage(title: 'Getting started with Flutter and genezio'),
+      home: const MyHomePage(title: 'Todo List with Flutter'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -41,6 +40,16 @@ class _MyHomePageState extends State<MyHomePage> {
   final PageController pageController = PageController(initialPage: 0);
   late int _selectedIndex = 0;
 
+  // This is a temporary token for testing purposes
+  // TODO - Do not hardcode this value
+  // Generate a random token and store it using a local database like Realm or Isar
+  String token = "this-is-not-a-random-token";
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,9 +59,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: PageView(
         controller: pageController,
-        children: const <Widget>[
+        children: <Widget>[
           Center(
-            child: Tasks(),
+            child: Tasks(
+              token: token,
+            ),
+          ),
+          Center(
+            child: Tasks(
+              token: token,
+            ),
           ),
         ],
       ),
@@ -62,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
           showDialog(
             context: context,
             builder: (BuildContext context) {
-              return const AddTaskAlertDialog();
+              return AddTaskAlertDialog(token: token);
             },
           );
         },
@@ -104,30 +120,34 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class Tasks extends StatefulWidget {
-  const Tasks({Key? key}) : super(key: key);
+  final String token;
+  const Tasks({Key? key, required this.token}) : super(key: key);
+
   @override
   State<Tasks> createState() => _TasksState();
 }
 
 class _TasksState extends State<Tasks> {
-  late List<dynamic> tasks = [];
+  List<Task> tasks = [];
 
   @override
   void initState() {
     super.initState();
-    _getTasks();
+
+    _getTasks().then((response) {
+      tasks.addAll(response.tasks);
+      // Update UI
+      setState(() {
+        tasks = tasks;
+      });
+    }).catchError((error) {
+      print(error);
+    });
   }
 
-  Future<void> _getTasks() async {
-    try {
-      final allTasks = await Task.getAllTasks();
-
-      setState(() {
-        tasks = allTasks.values.toList()[1];
-      });
-    } catch (error) {
-      print(error);
-    }
+  Future<GetTasksResponse> _getTasks() async {
+    final tasks = await TaskService.getAllTasksByUser(widget.token);
+    return tasks;
   }
 
   @override
@@ -154,34 +174,30 @@ class _TasksState extends State<Tasks> {
             ),
             child: ListTile(
               leading: Checkbox(
-                value: task?['solved'],
+                value: task.solved,
                 onChanged: (value) {
-                  final id = task?['_id'] ?? '';
-                  final title = task?['title'] ?? '';
-                  final description = task?['description'] ?? '';
+                  final id = task.id;
+                  final title = task.title;
+                  final description = task.description;
                   setState(() {
-                    Task.updateTask(id, title, description, value.toString())
-                        .catchError((error) {
-                      Fluttertoast.showToast(
-                          msg: "Update failed: $error",
-                          toastLength: Toast.LENGTH_LONG,
-                          gravity: ToastGravity.SNACKBAR,
-                          backgroundColor: Colors.black54,
-                          textColor: Colors.white,
-                          fontSize: 14.0);
-                    });
-                    task?['solved'] = value;
+                    if (value != null) {
+                      TaskService.updateTask(
+                          widget.token, id, title, description, value);
+                      task.solved = value;
+                    } else {
+                      task.solved = false;
+                    }
                   });
                 },
               ),
               title: SelectableText(
-                task?['title'] ?? '',
-                style: task?['solved'] == true
+                task.title,
+                style: task.solved == true
                     ? TextStyle(decoration: TextDecoration.lineThrough)
                     : null,
               ),
-              subtitle: SelectableText(task?['description'] ?? '',
-                  style: task?['solved'] == true
+              subtitle: SelectableText(task.description,
+                  style: task.solved == true
                       ? TextStyle(decoration: TextDecoration.lineThrough)
                       : null),
               isThreeLine: true,
@@ -192,13 +208,14 @@ class _TasksState extends State<Tasks> {
                     value: 'update',
                     child: Text('Update Task'),
                     onTap: () {
-                      String taskId = task?['_id'] ?? '';
-                      String taskName = task?['title'] ?? '';
-                      String taskDescription = task?['description'] ?? '';
+                      String taskId = task.id;
+                      String taskName = task.title;
+                      String taskDescription = task.description;
                       Future.delayed(Duration.zero, () {
                         showDialog(
                           context: context,
                           builder: (context) => UpdateTaskAlertDialog(
+                              token: widget.token,
                               taskId: taskId,
                               taskName: taskName,
                               taskDescription: taskDescription),
@@ -210,13 +227,15 @@ class _TasksState extends State<Tasks> {
                     value: 'delete',
                     child: Text('Delete'),
                     onTap: () {
-                      String taskId = task?['_id'] ?? '';
-                      String taskName = task?['title'] ?? '';
+                      String taskId = task.id;
+                      String taskName = task.title;
                       Future.delayed(Duration.zero, () {
                         showDialog(
                           context: context,
                           builder: (context) => DeleteTaskDialog(
-                              taskId: taskId, taskName: taskName),
+                              token: widget.token,
+                              taskId: taskId,
+                              taskName: taskName),
                         );
                       });
                     },
