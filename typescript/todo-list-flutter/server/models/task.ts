@@ -1,6 +1,10 @@
 import mongoose from "mongoose"
 
 const taskSchema = new mongoose.Schema({
+  token: {
+    type: String,
+    required: true
+  },
   title: {
     type: String,
     required: true
@@ -22,4 +26,4 @@ const taskSchema = new mongoose.Schema({
   }
 });
 
-export const TaskModel = mongoose.models.FlutterTask || mongoose.model("FlutterTask", taskSchema);
+export const TaskModel = mongoose.models.FlutterTask || mongoose.model("flutter-tasks", taskSchema);

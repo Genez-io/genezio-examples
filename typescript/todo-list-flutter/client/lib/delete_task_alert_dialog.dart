@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:todo_list/sdk/task.dart';
+import 'package:todo_list/sdk/task_service.dart';
 
 class DeleteTaskDialog extends StatefulWidget {
+  final String token;
   final String taskId, taskName;
 
   const DeleteTaskDialog(
-      {Key? key, required this.taskId, required this.taskName})
+      {Key? key,
+      required this.token,
+      required this.taskId,
+      required this.taskName})
       : super(key: key);
 
   @override
@@ -60,25 +63,24 @@ class _DeleteTaskDialogState extends State<DeleteTaskDialog> {
         ),
         ElevatedButton(
           onPressed: () {
-            Task.deleteTask(widget.taskId).then((_) {
-              Fluttertoast.showToast(
-                  msg: "Task deleted successfully",
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.BOTTOM,
-                  backgroundColor: Colors.black54,
-                  textColor: Colors.white,
-                  fontSize: 14.0);
+            TaskService.deleteTask(widget.token, widget.taskId).then((_) {
+              // Create a snackbar
+              final snackBar = SnackBar(
+                content: Text('Task updated'),
+                backgroundColor: Colors.green,
+              );
+              // Show snackbar
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
               Navigator.popAndPushNamed(context, "/");
             }).catchError((error) {
-              Fluttertoast.showToast(
-                  msg: "Delete failed: $error",
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.SNACKBAR,
-                  backgroundColor: Colors.black54,
-                  textColor: Colors.white,
-                  fontSize: 14.0);
+              // Create a snackbar
+              final snackBar = SnackBar(
+                content: Text(error.toString()),
+                backgroundColor: Colors.red,
+              );
+              // Show snackbar
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
             });
-            // Navigator.of(context, rootNavigator: true).pop();
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.deepPurple,

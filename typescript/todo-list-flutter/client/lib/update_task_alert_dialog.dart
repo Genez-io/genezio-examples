@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:todo_list/sdk/task.dart';
+import 'package:todo_list/sdk/task_service.dart';
 
 class UpdateTaskAlertDialog extends StatefulWidget {
+  final String token;
   final String taskId, taskName, taskDescription;
 
   const UpdateTaskAlertDialog({
     Key? key,
+    required this.token,
     required this.taskId,
     required this.taskName,
     required this.taskDescription,
@@ -99,30 +100,30 @@ class _UpdateTaskAlertDialogState extends State<UpdateTaskAlertDialog> {
             final description = taskDescriptionController.text;
             // Nice-to-have: Hardcoded value for solved/status for now.
             // Add a dropdown/checkbox to select solved or not.
-            Task.updateTask(
+            TaskService.updateTask(
+              widget.token,
               id,
               title,
               description,
-              "false",
+              false,
             ).then((_) {
-              Fluttertoast.showToast(
-                  msg: "Task updated successfully",
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.BOTTOM,
-                  backgroundColor: Colors.black54,
-                  textColor: Colors.white,
-                  fontSize: 14.0);
+              // Create a snackbar
+              final snackBar = SnackBar(
+                content: Text('Task updated'),
+                backgroundColor: Colors.green,
+              );
+              // Show snackbar
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
               Navigator.popAndPushNamed(context, '/');
             }).catchError((error) {
-              Fluttertoast.showToast(
-                  msg: "Update failed: $error",
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.SNACKBAR,
-                  backgroundColor: Colors.black54,
-                  textColor: Colors.white,
-                  fontSize: 14.0);
+              // Create a snackbar
+              final snackBar = SnackBar(
+                content: Text('Error: $error'),
+                backgroundColor: Colors.red,
+              );
+              // Show snackbar
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
             });
-            // Navigator.of(context, rootNavigator: true).pop();
           },
           child: const Text('Save'),
         ),
