@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:todo_list/sdk/task.dart';
 
@@ -65,22 +64,22 @@ class _DeleteTaskDialogState extends State<DeleteTaskDialog> {
         ElevatedButton(
           onPressed: () {
             Task.deleteTask(widget.token, widget.taskId).then((_) {
-              Fluttertoast.showToast(
-                  msg: "Task deleted successfully",
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.BOTTOM,
-                  backgroundColor: Colors.black54,
-                  textColor: Colors.white,
-                  fontSize: 14.0);
+              // Create a snackbar to show a message to the user.
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Task deleted'),
+                  backgroundColor: Colors.green,
+                ),
+              );
               Navigator.popAndPushNamed(context, "/");
             }).catchError((error) {
-              Fluttertoast.showToast(
-                  msg: "Delete failed: $error",
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.SNACKBAR,
-                  backgroundColor: Colors.black54,
-                  textColor: Colors.white,
-                  fontSize: 14.0);
+              // Create a snackbar to show a message to the user.
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Error deleting task'),
+                  backgroundColor: Colors.red,
+                ),
+              );
             });
           },
           style: ElevatedButton.styleFrom(
