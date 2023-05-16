@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:todo_list/sdk/task.dart';
 
@@ -107,22 +106,23 @@ class _UpdateTaskAlertDialogState extends State<UpdateTaskAlertDialog> {
               url,
               "false",
             ).then((_) {
-              Fluttertoast.showToast(
-                  msg: "Task updated successfully",
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.BOTTOM,
-                  backgroundColor: Colors.black54,
-                  textColor: Colors.white,
-                  fontSize: 14.0);
+              // Create a snackbar to show a message to the user.
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Task updated.'),
+                  backgroundColor: Colors.green,
+                ),
+              );
+
               Navigator.popAndPushNamed(context, '/');
             }).catchError((error) {
-              Fluttertoast.showToast(
-                  msg: "Update failed: $error",
-                  toastLength: Toast.LENGTH_LONG,
-                  gravity: ToastGravity.SNACKBAR,
-                  backgroundColor: Colors.black54,
-                  textColor: Colors.white,
-                  fontSize: 14.0);
+              // Create a snackbar to show a message to the user.
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Error updating task.'),
+                  backgroundColor: Colors.red,
+                ),
+              );
             });
           },
           child: const Text('Save'),
