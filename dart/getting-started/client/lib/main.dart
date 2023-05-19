@@ -5,7 +5,7 @@ import 'package:todo_list/add_task_alert_dialog.dart';
 import 'package:todo_list/delete_task_alert_dialog.dart';
 import 'package:todo_list/update_task_alert_dialog.dart';
 
-import 'package:todo_list/sdk/task.dart';
+import 'package:todo_list/sdk/task_service.dart';
 
 void main() {
   runApp(const MyApp());
@@ -128,14 +128,14 @@ class Tasks extends StatefulWidget {
 }
 
 class _TasksState extends State<Tasks> {
-  List<TaskModel> tasks = [];
+  List<Task> tasks = [];
 
   @override
   void initState() {
     super.initState();
 
     _getTasks().then((response) {
-      tasks.addAll(response);
+      tasks.addAll(response.tasks);
       // Update UI
       setState(() {
         tasks = tasks;
@@ -145,8 +145,8 @@ class _TasksState extends State<Tasks> {
     });
   }
 
-  Future<List<TaskModel>> _getTasks() async {
-    return Task.getAllTasksByUser(widget.token);
+  Future<GetTasksResponse> _getTasks() async {
+    return TaskService.getAllTasksByUser(widget.token);
   }
 
   @override
@@ -173,15 +173,15 @@ class _TasksState extends State<Tasks> {
             ),
             child: ListTile(
               leading: Checkbox(
-                value: task.solved == "true" ? true : false,
+                value: task.solved,
                 onChanged: (value) {
                   final id = task.id;
                   final title = task.title;
                   final url = task.url;
                   setState(() {
-                    Task.updateTask(
-                        id, widget.token, title, url, value!.toString());
-                    task.solved = value.toString();
+                    TaskService.updateTask(
+                        id, widget.token, title, url, value!);
+                    task.solved = value;
                   });
                 },
               ),

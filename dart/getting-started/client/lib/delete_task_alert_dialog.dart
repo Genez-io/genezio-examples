@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:todo_list/sdk/task.dart';
+import 'package:todo_list/sdk/task_service.dart';
 
 class DeleteTaskDialog extends StatefulWidget {
   final String token;
@@ -63,7 +63,7 @@ class _DeleteTaskDialogState extends State<DeleteTaskDialog> {
         ),
         ElevatedButton(
           onPressed: () {
-            Task.deleteTask(widget.token, widget.taskId).then((_) {
+            TaskService.deleteTask(widget.token, widget.taskId).then((_) {
               // Create a snackbar to show a message to the user.
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(

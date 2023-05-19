@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:todo_list/sdk/task.dart';
+import 'package:todo_list/sdk/task_service.dart';
 
 class AddTaskAlertDialog extends StatefulWidget {
   final String token;
@@ -88,7 +88,7 @@ class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
           onPressed: () {
             final title = taskNameController.text;
             final url = taskUrlController.text;
-            Task.createTask(widget.token, title, url).then((_) {
+            TaskService.createTask(widget.token, title, url).then((_) {
               // Create a snackbar to show a message to the user.
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
