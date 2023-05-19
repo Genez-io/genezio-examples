@@ -12,7 +12,7 @@ TaskModel _$TaskModelFromJson(Map<String, dynamic> json) => TaskModel(
       json['url'] as String,
       json['token'] as String,
       json['solved'] as String,
-      json['date'] as String,
+      DateTime.parse(json['date'] as String),
     );
 
 Map<String, dynamic> _$TaskModelToJson(TaskModel instance) => <String, dynamic>{
@@ -21,5 +21,5 @@ Map<String, dynamic> _$TaskModelToJson(TaskModel instance) => <String, dynamic>{
       'url': instance.url,
       'token': instance.token,
       'solved': instance.solved,
-      'date': instance.date,
+      'date': instance.date.toIso8601String(),
     };
