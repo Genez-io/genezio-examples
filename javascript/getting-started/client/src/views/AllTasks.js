@@ -10,7 +10,7 @@ import {
   ModalFooter,
 } from "reactstrap";
 import React, { useState, useEffect } from "react";
-import { Task } from "../sdk/task.sdk.js";
+import { TaskService } from "../sdk/taskService.sdk.js";
 import { useNavigate } from "react-router-dom";
 import TaskView from './TaskView.js'
 import uuid from 'react-uuid';
@@ -40,10 +40,10 @@ export default (props) => {
         token = uuid()
         localStorage.setItem("apiToken", token)
       }
-  
+
       // eslint-disable-next-line no-inner-declarations
       async function fetchTasks() {
-        const res = await Task.getAllTasksByUser(
+        const res = await TaskService.getAllTasksByUser(
           localStorage.getItem("apiToken"),
         );
         if (res.success) {
@@ -55,7 +55,7 @@ export default (props) => {
   }, []);
 
   async function handleDelete(id) {
-    const res = await Task.deleteTask(localStorage.getItem("apiToken"), id);
+    const res = await TaskService.deleteTask(localStorage.getItem("apiToken"), id);
     if (res.success) {
       navigate(0);
     }
@@ -63,7 +63,7 @@ export default (props) => {
 
   async function handleEdit(id, title, solved) {
     console.log("handle edit called", id, title, solved)
-    const res = await Task.updateTask(
+    const res = await TaskService.updateTask(
       localStorage.getItem("apiToken"),
       id,
       title,
@@ -71,7 +71,7 @@ export default (props) => {
     );
     if (res.success) {
       const newTasks = tasks.map((task) => {
-        if (task._id === id) {
+        if (task.id === id) {
           task.title = title;
           task.solved = solved;
         }
@@ -87,7 +87,7 @@ export default (props) => {
       setError("Title is mandatory");
       return;
     }
-    const res = await Task.createTask(
+    const res = await TaskService.createTask(
       localStorage.getItem("apiToken"),
       taskTitle
     );
@@ -143,7 +143,7 @@ export default (props) => {
                 <p style={{ marginBottom: "30px", textAlign: "center" }}>Here you have a list of resources that you can use to learn how to continue building awesome projects with genezio:</p>
 
                 {tasks.map((task) => (
-                  <TaskView key={task._id} task={task} onChange={handleEdit} onDelete={handleDelete}></TaskView>
+                  <TaskView key={TaskService.id} task={task} onChange={handleEdit} onDelete={handleDelete}></TaskView>
                 ))}
                 <div style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>
                   <Button outline color="secondary" onClick={() => {

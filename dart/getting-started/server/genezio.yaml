@@ -12,6 +12,6 @@ frontend:
   path: ../client/build/web
 classes:
   - path: ./lib/task.dart
-    name: "Task"
+    name: "TaskService"
     type: jsonrpc
     methods: []

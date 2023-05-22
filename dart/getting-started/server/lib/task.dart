@@ -5,15 +5,15 @@ import 'package:json_annotation/json_annotation.dart';
 part 'task.g.dart';
 
 @JsonSerializable()
-class TaskModel {
+class Task {
   String id;
   String title;
   String url;
   String token;
-  String solved;
+  bool solved;
   DateTime date;
 
-  TaskModel(
+  Task(
     this.id,
     this.title,
     this.url,
@@ -22,13 +22,72 @@ class TaskModel {
     this.date,
   );
 
-  factory TaskModel.fromJson(Map<String, dynamic> json) =>
-      _$TaskModelFromJson(json);
+  factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TaskModelToJson(this);
+  Map<String, dynamic> toJson() => _$TaskToJson(this);
 }
 
-class Task {
+@JsonSerializable()
+class GetTasksResponse {
+  bool success;
+  List<Task> tasks;
+
+  GetTasksResponse(
+    this.success,
+    this.tasks,
+  );
+
+  factory GetTasksResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetTasksResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GetTasksResponseToJson(this);
+}
+
+@JsonSerializable()
+class GetTaskResponse {
+  bool success;
+  Task task;
+
+  GetTaskResponse(
+    this.success,
+    this.task,
+  );
+
+  factory GetTaskResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetTaskResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GetTaskResponseToJson(this);
+}
+
+@JsonSerializable()
+class UpdateTaskResponse {
+  bool success;
+
+  UpdateTaskResponse(
+    this.success,
+  );
+
+  factory UpdateTaskResponse.fromJson(Map<String, dynamic> json) =>
+      _$UpdateTaskResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UpdateTaskResponseToJson(this);
+}
+
+@JsonSerializable()
+class DeleteTaskResponse {
+  bool success;
+
+  DeleteTaskResponse(
+    this.success,
+  );
+
+  factory DeleteTaskResponse.fromJson(Map<String, dynamic> json) =>
+      _$DeleteTaskResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DeleteTaskResponseToJson(this);
+}
+
+class TaskService {
   Db? db;
 
   /// Method that returns all tasks for a given user ID.
@@ -37,7 +96,7 @@ class Task {
   ///
   /// @param token The user's token.
   /// @returns A list containing tasks.
-  Future<List<TaskModel>> getAllTasksByUser(String token) async {
+  Future<GetTasksResponse> getAllTasksByUser(String token) async {
     print("Trying to get all tasks by user with token: $token");
 
     // Check if the database is connected
@@ -47,29 +106,29 @@ class Task {
     }
 
     // Get tasks from database
-    List<TaskModel>? tasks = await db
+    final tasks = await db
         ?.collection(TASK_COLLECTION)
         .find({
           "token": token,
         })
         .map((task) {
-          return TaskModel.fromJson(task);
+          return Task.fromJson(task);
         })
         .toList()
         .catchError((e) {
-          print("TEST 1: Error getting tasks from database: $e");
+          print("Error getting tasks from database: $e");
           throw e;
         });
 
     if (tasks == null || tasks.isEmpty) {
       await db
           ?.collection(TASK_COLLECTION)
-          .insert(TaskModel(
+          .insert(Task(
                   ObjectId().$oid,
                   "Check our documentation",
                   "https://docs.genez.io/genezio-documentation/",
                   token,
-                  "false",
+                  false,
                   DateTime.now())
               .toJson())
           .catchError((e) {
@@ -79,12 +138,12 @@ class Task {
 
       await db
           ?.collection(TASK_COLLECTION)
-          .insert(TaskModel(
+          .insert(Task(
                   ObjectId().$oid,
                   "Watch our Youtube tutorials",
                   "https://www.youtube.com/@genezio7235",
                   token,
-                  "false",
+                  false,
                   DateTime.now())
               .toJson())
           .catchError((e) {
@@ -94,12 +153,12 @@ class Task {
 
       await db
           ?.collection(TASK_COLLECTION)
-          .insert(TaskModel(
+          .insert(Task(
                   ObjectId().$oid,
                   "Read our technical articles on genezio blog",
                   "https://genez.io/blog",
                   token,
-                  "false",
+                  false,
                   DateTime.now())
               .toJson())
           .catchError((e) {
@@ -107,7 +166,7 @@ class Task {
         throw e;
       });
     } else {
-      return tasks;
+      return GetTasksResponse(true, tasks);
     }
 
     // Get tasks from database
@@ -117,27 +176,28 @@ class Task {
           "token": token,
         })
         .map((task) {
-          return TaskModel.fromJson(task);
+          return Task.fromJson(task);
         })
         .toList()
         .catchError((e) {
-          print("TEST 2: Error getting tasks from database: $e");
+          print("Error getting tasks from database: $e");
           throw e;
         });
 
     // Check if iniTasks is null
     if (initTasks == null || initTasks.isEmpty) {
-      return [];
+      return GetTasksResponse(false, []);
     }
 
-    return initTasks;
+    return GetTasksResponse(true, initTasks);
   }
 
   /// Method that creates a task for a giving user ID.
   ///
   /// @param token The user's token.
   /// @returns A list the string "success" if everything went well.
-  Future<TaskModel> createTask(String token, String title, String url) async {
+  Future<GetTaskResponse> createTask(
+      String token, String title, String url) async {
     print("Trying to add a new task with title: $title");
 
     // Check if the database is connected
@@ -147,8 +207,7 @@ class Task {
     }
 
     // Create a new task in the database
-    final task = TaskModel(
-        ObjectId().$oid, title, url, token, "false", DateTime.now());
+    Task task = Task(ObjectId().$oid, title, url, token, false, DateTime.now());
 
     // Add task into the database
     await db?.collection(TASK_COLLECTION).insert(task.toJson()).catchError((e) {
@@ -156,7 +215,7 @@ class Task {
       throw e;
     });
 
-    return task;
+    return GetTaskResponse(true, task);
   }
 
   /// Method that deletes a task for giving user token and with a given id.
@@ -164,7 +223,7 @@ class Task {
   /// @param token The user's token.
   /// @param id The tasks's id.
   /// @returns A list the string "success" if everything went well.
-  Future<String> deleteTask(String token, String id) async {
+  Future<DeleteTaskResponse> deleteTask(String token, String id) async {
     print("Trying to delete the task with id: $id");
 
     // Check if the database is connected
@@ -182,7 +241,7 @@ class Task {
       throw e;
     });
 
-    return "success";
+    return DeleteTaskResponse(true);
   }
 
   /// Method that updates a task.
@@ -192,8 +251,8 @@ class Task {
   /// @param title The tasks's title.
   /// @param solved The tasks's solved flag.
   /// @returns A list the string "success" if everything went well.
-  Future<String> updateTask(
-      String id, String token, String title, String url, String solved) async {
+  Future<UpdateTaskResponse> updateTask(
+      String id, String token, String title, String url, bool solved) async {
     print("Trying to update the task with id: $id");
 
     // Check if the database is connected
@@ -217,7 +276,7 @@ class Task {
       throw e;
     });
 
-    return "success";
+    return UpdateTaskResponse(true);
   }
 
   /// Method that connects to the database.

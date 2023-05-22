@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:todo_list/sdk/task.dart';
+import 'package:todo_list/sdk/task_service.dart';
 
 class UpdateTaskAlertDialog extends StatefulWidget {
   final String token;
@@ -99,12 +99,12 @@ class _UpdateTaskAlertDialogState extends State<UpdateTaskAlertDialog> {
             final url = taskUrlController.text;
             // Nice-to-have: Hardcoded value for solved/status for now.
             // Add a dropdown/checkbox to select solved or not.
-            Task.updateTask(
+            TaskService.updateTask(
               id,
               widget.token,
               title,
               url,
-              "false",
+              false,
             ).then((_) {
               // Create a snackbar to show a message to the user.
               ScaffoldMessenger.of(context).showSnackBar(
