@@ -11,7 +11,7 @@ class TaskModel {
   String url;
   String token;
   String solved;
-  String date;
+  DateTime date;
 
   TaskModel(
     this.id,
@@ -70,7 +70,7 @@ class Task {
                   "https://docs.genez.io/genezio-documentation/",
                   token,
                   "false",
-                  DateTime.now().toString())
+                  DateTime.now())
               .toJson())
           .catchError((e) {
         print("Error adding task to database: $e");
@@ -85,7 +85,7 @@ class Task {
                   "https://www.youtube.com/@genezio7235",
                   token,
                   "false",
-                  DateTime.now().toString())
+                  DateTime.now())
               .toJson())
           .catchError((e) {
         print("Error adding task to database: $e");
@@ -100,7 +100,7 @@ class Task {
                   "https://genez.io/blog",
                   token,
                   "false",
-                  DateTime.now().toString())
+                  DateTime.now())
               .toJson())
           .catchError((e) {
         print("Error adding task to database: $e");
@@ -148,7 +148,7 @@ class Task {
 
     // Create a new task in the database
     final task = TaskModel(
-        ObjectId().$oid, title, url, token, "false", DateTime.now().toString());
+        ObjectId().$oid, title, url, token, "false", DateTime.now());
 
     // Add task into the database
     await db?.collection(TASK_COLLECTION).insert(task.toJson()).catchError((e) {
