@@ -31,7 +31,14 @@ export class TaskService {
   async getAllTasksByUser(token) {
     console.log(`Get all tasks by user request received with token ${token}`)
 
-    const tasks = await TaskModel.find({ token: token });
+    const tasks = (await TaskModel.find({ token: token })).map((task) => {
+      return {
+        id: task._id.toString(),
+        title: task.title,
+        solved: task.solved,
+        token: task.token
+        };
+    });
 
     if (tasks.length === 0) {
       await TaskModel.create({
@@ -58,7 +65,14 @@ export class TaskService {
         url: "https://genez.io/blog/"
       })
 
-      const initTasks = await TaskModel.find({ token: token });
+      const initTasks = (await TaskModel.find({ token: token })).map((task) => {
+        return {
+          id: task._id.toString(),
+          title: task.title,
+          solved: task.solved,
+          token: task.token
+          };
+      });
 
       return { success: true, tasks: initTasks };
     }
@@ -87,7 +101,7 @@ export class TaskService {
 
     return {
       success: true,
-      task: { title: title, token: token.toString(), id: task.id.toString() }
+      task: { title: title, token: token.toString(), id: task._id.toString() }
     };
   }
 
@@ -107,7 +121,7 @@ export class TaskService {
     console.log(`Update task request received with id ${id} with title ${title} and solved value ${solved}`)
 
     await TaskModel.updateOne(
-      { id: id, token: token },
+      { _id: id, token: token },
       {
         title: title,
         solved: solved
@@ -131,7 +145,7 @@ export class TaskService {
   async deleteTask(token, id) {
     console.log(`Delete task with id ${id} request received`)
 
-    await TaskModel.deleteOne({ token: token, id: id });
+    await TaskModel.deleteOne({ token: token, _id: id });
 
     return { success: true };
   }
