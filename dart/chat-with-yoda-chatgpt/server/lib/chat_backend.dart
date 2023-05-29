@@ -1,4 +1,4 @@
-import 'package:dart_openai/openai.dart';
+import 'package:dart_openai/dart_openai.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:chat_with_chatgpt/constants.dart';
 import 'package:dotenv/dotenv.dart';
