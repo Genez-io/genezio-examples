@@ -4,8 +4,6 @@
 name: webhook-example
 sdk:
   language: js
-  options:
-    runtime: node
   path: ../client/sdk/
 classes:
   - path: "./index.js"
