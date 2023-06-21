@@ -2,6 +2,10 @@
 
 Sometimes we might need to communicate directly over HTTP instead of JSONRPC. In this example, the `helloWorldOverHttp` implemented in `HelloWorldHttpExample` class will be triggered by an HTTP request.
 
+## Clone the example
+1. Run `git clone https://github.com/Genez-io/genezio-examples`
+2. Navigate to the folder `cd ./genezio-examples/javascript/webhook`
+
 ## Initialization
 
 1. Run `npm install` in the `server/` folder to install the dependencies.
