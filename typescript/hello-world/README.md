@@ -4,6 +4,10 @@ In this example, we have a class with two functions that return a welcome messag
 
 The class is implemented in typescript in the `server/hello.ts` file.
 
+## Clone the example
+1. Run `git clone https://github.com/Genez-io/genezio-examples`
+2. Navigate to the folder `cd ./genezio-examples/typescript/hello-world`
+
 ## Run the example locally
 
 1. Run `genezio local` in the `server/` folder. This will generate the SDK and start a local web server that listens for requests.
