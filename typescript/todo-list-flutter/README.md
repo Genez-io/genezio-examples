@@ -14,6 +14,10 @@ Note: `genezio deploy` deploys both backend and frontend. If you want to test th
 
 If you want to deploy your application step-by-step, follow the guidelines below.
 
+## Clone the example
+1. Run `git clone https://github.com/Genez-io/genezio-examples`
+2. Navigate to the folder `cd ./genezio-examples/typescript/todo-list-flutter`
+
 ## Initialization
 
 1. Run `npm install` in the `server/` folder to install the dependencies.
