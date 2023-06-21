@@ -21,6 +21,10 @@ The list of available projects can be found below.
      - [todo-list-angular](typescript/todo-list-angular)
      - [todo-list-flutter](typescript/todo-list-flutter)
      - [multiversX](typescript/multiversx)
+ - Dart
+     - [getting-started](dart/getting-started)
+     - [todo-list-react-typescript](dart/todo-list-react-typescript)
+     - [chat-with-yoda-chatgpt](dart/chat-with-yoda-chatgpt)
  - Swift
      - [todo-list](swift/todo-list)
 
