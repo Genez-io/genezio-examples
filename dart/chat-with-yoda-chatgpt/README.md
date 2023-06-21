@@ -12,6 +12,10 @@ Welcome to our demo chat app integrated with Chat GPT, written in Flutter (front
 
 This app allows users to engage in conversations with a chatbot powered by Chat GPT. This app is meant to be a demo for a technical talk on the topic of building full stack apps with Dart and genezio.
 
+## Clone the example
+1. Run `git clone https://github.com/Genez-io/genezio-examples`
+2. Navigate to the folder `cd ./genezio-examples/dart/chat-with-yoda-chatgpt`
+
 ## Replicate this demo
 
 Prerequisites:
