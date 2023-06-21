@@ -5,6 +5,10 @@ In this project we are creating a project using ChatGPT API from a genezio backe
 - npm installed
 - node installed
 
+## Clone the example
+1. Run `git clone https://github.com/Genez-io/genezio-examples`
+2. Navigate to the folder `cd ./genezio-examples/javascript/chatgpt-project`
+
 ## Getting Started local
 A step by step series of examples that tell you how to get a development environment running:
 1. Clone the repository
