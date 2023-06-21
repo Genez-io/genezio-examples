@@ -6,6 +6,10 @@ The class is implemented in the `./server/hello.js` file.
 
 To deploy and test it run `genezio deploy --backend`. Once the command was successfully executed you can run `node ./client/test-hello-sdk.js`.
 
+## Clone the example
+1. Run `git clone https://github.com/Genez-io/genezio-examples`
+2. Navigate to the folder `cd ./genezio-examples/javascript/hello-world`
+
 ## Run the example locally
 
 1. Run `genezio local` in the `server/` folder. This will generate the SDK and start a local web server that listens for requests.
