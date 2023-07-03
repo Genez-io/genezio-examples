@@ -1,6 +1,6 @@
 name: multiverse-ts
 region: us-east-1
-cloudProvider: aws
+cloudProvider: genezio
 sdk:
   language: ts
   options:

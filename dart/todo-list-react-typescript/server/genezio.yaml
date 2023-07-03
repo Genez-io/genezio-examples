@@ -1,6 +1,6 @@
 name: todo-list-react-typescript
 region: us-east-1
-cloudProvider: aws
+cloudProvider: genezio
 sdk:
   options:
    runtime: browser

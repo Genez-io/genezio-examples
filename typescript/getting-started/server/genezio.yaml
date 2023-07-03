@@ -1,6 +1,6 @@
 name: getting-started-genezio-typescript
 region: eu-central-1
-cloudProvider: aws
+cloudProvider: genezio
 sdk:
   language: ts
   options:
