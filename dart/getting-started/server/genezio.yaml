@@ -1,6 +1,6 @@
 name: getting-started-dart
 region: us-east-1
-cloudProvider: aws
+cloudProvider: genezio
 sdk:
   language: dart
   options: {}

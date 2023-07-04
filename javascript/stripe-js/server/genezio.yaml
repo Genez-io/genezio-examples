@@ -1,6 +1,6 @@
 name: stripe-integration
 region: us-east-1
-cloudProvider: aws
+cloudProvider: genezio
 sdk:
   language: js
   path: ./../client/src/sdk/
