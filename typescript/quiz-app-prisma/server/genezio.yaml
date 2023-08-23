@@ -1,0 +1,15 @@
+name: prisma-example
+region: us-east-1
+cloudProvider: genezio
+sdk:
+  language: ts
+  path: ../client/src/sdk
+scripts:
+  preBackendDeploy: npm install
+  preFrontendDeploy: cd ../client && npm install && npm run build
+frontend:
+  path: ../client/build
+classes:
+  - path: leaderboard.ts
+    type: jsonrpc
+    methods: [ ]
