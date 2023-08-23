@@ -20,6 +20,7 @@ The list of available projects can be found below.
      - [todo-list](typescript/todo-list)
      - [todo-list-angular](typescript/todo-list-angular)
      - [todo-list-flutter](typescript/todo-list-flutter)
+     - [quiz-app-prisma](typescript/quiz-app-prisma)
      - [multiversX](typescript/multiversx)
  - Dart
      - [getting-started](dart/getting-started)
