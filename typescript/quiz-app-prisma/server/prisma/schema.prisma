@@ -1,0 +1,22 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Configure the client generator for Prisma
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-1.0.x"]
+}
+
+// Define the data source for the Prisma schema
+datasource db {
+  provider = "mysql"
+  url      = "mysql://admin:xcMmW0ZJdhnqQHcifnuo@test-examples-genezio.c4182iwjrpge.us-east-1.rds.amazonaws.com:3306/examplePrismaDb"
+}
+
+// Define the data model for the 'leaderboard' table
+model leaderboard {
+  id         Int      @id @default(autoincrement())
+  playerName String
+  score      Int
+  date       DateTime
+}
