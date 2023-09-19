@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.3",
-    "openai": "^3.1.0"
+    "openai": "^4.8.0"
   }
 }
