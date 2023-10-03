@@ -1,5 +1,5 @@
 import multipart from "parse-multipart-data";
-import { GenezioRequest, GenezioResponse } from "./models/typeWebhook";
+import {GenezioRequest,GenezioResponse} from "GenezioTypeHttp";
 
 export class HelloWorldHttpExample {
   /**
