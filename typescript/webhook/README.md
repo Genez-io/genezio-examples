@@ -16,7 +16,6 @@ implemented in `HelloWorldHttpExample` class will be triggered by an HTTP reques
 3. In the `client/` folder, execute `npm run build` to convert the Typescript code to Javascript.
 4. In the `client/` folder, execute `npm start` to run the client. This script will use the SDK to call the methods that
    you have deployed locally in the previous step.
-5. You should see the greeting messages.
 
 ## Deploy the example in the Genezio infrastructure
 
@@ -26,4 +25,3 @@ implemented in `HelloWorldHttpExample` class will be triggered by an HTTP reques
 3. In the `client/` folder, execute `npm run build` to convert the Typescript code to Javascript.
 4. In the `client/` folder, execute `npm start` to run the client. This script will use the SDK to call the methods that
    you have deployed locally in the previous step.
-5. You should see the greeting messages.
