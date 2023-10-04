@@ -107,3 +107,5 @@ dist
 
 # Ignore sdk files
 **/sdk
+
+.idea

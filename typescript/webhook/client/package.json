@@ -1,0 +1,19 @@
+{
+  "name": "test-webhook-ts",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node build/test-webhook.js"
+  },
+  "author": "Genezio",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "~20.8.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "axios": "^1.5.1",
+    "form-data": "^4.0.0"
+  }
+}
