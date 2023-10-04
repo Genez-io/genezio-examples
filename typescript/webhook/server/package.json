@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@genezio/types": "^0.1.1",
+    "@genezio/types": "^0.1.2",
     "parse-multipart-data": "^1.5.0"
   }
 }

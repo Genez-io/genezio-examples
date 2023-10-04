@@ -1,5 +1,5 @@
 import multipart from "parse-multipart-data";
-import {GenezioHttpRequest,GenezioHttpResponse} from "@genezio/types/ts/genezioTypes";
+import {GenezioHttpResponse,GenezioHttpRequest} from "@genezio/types";
 
 export class HelloWorldHttpExample {
   /**
