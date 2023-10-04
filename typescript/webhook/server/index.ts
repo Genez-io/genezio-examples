@@ -8,23 +8,26 @@ export class HelloWorldHttpExample {
    * @param {*} request
    * @returns
    */
-  handleSimpleTextRequest(request: GenezioHttpRequest) {
+  handleSimpleTextRequest(request: GenezioHttpRequest): GenezioHttpResponse {
     console.log(
       `Request received with simple text ${JSON.stringify(request.body)}!`,
     );
 
     const uint8: Uint8Array = new Uint8Array(2);
 
-    return {
+    const response: GenezioHttpResponse = {
       body: request.body,
       headers: { "content-type": "text/html" },
+      statusCode: "200",
     };
+
+    return response
   }
 
   /**
    * Method that handles a simple HTTP request which receives a JSON payload in the body and returns the same payload as JSON.
    */
-  handleJsonBody(request: GenezioHttpRequest) {
+  handleJsonBody(request: GenezioHttpRequest): GenezioHttpResponse  {
     console.log(`Request received with body ${request.body}!`);
     if (!request.body.name) {
       throw Error("Missing parameter name");
@@ -49,7 +52,7 @@ export class HelloWorldHttpExample {
   /**
    * Method that handles a simple HTTP request with query parameters and returns "Ok".
    */
-  handleQueryParams(request: GenezioHttpRequest) {
+  handleQueryParams(request: GenezioHttpRequest): GenezioHttpResponse  {
     console.log(
       `Request received with query params ${request.queryStringParameters}!`,
     );
@@ -69,7 +72,7 @@ export class HelloWorldHttpExample {
   /**
    * Method that receives a file using multipart and returns the file as binary.
    */
-  handleMultipartData(request: GenezioHttpRequest) {
+  handleMultipartData(request: GenezioHttpRequest) : GenezioHttpResponse  {
     console.log("Request receive with multipart data", request);
 
     const entries = multipart.parse(
