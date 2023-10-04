@@ -1,5 +1,5 @@
 import multipart from "parse-multipart-data";
-import {GenezioRequest,GenezioResponse} from "GenezioTypeHttp";
+import {GenezioHttpRequest,GenezioHttpResponse} from "@genezio/types/ts/genezioTypes";
 
 export class HelloWorldHttpExample {
   /**
@@ -8,7 +8,7 @@ export class HelloWorldHttpExample {
    * @param {*} request
    * @returns
    */
-  handleSimpleTextRequest(request: GenezioRequest) {
+  handleSimpleTextRequest(request: GenezioHttpRequest) {
     console.log(
       `Request received with simple text ${JSON.stringify(request.body)}!`,
     );
@@ -24,7 +24,7 @@ export class HelloWorldHttpExample {
   /**
    * Method that handles a simple HTTP request which receives a JSON payload in the body and returns the same payload as JSON.
    */
-  handleJsonBody(request: GenezioRequest) {
+  handleJsonBody(request: GenezioHttpRequest) {
     console.log(`Request received with body ${request.body}!`);
     if (!request.body.name) {
       throw Error("Missing parameter name");
@@ -32,7 +32,7 @@ export class HelloWorldHttpExample {
 
     const name = request.body.name;
 
-    const response: GenezioResponse = {
+    const response: GenezioHttpResponse = {
       body: {
         name,
       },
@@ -49,7 +49,7 @@ export class HelloWorldHttpExample {
   /**
    * Method that handles a simple HTTP request with query parameters and returns "Ok".
    */
-  handleQueryParams(request: GenezioRequest) {
+  handleQueryParams(request: GenezioHttpRequest) {
     console.log(
       `Request received with query params ${request.queryStringParameters}!`,
     );
@@ -57,7 +57,7 @@ export class HelloWorldHttpExample {
       throw Error("Missing parameter name");
     }
 
-    const response: GenezioResponse = {
+    const response: GenezioHttpResponse = {
       body: "Ok",
       headers: { "content-type": "text/html" },
       statusCode: "200",
@@ -69,7 +69,7 @@ export class HelloWorldHttpExample {
   /**
    * Method that receives a file using multipart and returns the file as binary.
    */
-  handleMultipartData(request: GenezioRequest) {
+  handleMultipartData(request: GenezioHttpRequest) {
     console.log("Request receive with multipart data", request);
 
     const entries = multipart.parse(
@@ -83,7 +83,7 @@ export class HelloWorldHttpExample {
       throw new Error("File not found!");
     }
 
-    const response: GenezioResponse = {
+    const response: GenezioHttpResponse = {
       body: file.data,
       isBase64Encoded: true,
       headers: { "content-type": "application/octet-stream" },
