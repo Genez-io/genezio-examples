@@ -66,6 +66,6 @@ class TaskService {
             res = taskCollection.insertOne(Task(task.title, task.description, task.status))
         }
         println("Inserted document id: ${res.insertedId}")
-        return res.insertedId.toString()
+        return "OK"
     }
 }
