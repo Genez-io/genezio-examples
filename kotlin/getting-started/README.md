@@ -9,6 +9,7 @@ This is an example of a todo application that uses:
 ## Dependencies
 
 You will need to install the following tools if not already present on your development environment:
+- [The latest version of Android Studio](https://developer.android.com/studio)
 - [Java Development Kit](https://www.oracle.com/java/technologies/downloads/)
 - [Kotlin compiler](https://kotlinlang.org/docs/command-line.html)
 - [Gradle](https://gradle.org/install/)
