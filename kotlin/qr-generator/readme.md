@@ -13,7 +13,6 @@ You will need to install the following tools if not already present on your deve
 - [Kotlin compiler](https://kotlinlang.org/docs/command-line.html)
 - [Gradle](https://gradle.org/install/)
 - [Android Studio](https://developer.android.com/studio)
--
 
 Note: `genezio deploy` deploys the backend, due to the nature of mobile development this command only generates an SDK for the mobile application (front-end)
 If you want to test this example out-of-the-box by running 1 command, head to the `server` directory and run `genezio deploy` (if you have all the needed dependencies installed).
