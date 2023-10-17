@@ -14,6 +14,13 @@ You will need to install the following tools if not already present on your deve
 - [Gradle](https://gradle.org/install/)
 - [Android Studio](https://developer.android.com/studio)
 
+Note: Kotlin support is present in the development version of Genezio, you will need to follow the next steps:
+- `git clone https://github.com/Genez-io/genezio.git`
+- `git checkout dev`
+- `npm install`
+- `npm run install-locally-dev`
+- `genezio login`
+
 Note: `genezio deploy` deploys the backend, due to the nature of mobile development this command only generates an SDK for the mobile application (front-end)
 If you want to test this example out-of-the-box by running 1 command, head to the `server` directory and run `genezio deploy` (if you have all the needed dependencies installed).
 
