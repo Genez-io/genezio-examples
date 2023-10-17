@@ -47,3 +47,8 @@ If you want to deploy your application step-by-step, follow the guidelines below
 
 1. As of now the structure of your project is important as well as a number of external libraries that are specified in the build.gradle.kts files
 2. For new projects try to build from the existing example; you may add any necessary libraries for your usecase in build.gradle.kts
+
+## Support
+For any questions/issues that may arise don't hesitate to:
+- contact me at virgil@genez.io
+- join the [Discord server](https://discord.gg/R5ywWdsBrz)
