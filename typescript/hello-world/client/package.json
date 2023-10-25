@@ -4,7 +4,9 @@
   "description": "",
   "scripts": {
     "build": "npx tsc",
-    "start": "node build/test-hello.js"
+    "start": "node build/test-hello.js",
+    "install-local-sdk": "npm link @genezio-sdk/hello-world-ts_us-east-1",
+    "install-prod-sdk": "npm install @genezio-sdk/hello-world-ts_us-east-1@1.0.0-prod"
   },
   "author": "Genezio",
   "license": "ISC",

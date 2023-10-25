@@ -1,0 +1,7 @@
+name: genezio-blockchain
+region: eu-central-1
+language: js
+cloudProvider: genezio
+workspace:
+  backend: server
+  frontend: client

@@ -1,0 +1,7 @@
+name: todo-list
+region: us-east-1
+cloudProvider: genezio
+language: js
+workspace:
+  backend: server
+  frontend: client

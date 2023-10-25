@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx http-server ."
+    "start": "npx http-server .",
+    "install-local-sdk": "npm link @genezio-sdk/html-example_eu-central-1",
+    "install-prod-sdk": "npm install @genezio-sdk/html-example_eu-central-1@1.0.0-prod"
   },
   "author": "",
   "license": "ISC",

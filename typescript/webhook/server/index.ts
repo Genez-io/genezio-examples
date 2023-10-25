@@ -1,6 +1,8 @@
 import multipart from "parse-multipart-data";
 import {GenezioHttpResponse,GenezioHttpRequest} from "@genezio/types";
+import { GenezioDeploy } from "@genezio/types";
 
+@GenezioDeploy({ type: "http" })
 export class HelloWorldHttpExample {
   /**
    * Method that handles a simple HTTP request which receives a payload in the body and returns the same payload as plain text.

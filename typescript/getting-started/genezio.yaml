@@ -1,0 +1,7 @@
+name: getting-started-genezio-typescript-newest
+region: eu-central-1
+language: ts
+cloudProvider: genezio
+workspace:
+  backend: server
+  frontend: client

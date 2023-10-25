@@ -3,10 +3,13 @@ import { abi } from "./abi.js";
 import { EventModel } from "./models/event.js"
 import { mongoose } from "mongoose";
 import { MONGO_DB_URI, CONTRACT_ADDRESS, BLAST_API_RPC_ENDPOINT } from "./config.js";
+import { GenezioDeploy, GenezioMethod } from "@genezio/types"; 
+
 
 /**
  * The Blockchain server class that will be deployed on the genezio infrastructure.
  */
+@GenezioDeploy()
 export class BlockchainServer {
 
     constructor() {
@@ -82,6 +85,7 @@ export class BlockchainServer {
      * The frequency with which the method will be called can be modified from the genezio YAML file.
      * 
      */
+    @GenezioMethod({ type: "cron", cronString: "* * * * *" })
     async sync() {
         // Get the current block number and request the last 100 blocks
         const blockNumber = await this.web3.eth.getBlockNumber()

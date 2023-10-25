@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 import { reqAuth, MONGO_DB_URI } from "./helper"
 import { TaskModel } from "./models/task"
+import { GenezioDeploy } from "@genezio/types"
 
 export type Task = {
   _id: string,
@@ -31,6 +32,7 @@ export type DeleteTaskResponse = {
 /**
  * The Task server class that will be deployed on the genezio infrastructure.
  */
+@GenezioDeploy()
 export class TaskService {
   constructor() {
     this.#connect();

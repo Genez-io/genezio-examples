@@ -1,0 +1,5 @@
+name: hello-world-ts
+region: us-east-1
+workspace:
+  backend: server 
+  frontend: client 

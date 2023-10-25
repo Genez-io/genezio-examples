@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Input } from "reactstrap";
-import { MultiversXService, Response } from "./sdk/multiversXService.sdk";
+import { MultiversXService, Response } from "@genezio-sdk/multiverse-ts_us-east-1";
 import { useState, useEffect, useRef } from "react";
 
 export default function App() {

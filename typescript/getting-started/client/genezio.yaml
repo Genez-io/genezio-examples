@@ -1,0 +1,5 @@
+scripts:
+  preFrontendDeploy: npm run install-prod-sdk && npm install  && npm run build
+frontend:
+  path: ../client/build
+  subdomain: plum-considerable-bear

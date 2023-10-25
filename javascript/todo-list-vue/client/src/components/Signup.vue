@@ -8,34 +8,34 @@
 </template>
 
 <script>
-import { User } from "../sdk/user.sdk.js"
+import { User } from '@genezio-sdk/todo-list-angular_us-east-1';
 
 export default {
-  
+
   data() {
     return {
       email: '',
-      password: ''
-    }
+      password: '',
+    };
   },
   methods: {
     async signup() {
       try {
         User.register(this.name, this.email, this.password).then((response) => {
-          if (response.success == false) {
-            alert(response.msg)
-            return
+          if (response.success === false) {
+            alert(response.msg);
+            return;
           }
 
-          this.$router.push('/login')
+          this.$router.push('/login');
         });
       } catch (error) {
-        console.error(error)
-        alert("An error occured.")
+        console.error(error);
+        alert('An error occured.');
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>

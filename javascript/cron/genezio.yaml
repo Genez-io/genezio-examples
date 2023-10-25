@@ -2,13 +2,3 @@
 # Add the paths to classes that you want to deploy in "classes".
 
 name: cron-example
-sdk:
-  language: js
-  path: ./sdk/
-classes:
-  - path: "./index.js"
-    type: jsonrpc
-    methods:
-      - name: "sayHiEveryMinute"
-        type: cron
-        cronString: "* * * * *"

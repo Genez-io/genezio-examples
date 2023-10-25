@@ -3,10 +3,12 @@ import jwt from "jsonwebtoken"
 import { UserModel } from "./models/user"
 import { ActiveSession } from "./models/activeSession"
 import { MONGO_DB_URI, validatePassword, saltPassword } from "./helper"
+import { GenezioDeploy } from "@genezio/types"
 
 /**
  * The User server class that will be deployed on the genezio infrastructure.
  */
+@GenezioDeploy()
 export class User {
   constructor() {
     this.#connect();

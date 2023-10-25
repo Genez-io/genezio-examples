@@ -1,0 +1,14 @@
+{
+  "name": "genezio-cron",
+  "version": "1.0.0",
+  "description": "In this example, we have implemented a very simple class that has a method that will be called every minute.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@genezio/types": "^0.1.9"
+  }
+}

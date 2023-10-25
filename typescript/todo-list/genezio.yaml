@@ -1,0 +1,6 @@
+name: todo-list-ts
+region: us-east-1
+language: ts
+workspace:
+  backend: server
+  frontend: client

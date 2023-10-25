@@ -1,0 +1,5 @@
+name: html-example
+region: eu-central-1
+workspace:
+  backend: server
+  frontend: client

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { User, UserLoginResponse, UserService } from 'src/sdk/userService.sdk';
+import { User, UserLoginResponse, UserService } from '@genezio-sdk/todo-list-ts_us-east-1'
 
 @Injectable({
   providedIn: 'root'

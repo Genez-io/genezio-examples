@@ -1,11 +1,13 @@
 import { mongoose } from "mongoose"
 import { MONGO_DB_URI } from "./helper"
 import { TaskModel } from "./models/task"
+import { GenezioDeploy, GenezioMethod } from "@genezio/types";
 
 
 /**
  * The Task server class that will be deployed on the genezio infrastructure.
  */
+@GenezioDeploy()
 export class Task {
   constructor() {
     this.#connect();
@@ -128,6 +130,7 @@ export class Task {
    * @param {*} ownerId The owner's of the task ID.
    * @returns An object containing one property: { success: true }
    */
+  @GenezioMethod({ type: "cron", cronString: "* * * * *" })
   async deleteTask(token, id) {
     console.log(`Delete task with id ${id} request received`)
 

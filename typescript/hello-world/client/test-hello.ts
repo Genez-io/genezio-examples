@@ -1,4 +1,4 @@
-import { HelloWorld, Season } from "./sdk/helloWorld.sdk"
+import { HelloWorld, Season } from "@genezio-sdk/hello-world-ts_us-east-1"
 
 /**
  * Client that makes requests to the HelloWorldService deployed on genezio.

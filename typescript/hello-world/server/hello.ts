@@ -1,3 +1,4 @@
+import { GenezioDeploy } from "@genezio/types";
 
 export enum Season {
   Winter = "Winter",
@@ -8,6 +9,7 @@ export enum Season {
  * This class represents a hello world server that can be deployed on genezio infrastructure
  * using "genezio deploy" command or tested locally using "genezio local".
  */
+@GenezioDeploy()
 export class HelloWorld {
 
   constructor() {

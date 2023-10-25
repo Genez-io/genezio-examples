@@ -1,0 +1,6 @@
+frontend:
+  path: ./
+scripts:
+  preBackendDeploy: "npm install"
+  preFrontendDeploy: "npm run install-prod-sdk && npm install"
+

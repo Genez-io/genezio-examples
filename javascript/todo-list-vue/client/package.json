@@ -10,9 +10,12 @@
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "test": "npm run unit",
     "lint": "",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "install-local-sdk": "npm link @genezio-sdk/todo-list-angular_us-east-1",
+    "install-prod-sdk": "npm install @genezio-sdk/todo-list-angular_us-east-1@1.0.0-prod"
   },
   "dependencies": {
+    "@genezio-sdk/todo-list-angular_us-east-1": "^1.0.0-prod",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

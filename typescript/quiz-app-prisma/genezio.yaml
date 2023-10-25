@@ -1,0 +1,7 @@
+name: prisma-example
+region: us-east-1
+cloudProvider: genezio
+language: ts
+workspace:
+  backend: server
+  frontend: client
