@@ -1,0 +1,6 @@
+name: todo-list
+region: us-east-1
+language: js
+workspace:
+  backend: server
+  frontend: client

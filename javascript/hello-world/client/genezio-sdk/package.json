@@ -1,0 +1,7 @@
+{
+  "name": "@genezio-sdk/hello-world_eu-central-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js"
+}

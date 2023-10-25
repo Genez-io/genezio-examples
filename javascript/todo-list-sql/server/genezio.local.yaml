@@ -1,0 +1,4 @@
+generateSdk: true
+path: /var/folders/w1/ky_fhr2d0vj4v3mg8w4vt3kh0000gn/T/local-genezio/todo-list-us-east-1/sdk
+language: js
+packageManager: npm
