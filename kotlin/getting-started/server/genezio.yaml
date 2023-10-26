@@ -4,9 +4,9 @@ sdk:
   language: kt
   options:
     runtime: kotlin
-  path: ../client/app/src/main/java/com/genezio/sdk
+  path: ..\client\app\src\main\java\com\genezio\sdk
 classes:
-  - path: ./app/src/main/kotlin/geneziokotlin/SampleClass.kt
+  - path: .\app\src\main\kotlin\geneziokotlin\SampleClass.kt
     name: TaskService
 cloudProvider: aws
   

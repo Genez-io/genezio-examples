@@ -12,6 +12,7 @@ import org.bson.BsonValue
 import org.bson.Document
 import org.bson.codecs.pojo.annotations.BsonId
 import org.bson.types.ObjectId
+import testpkg.TestCls
 
 @Serializable
 data class Task(
@@ -20,35 +21,21 @@ data class Task(
     var status: Boolean
 )
 
-
-class TaskService {
-    val taskCollection : MongoCollection<Task>
-    init {
-        // Replace the placeholder with your Atlas connection string
-        val uri = "mongodb+srv://genezio:genezio@cluster0.c6qmwnq.mongodb.net/?retryWrites=true&w=majority"
-        // Construct a ServerApi instance using the ServerApi.builder() method
-        val serverApi = ServerApi.builder()
+val uri = "mongodb+srv://genezio:genezio@cluster0.c6qmwnq.mongodb.net/?retryWrites=true&w=majority"
+val serverApi = ServerApi.builder()
             .version(ServerApiVersion.V1)
             .build()
-        val settings = MongoClientSettings.builder()
+val settings = MongoClientSettings.builder()
             .applyConnectionString(ConnectionString(uri))
             .serverApi(serverApi)
             .build()
-        // Create a new client and connect to the server
-        val mongoClient = MongoClient.create(settings)
-        val database = mongoClient.getDatabase("test")
-        try {
-            // Send a ping to confirm a successful connection
-            runBlocking {
-                val command = Document("ping", BsonInt64(1))
-                val commandResult = database.runCommand(command)
-                println("Pinged your deployment. You successfully connected to MongoDB!")
-            }
-        } catch (me: MongoException) {
-            System.err.println(me)
-        }
+val mongoClient = MongoClient.create(settings)
+val taskCollection : MongoCollection<Task> = mongoClient.getDatabase("test").getCollection("kotlin_tasks")
 
-        taskCollection = database.getCollection("kotlin_tasks")
+class TaskService() {
+
+    fun testExternalClass(test: TestCls) : TestCls {
+        return TestCls(1, "1", true)
     }
 
     fun fetchTasks(): ArrayList<Task> {
