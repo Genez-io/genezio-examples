@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.qrgeneratorfrontend.app-mergeDebugResources-73:/values-he/values-he.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\virgil.turcu\\.gradle\\caches\\transforms-3\\8e63092d0c6649edf6993ba973b9a67e\\transformed\\zxing-android-embedded-4.3.0\\res\\values-he\\values-he.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,111,161,296",
+                        "endColumns": "55,49,134,89",
+                        "endOffsets": "106,156,291,381"
+                    }
+                }
+            ]
+        }
+    ]
+}

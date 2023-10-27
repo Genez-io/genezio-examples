@@ -1,0 +1,77 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.qrgeneratorfrontend.app-mergeDebugResources-73:/values-v23/values-v23.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\virgil.turcu\\.gradle\\caches\\transforms-3\\1f7416cb877dd0504421892c9c505060\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "200"
+                    },
+                    "to": {
+                        "startLines": "50",
+                        "startColumns": "4",
+                        "startOffsets": "3232",
+                        "endLines": "52",
+                        "endColumns": "12",
+                        "endOffsets": "3377"
+                    }
+                },
+                {
+                    "source": "D:\\GitHubRepositories\\KotlinQRGenerator\\client\\app\\src\\main\\res\\values-v23\\themes.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "2",
+                        "startOffsets": "62",
+                        "endLines": "6",
+                        "endColumns": "10",
+                        "endOffsets": "437"
+                    },
+                    "to": {
+                        "startLines": "53",
+                        "startColumns": "4",
+                        "startOffsets": "3382",
+                        "endLines": "58",
+                        "endColumns": "10",
+                        "endOffsets": "3702"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\virgil.turcu\\.gradle\\caches\\transforms-3\\4398f2eccb2367f0c6cc1273d8ea2cf4\\transformed\\material-1.9.0\\res\\values-v23\\values-v23.xml",
+                    "from": {
+                        "startLines": "2,5,8,13,17,20,23,26,31,34,38",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,271,481,801,1038,1245,1452,1655,1987,2189,2454",
+                        "endLines": "4,7,12,16,19,22,25,30,33,37,41",
+                        "endColumns": "10,10,10,10,10,10,10,10,10,10,10",
+                        "endOffsets": "266,476,796,1033,1240,1447,1650,1982,2184,2449,2722"
+                    },
+                    "to": {
+                        "startLines": "59,62,65,70,74,77,80,83,88,91,95",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3707,3923,4133,4453,4690,4897,5104,5307,5639,5841,6106",
+                        "endLines": "61,64,69,73,76,79,82,87,90,94,98",
+                        "endColumns": "10,10,10,10,10,10,10,10,10,10,10",
+                        "endOffsets": "3918,4128,4448,4685,4892,5099,5302,5634,5836,6101,6374"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\virgil.turcu\\.gradle\\caches\\transforms-3\\6e0eb90e50d49ed3ba96bece94e29920\\transformed\\appcompat-1.6.1\\res\\values-v23\\values-v23.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,190,325,400,487,1225,1975,2094,2221,2443,2667,2782,2889,3002",
+                        "endLines": "2,3,4,5,19,33,34,35,38,42,43,44,45,49",
+                        "endColumns": "134,134,74,86,12,12,118,126,12,12,114,106,112,12",
+                        "endOffsets": "185,320,395,482,1220,1970,2089,2216,2438,2662,2777,2884,2997,3227"
+                    }
+                }
+            ]
+        }
+    ]
+}

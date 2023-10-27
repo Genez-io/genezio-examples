@@ -1,0 +1,174 @@
+[
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/layout_activity_main.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_baseline_done_24.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/baseline_done_24.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_baseline_email_24.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/baseline_email_24.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/layout_qrcode_item.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/layout/qrcode_item.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/layout_activity_create_qrcode.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/layout/activity_create_qrcode.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/navigation_nav_graph.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/navigation/nav_graph.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_baseline_search_24.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/baseline_search_24.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_coding.png.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/coding.png"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_baseline_add_24.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/baseline_add_24.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_viewpager_bkg.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/viewpager_bkg.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/layout_activity_view_code.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/layout/activity_view_code.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_lavender_border.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/lavender_border.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/layout_activity_loading_auth.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/layout/activity_loading_auth.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/layout_fragment_login_tab.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/layout/fragment_login_tab.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/layout_activity_dashboard.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/layout/activity_dashboard.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_baseline_clear_24.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/baseline_clear_24.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/layout_fragment_signup_tab.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/layout/fragment_signup_tab.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_baseline_remove_red_eye_24.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/baseline_remove_red_eye_24.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_tab_bkg.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/tab_bkg.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_loginimg.png.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/loginimg.png"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/xml_network_security_config.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/xml/network_security_config.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_signimg.png.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/signimg.png"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/mipmap-anydpi-v33_ic_launcher.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/mipmap-anydpi-v33/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_baseline_password_24.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/baseline_password_24.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/xml_backup_rules.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_edittext_bkg.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/edittext_bkg.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_baseline_lock_24.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/baseline_lock_24.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/layout_activity_loading_codes.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/layout/activity_loading_codes.xml"
+    },
+    {
+        "merged": "com.example.qrgeneratorfrontend.app-merged_res-75:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.qrgeneratorfrontend.app-main-77:/drawable/ic_launcher_background.xml"
+    }
+]
