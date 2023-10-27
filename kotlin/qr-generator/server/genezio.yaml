@@ -1,0 +1,17 @@
+name: kotlin-qr-generator-backend
+region: eu-central-1
+sdk:
+  language: kt
+  options:
+    runtime: kotlin
+  path: ..\client\app\src\main\java\com\genezio\sdk
+classes:
+  - path: .\app\src\main\kotlin\geneziokotlin\User.kt
+    name: UserHandler
+  - path: .\app\src\main\kotlin\geneziokotlin\QRCode.kt
+    name: QRCodeHandler
+cloudProvider: aws
+
+  
+
+
