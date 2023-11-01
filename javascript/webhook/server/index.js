@@ -1,5 +1,7 @@
 const multipart = require("parse-multipart-data");
+import { GenezioDeploy } from "@genezio/types"
 
+@GenezioDeploy({ type: "http" })
 export class HelloWorldHttpExample {
 
   /**
