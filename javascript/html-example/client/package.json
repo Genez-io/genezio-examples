@@ -7,13 +7,13 @@
     "start": "npx serve ./dist",
     "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install-local-sdk": "npm link @genezio-sdk/html-example_eu-central-1",
-    "install-prod-sdk": "npm install @genezio-sdk/html-example_eu-central-1@1.0.0-prod"
+    "install-local-sdk": "npm link @genezio-sdk/html-example_us-east-1",
+    "install-prod-sdk": "npm install @genezio-sdk/html-example_us-east-1@1.0.0-prod"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@genezio-sdk/html-example_eu-central-1": "^1.0.0-prod",
+    "@genezio-sdk/html-example_us-east-1": "^1.0.0-prod",
     "copy-webpack-plugin": "^11.0.0",
     "http-server": "^14.1.1"
   },

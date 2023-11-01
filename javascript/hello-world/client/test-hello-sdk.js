@@ -1,4 +1,4 @@
-import { HelloWorldService } from "@genezio-sdk/hello-world_eu-central-1"
+import { HelloWorldService } from "@genezio-sdk/hello-world_us-east-1"
 
 /**
  * Client that makes requests to the HelloWorldService deployed on genezio.

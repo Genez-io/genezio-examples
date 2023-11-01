@@ -1,5 +1,5 @@
 name: hello-world
-region: eu-central-1
+region: us-east-1
 language: js
 cloudProvider: genezio
 packageManager: npm

@@ -1,5 +1,5 @@
 name: kotlin-todo-mongo
-region: eu-central-1
+region: us-east-1
 sdk:
   language: kt
   options:
