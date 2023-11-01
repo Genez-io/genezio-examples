@@ -1,6 +1,11 @@
 name: todo-list-ts
 region: us-east-1
 language: ts
+scripts:
+  preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
+  preBackendDeploy: npm install
+frontend:
+  path: ./client/dist/todo-list
 workspace:
   backend: server
   frontend: client

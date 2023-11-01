@@ -1,4 +1,5 @@
-# File that configures what classes will be deployed in Genezio Infrastructure.
-# Add the paths to classes that you want to deploy in "classes".
-
 name: cron-example
+region: us-east-1
+language: js
+cloudProvider: genezio
+packageManager: npm

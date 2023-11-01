@@ -1,5 +1,0 @@
-scripts:
-  preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
-frontend:
-  path: ../client/dist/todo-list
-  subdomain: emerald-circular-pinniped

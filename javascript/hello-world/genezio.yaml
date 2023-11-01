@@ -1,6 +1,8 @@
 name: hello-world
 region: eu-central-1
 language: js
+cloudProvider: genezio
+packageManager: npm
 workspace:
   backend: server
   frontend: client

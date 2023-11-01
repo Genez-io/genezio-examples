@@ -1,6 +1,12 @@
 name: chatgpt-project
 region: us-east-1
 language: js
+cloudProvider: genezio
+scripts:
+  preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
+frontend:
+  path: ./client/build
+packageManager: npm
 workspace:
   backend: ./server/
   frontend: ./client/

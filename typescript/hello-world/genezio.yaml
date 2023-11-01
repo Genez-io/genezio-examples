@@ -1,5 +1,8 @@
 name: hello-world-ts
 region: us-east-1
+language: ts
+cloudProvider: genezio
+packageManager: npm
 workspace:
-  backend: server 
-  frontend: client 
+  backend: server
+  frontend: client

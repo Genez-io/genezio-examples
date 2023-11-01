@@ -2,6 +2,12 @@ name: genezio-blockchain
 region: eu-central-1
 language: js
 cloudProvider: genezio
+scripts:
+  preBackendDeploy: npm install
+  preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
+frontend:
+  path: ./client/build/
+packageManager: npm
 workspace:
   backend: server
   frontend: client

@@ -2,6 +2,11 @@ name: todo-list
 region: us-east-1
 cloudProvider: genezio
 language: js
+scripts:
+  preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
+  preBackendDeploy: npm install
+frontend:
+  path: ./client/build
 workspace:
   backend: server
   frontend: client

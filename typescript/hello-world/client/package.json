@@ -13,5 +13,8 @@
   "devDependencies": {
     "@types/node": "~18.13.0",
     "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "@genezio-sdk/hello-world-ts_us-east-1": "^1.0.0-prod"
   }
 }

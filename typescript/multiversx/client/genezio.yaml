@@ -1,5 +1,0 @@
-scripts:
-  preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
-frontend:
-  path: ./build
-  subdomain: amaranth-autonomous-shark
