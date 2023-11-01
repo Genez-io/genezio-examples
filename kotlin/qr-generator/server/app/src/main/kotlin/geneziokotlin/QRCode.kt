@@ -1,5 +1,8 @@
 package geneziokotlin
 
+import classes.QRCode
+import classes.QRCodeId
+import classes.QRCodeResponse
 import com.mongodb.*
 import com.mongodb.client.model.Filters
 import com.mongodb.client.result.DeleteResult
@@ -15,26 +18,7 @@ import org.bson.types.ObjectId
 import kotlin.reflect.typeOf
 
 
-@Serializable
-data class QRCodeId(
-    var _id: String,
-    var userId: String,
-    var name: String,
-    var bitmap: ByteArray
-)
-@Serializable
-data class QRCode(
-    var userId: String,
-    var name: String,
-    var bitmap: ByteArray,
-)
-@Serializable
-data class QRCodeResponse(
-    var success: Boolean,
-    var message: String?,
-    var data: ArrayList<QRCodeId>?,
 
-    )
 
 
 class QRCodeHandler{

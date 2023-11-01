@@ -1,5 +1,8 @@
 package geneziokotlin
 
+import classes.User
+import classes.UserId
+import classes.UserResponse
 import com.mongodb.*
 import com.mongodb.client.model.Filters
 import com.mongodb.client.model.Filters.eq
@@ -19,24 +22,7 @@ import org.bson.Document
 import java.lang.Exception
 import java.lang.RuntimeException
 
-@Serializable
-data class User(
-    var email: String,
-    var password: String,
-)
-@Serializable
-data class UserId(
-    var _id: String,
-    var email: String,
-    var password: String,
-)
-@Serializable
-data class UserResponse(
-    var success: Boolean,
-    var message: String?,
-    var data: ArrayList<UserId>?,
 
-    )
 
 
 class UserHandler{
