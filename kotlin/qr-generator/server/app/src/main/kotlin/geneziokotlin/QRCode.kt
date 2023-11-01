@@ -25,7 +25,7 @@ class QRCodeHandler{
     val QRCodeCollection : MongoCollection<Document>
     init {
         // Replace the placeholder with your Atlas connection string
-        val uri = "Your MongoDB URI"
+        val uri = "mongodb+srv://Virgil993:NmXc96DxrVIXkKGB@cluster0.znunadm.mongodb.net/QRGenerator"
         // Construct a ServerApi instance using the ServerApi.builder() method
         val serverApi = ServerApi.builder()
             .version(ServerApiVersion.V1)
