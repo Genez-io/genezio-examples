@@ -3,3 +3,5 @@
 
 name: webhook-example
 region: us-east-1
+scripts:
+  preBackendDeploy: npm i
