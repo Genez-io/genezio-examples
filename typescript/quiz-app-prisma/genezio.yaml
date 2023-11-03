@@ -3,7 +3,7 @@ region: us-east-1
 language: ts
 cloudProvider: genezio
 scripts:
-  preBackendDeploy: npm install
+  preBackendDeploy: npm install && npx prisma generate
   preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
 frontend:
   path: ./client/build
