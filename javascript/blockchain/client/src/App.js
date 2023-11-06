@@ -4,7 +4,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import './App.css';
-import { BlockchainServer } from "./sdk/blockchainServer.sdk"
+import { BlockchainServer } from "@genezio-sdk/genezio-blockchain_us-east-1"
 
 const CHUNKS = 10
 

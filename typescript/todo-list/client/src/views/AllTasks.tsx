@@ -12,9 +12,9 @@ import {
   ButtonGroup
 } from "reactstrap";
 import React, { useState, useEffect } from "react";
-import { TaskService, Task, GetTasksResponse } from "../sdk/taskService.sdk";
+import { TaskService, Task, GetTasksResponse } from "@genezio-sdk/todo-list-ts_us-east-1";
 import { useNavigate } from "react-router-dom";
-import { User } from "../sdk/userService.sdk";
+import { User } from "@genezio-sdk/todo-list-ts_us-east-1";
 
 
 export default function AllTasks() {

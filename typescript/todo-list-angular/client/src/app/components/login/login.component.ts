@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { UserLoginResponse } from 'src/sdk/userService.sdk';
+import { UserLoginResponse } from '@genezio-sdk/todo-list-ts_us-east-1'
 
 @Component({
   selector: 'app-login',

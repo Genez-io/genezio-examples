@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@genezio-sdk/genezio-blockchain_us-east-1": "^1.0.0-prod",
     "@mui/material": "^5.10.12",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -19,7 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "install-local-sdk": "npm link @genezio-sdk/genezio-blockchain_us-east-1",
+    "install-prod-sdk": "npm install @genezio-sdk/genezio-blockchain_us-east-1@1.0.0-prod"
   },
   "eslintConfig": {
     "extends": [

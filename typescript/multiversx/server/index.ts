@@ -1,11 +1,13 @@
 import { ApiNetworkProvider } from "@multiversx/sdk-network-providers";
 import { Address, Account } from "@multiversx/sdk-core";
+import { GenezioDeploy } from "@genezio/types";
 
 export type Response = {
   nonce: number;
   balance: number;
 }
 
+@GenezioDeploy()
 export class MultiversXService {
   networkProvider = new ApiNetworkProvider("https://devnet-api.multiversx.com");
 

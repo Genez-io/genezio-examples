@@ -3,8 +3,10 @@ import {
   AddPlayerLeaderboardResponse,
   GetLeaderboardResponse,
 } from "./models/typeLeaderboard";
+import { GenezioDeploy } from "@genezio/types"
 
 // Class representing the leaderboard
+@GenezioDeploy()
 export class Leaderboard {
   prisma: PrismaClient;
 

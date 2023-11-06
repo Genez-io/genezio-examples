@@ -10,35 +10,36 @@
 </template>
 
 <script>
-import { User } from "../sdk/user.sdk.js"
+import { User } from '@genezio-sdk/todo-list-angular_us-east-1';
 
 export default {
 
   data() {
     return {
       email: '',
-      password: ''
-    }
+      password: '',
+    };
   },
   methods: {
     async login() {
       try {
         User.login(this.email, this.password).then((response) => {
-          if (response.success == false) {
-            alert(response.msg)
-            return
+          if (response.success === false) {
+            alert(response.msg);
+            return;
           }
-          localStorage.token = response.token
-          localStorage.userId = response.user._id
-          this.$router.push('/')
+          localStorage.token = response.token;
+          // eslint-disable-next-line
+          localStorage.userId = response.user._id;
+          this.$router.push('/');
         });
       } catch (error) {
-        console.error(error)
-        alert("An error occured.")
+        console.error(error);
+        alert('An error occured.');
       }
-    }
-  }
-}
+    },
+  },
+};
 
 </script>
 
@@ -54,3 +55,4 @@ input {
 }
 
 </style>
+

@@ -4,12 +4,25 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "npx serve ./dist",
+    "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx http-server ."
+    "install-local-sdk": "npm link @genezio-sdk/html-example_us-east-1",
+    "install-prod-sdk": "npm install @genezio-sdk/html-example_us-east-1@1.0.0-prod"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@genezio-sdk/html-example_us-east-1": "^1.0.0-prod",
+    "copy-webpack-plugin": "^11.0.0",
     "http-server": "^14.1.1"
+  },
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.3",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }

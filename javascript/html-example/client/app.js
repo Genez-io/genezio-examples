@@ -1,4 +1,4 @@
-import { Task } from "./sdk/task.sdk.js";
+import { Task } from "@genezio-sdk/html-example_us-east-1";
 
 // get the token from local storage
 let token = localStorage.getItem("apiToken");

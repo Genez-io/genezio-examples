@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { StripeHandler } from "./sdk/stripeHandler.sdk";
+import { StripeHandler } from "@genezio-sdk/stripe-integration_us-east-1"
 
 async function getCheckoutSession(e) {
   e.preventDefault();

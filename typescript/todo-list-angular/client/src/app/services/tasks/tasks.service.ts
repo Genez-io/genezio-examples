@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DeleteTaskResponse, GetTaskResponse, GetTasksResponse, TaskService } from 'src/sdk/taskService.sdk';
+import { DeleteTaskResponse, GetTaskResponse, GetTasksResponse, TaskService } from '@genezio-sdk/todo-list-ts_us-east-1'
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({

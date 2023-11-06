@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken"
 import { UserModel } from "./models/user"
 import { ActiveSession } from "./models/activeSession"
 import { MONGO_DB_URI, saltedPassword, validatePassword } from "./helper"
+import { GenezioDeploy } from "@genezio/types"
 
 export type CreateUserResponse = {
   success: boolean,
@@ -29,6 +30,7 @@ export type CheckSessionResponse = {
 /**
  * The User server class that will be deployed on the genezio infrastructure.
  */
+@GenezioDeploy()
 export class UserService {
   constructor() {
     this.#connect();

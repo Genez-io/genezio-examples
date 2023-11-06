@@ -10,7 +10,7 @@ import {
   ModalFooter,
 } from "reactstrap";
 import { useState, useEffect } from "react";
-import { TaskService } from "../sdk/taskService.sdk";
+import { TaskService } from "@genezio-sdk/getting-started-genezio-typescript-newest_us-east-1";
 import { useNavigate } from "react-router-dom";
 import TaskView from './TaskView';
 import uuid from 'react-uuid';

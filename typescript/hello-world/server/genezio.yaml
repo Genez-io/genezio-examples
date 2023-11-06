@@ -1,8 +1,0 @@
-name: hello-world-ts
-sdk:
-  language: ts
-  path: ../client/sdk/
-classes:
-  - path: ./hello.ts
-    type: jsonrpc
-    methods: []

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GptCaller } from "./sdk/gptCaller.sdk.js";
+import { GptCaller } from "@genezio-sdk/chatgpt-project_us-east-1";
 import "./App.css";
 
 function App() {

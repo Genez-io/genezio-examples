@@ -12,7 +12,7 @@ import {
   ButtonGroup
 } from "reactstrap";
 import React, { useState, useEffect, useRef } from "react";
-import { TaskController } from "../sdk/taskController.sdk";
+import { TaskController } from "@genezio-sdk/todo-list_us-east-1"
 import { useNavigate } from "react-router-dom";
 
 

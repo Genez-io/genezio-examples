@@ -1,7 +1,9 @@
+import { GenezioDeploy } from "@genezio/types"
 require('dotenv').config()
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 
+@GenezioDeploy()
 export class StripeHandler {
   async createCheckoutSession() {
     const session = await stripe.checkout.sessions.create({

@@ -2,10 +2,12 @@
 import jwt from "jsonwebtoken"
 import db from "./models/"
 import { validatePassword, saltPassword } from "./helper"
+import { GenezioDeploy } from "@genezio/types"
 
 /**
  * The User server class that will be deployed on the genezio infrastructure.
  */
+@GenezioDeploy()
 export class User {
   /**
    * Method that can be used to create a new user.

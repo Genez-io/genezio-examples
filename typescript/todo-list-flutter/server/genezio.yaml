@@ -8,7 +8,4 @@ scripts:
   preFrontendDeploy: "cd ../client/ && flutter clean && flutter pub get && flutter build web --web-renderer html"
 frontend:
   path: ../client/build/web
-classes:
-  - path: ./task.ts
-    type: jsonrpc
-    methods: []
+  

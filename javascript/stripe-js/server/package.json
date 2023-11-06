@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@genezio/types": "^0.1.9",
     "dotenv": "^16.0.3",
     "stripe": "^11.14.0"
   }

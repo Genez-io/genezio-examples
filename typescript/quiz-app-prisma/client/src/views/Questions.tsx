@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Container, Row, Col } from "reactstrap";
-import { Leaderboard } from "../sdk/leaderboard.sdk";
+import { Leaderboard } from "@genezio-sdk/prisma-example_us-east-1";
 import { shuffleArray } from "../utils/utils";
 import {
   Question,

@@ -1,8 +1,7 @@
 import OpenAI from 'openai';
-import dotenv from "dotenv";
-dotenv.config();
+import { GenezioDeploy } from "@genezio/types"
 
-
+@GenezioDeploy()
 export class GptCaller {
   openai = null;
 

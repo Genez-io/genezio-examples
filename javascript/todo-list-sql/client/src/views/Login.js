@@ -1,6 +1,6 @@
 import { Button, Card, Container, Row, Col, Input } from "reactstrap";
 import React, { useState, useEffect, useRef } from "react";
-import { User } from "../sdk/user.sdk";
+import { User } from "@genezio-sdk/todo-list_us-east-1";
 import { useNavigate } from 'react-router-dom';
 
 

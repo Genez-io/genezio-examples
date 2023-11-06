@@ -1,10 +1,12 @@
 import { mongoose } from "mongoose"
 import { MONGO_DB_URI } from "./helper"
 import { TaskModel } from "./models/task"
+import { GenezioDeploy } from "@genezio/types";
 
 /**
  * The Task server class that will be deployed on the genezio infrastructure.
  */
+@GenezioDeploy()
 export class TaskService {
   constructor() {
     mongoose.set('strictQuery', true);
@@ -21,11 +23,11 @@ export class TaskService {
   /**
    * Method that returns all tasks for a giving user ID.
    * Only authenticated users with a valid token can access this method.
-   *
+   
    * The method will be exported via SDK using genezio.
    *
    * @param {*} token The user's token.
-   * @param {*} userId The user ID.
+   * @param {*} userId The user ID
    * @returns An object containing two properties: { success: true, tasks: tasks }
    */
   async getAllTasksByUser(token) {

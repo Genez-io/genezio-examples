@@ -2,9 +2,6 @@
 # Add the paths to classes that you want to deploy in "classes".
 
 name: webhook-example
-sdk:
-  language: ts
-  path: ../client/sdk/
-classes:
-  - path: "./index.ts"
-    type: http 
+region: us-east-1
+scripts:
+  preBackendDeploy: npm i

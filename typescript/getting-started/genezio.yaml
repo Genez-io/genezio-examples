@@ -1,0 +1,13 @@
+name: getting-started-genezio-typescript-newest
+region: us-east-1
+language: ts
+cloudProvider: genezio
+scripts:
+  preBackendDeploy: npm install
+  preFrontendDeploy: npm run install-prod-sdk && npm install  && npm run build
+frontend:
+  path: ./client/build
+packageManager: npm
+workspace:
+  backend: server
+  frontend: client
