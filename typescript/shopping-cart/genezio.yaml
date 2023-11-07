@@ -1,0 +1,7 @@
+name: getting-started-upstash
+region: us-east-1
+language: ts
+packageManager: npm
+workspace: 
+  backend: server
+  frontend: client
