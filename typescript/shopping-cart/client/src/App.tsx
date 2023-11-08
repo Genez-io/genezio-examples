@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 import axios from 'axios';
 import ShoppingCartIcon from './ShoppingCart';
 import { CartItem, Product } from './models/products';
-import { ShoppingCartService } from '@genezio-sdk/getting-started-upstash_us-east-1';
+import { ShoppingCartService } from '@genezio-sdk/shopping-cart_us-east-1';
 
 function App() {
   const [productData, setProductData] = useState<{ products: Product[] }>({ products: [] });

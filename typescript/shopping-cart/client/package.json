@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@genezio-sdk/shopping-cart_us-east-1": "^1.0.0-prod",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -23,8 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "install-local-sdk": "npm link @genezio-sdk/getting-started-upstash_us-east-1",
-    "install-prod-sdk": "npm install @genezio-sdk/getting-started-upstash_us-east-1@1.0.0-prod"
+    "install-local-sdk": "npm link @genezio-sdk/shopping-cart_us-east-1",
+    "install-prod-sdk": "npm install @genezio-sdk/shopping-cart_us-east-1@1.0.0-prod"
   },
   "eslintConfig": {
     "extends": [

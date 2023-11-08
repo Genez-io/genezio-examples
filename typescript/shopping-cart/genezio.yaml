@@ -1,13 +1,13 @@
 name: shopping-cart
 region: us-east-1
 language: ts
-packageManager: npm
 cloudProvider: genezio
 scripts:
   preBackendDeploy: npm install
   preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
 frontend:
-  path: ./client/public
+  path: ./client/build
+packageManager: npm
 workspace:
   backend: server
   frontend: client

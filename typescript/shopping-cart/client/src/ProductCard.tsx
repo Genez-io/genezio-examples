@@ -1,6 +1,6 @@
 import React from 'react';
 import { Product } from './models/products';
-import { ShoppingCartService } from "@genezio-sdk/getting-started-upstash_us-east-1"
+import { ShoppingCartService } from "@genezio-sdk/shopping-cart_us-east-1"
 
 interface ProductCardProps {
   product: Product;
