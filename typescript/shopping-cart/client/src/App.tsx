@@ -64,7 +64,6 @@ function App() {
 
   const toggleCartModal = () => {
     setIsCartVisible(!isCartVisible);
-    console.log('isCartVisible:', isCartVisible);
   };
 
   const handleDeleteItem = async (cartItem: CartItem) => {
