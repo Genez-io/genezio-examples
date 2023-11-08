@@ -1,4 +1,0 @@
-frontend:
-  path: build
-scripts:
-  preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
