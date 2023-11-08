@@ -6,10 +6,10 @@
 
 </div>
 
-This is an example for a shopping cart functionality implemented using Nodejs, React and Redis.
+This is an example for a shopping cart functionality implemented using NodeJs, React and Redis.
 
 The application is built using:
- * `Nodejs` for the backend
+ * `NodeJs` for the backend
  * `React` for the frontend
  * `Upstash Redis` for a database
 
