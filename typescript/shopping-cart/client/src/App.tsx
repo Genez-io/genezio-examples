@@ -8,7 +8,6 @@ import { ShoppingCartService } from '@genezio-sdk/getting-started-upstash_us-eas
 
 function App() {
   const [productData, setProductData] = useState<{ products: Product[] }>({ products: [] });
-  // const [cart, setCart] = useState<Product[]>([]);
   const [isCartVisible, setIsCartVisible] = useState(false);
 
   // Add a state to store the cart data from ShoppingCartService
