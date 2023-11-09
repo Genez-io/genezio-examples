@@ -1,6 +1,8 @@
 import mongoose from "mongoose"
 import { TaskModel } from "./models/task"
 import { GenezioDeploy } from "@genezio/types"
+const red_color = '\x1b[31m%s\x1b[0m'
+const yellow_color = '\x1b[33m%s\x1b[0m'
 
 export type Task = {
   id: string,
@@ -41,20 +43,16 @@ export class TaskService {
    * Private method used to connect to the DB.
    */
   #connect() {
-    try{
+    
       if(!process.env.MONGO_DB_URI){ 
-        console.log('\x1b[31m%s\x1b[0m',"ERROR: Your MONGO_DB_URI environment variable is not set, go to https://genez.io/blog/how-to-add-a-mongodb-to-your-genezio-project/ to learn how to integrate your project with Mongo DB")
+        console.log(red_color,"ERROR: Your MONGO_DB_URI environment variable is not set, go to https://genez.io/blog/how-to-add-a-mongodb-to-your-genezio-project/ to learn how to integrate your project with Mongo DB")
         return;
       }
       mongoose.connect(process.env.MONGO_DB_URI||"").catch((err)=>{
-        console.log('\x1b[33m%s\x1b[0m',"WARNING: Check if your environment variables are correctly set");
+        console.log(yellow_color,"WARNING: Check if your environment variables are correctly set");
         console.log(err);
       });
-    }
-    catch(err){
-      console.log('\x1b[33m%s\x1b[0m',"WARNING: Check if your environment variables are correctly set")
-      console.log(err);
-    }
+    
   }
 
   /**
