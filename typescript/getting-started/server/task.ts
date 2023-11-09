@@ -44,7 +44,6 @@ export class TaskService {
    * Private method used to connect to the DB.
    */
   #connect() {
-    
       if(!process.env.MONGO_DB_URI){ 
         console.log(red_color,"ERROR: Your MONGO_DB_URI environment variable is not set, go to https://genez.io/blog/how-to-add-a-mongodb-to-your-genezio-project/ to learn how to integrate your project with Mongo DB")
         return;
