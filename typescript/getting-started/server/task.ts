@@ -52,7 +52,6 @@ export class TaskService {
         console.log(yellow_color,"WARNING: Check if your environment variables are correctly set");
         console.log(err);
       });
-    
   }
 
   /**
