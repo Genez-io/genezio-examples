@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 import { TaskModel } from "./models/task"
 import { GenezioDeploy } from "@genezio/types"
+
 const red_color = '\x1b[31m%s\x1b[0m'
 const yellow_color = '\x1b[33m%s\x1b[0m'
 
