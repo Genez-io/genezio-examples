@@ -3,6 +3,7 @@ package geneziokotlin
 import classes.QRCode
 import classes.QRCodeId
 import classes.QRCodeResponse
+import classes.Test
 import com.mongodb.*
 import com.mongodb.client.model.Filters
 import com.mongodb.client.result.DeleteResult
@@ -51,7 +52,7 @@ class QRCodeHandler{
         QRCodeCollection= database.getCollection("codes")
     }
 
-    fun fetchCodes(userId: String): QRCodeResponse {
+    fun fetchCodes(userId: String,test: Test): QRCodeResponse {
         val res: ArrayList<QRCodeId> = arrayListOf()
         println("User id in fetch codes = $userId")
         val filter = Filters.eq("userId",userId)

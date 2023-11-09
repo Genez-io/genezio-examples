@@ -22,3 +22,8 @@ data class QRCodeResponse(
     var data: ArrayList<QRCodeId>?,
 
     )
+
+@Serializable
+data class Test(
+    var qrCodeTest: QRCodeId
+)
