@@ -107,7 +107,7 @@ class TaskService {
 
     // Get tasks from database
     final tasks = await db
-        ?.collection(TASK_COLLECTION)
+        ?.collection(env["TASK_COLLECTION"].toString())
         .find({
           "token": token,
         })
@@ -122,7 +122,7 @@ class TaskService {
 
     if (tasks == null || tasks.isEmpty) {
       await db
-          ?.collection(TASK_COLLECTION)
+          ?.collection(env["TASK_COLLECTION"].toString())
           .insert(Task(
                   ObjectId().$oid,
                   "Check our documentation",
@@ -137,7 +137,7 @@ class TaskService {
       });
 
       await db
-          ?.collection(TASK_COLLECTION)
+          ?.collection(env["TASK_COLLECTION"].toString())
           .insert(Task(
                   ObjectId().$oid,
                   "Watch our Youtube tutorials",
@@ -152,7 +152,7 @@ class TaskService {
       });
 
       await db
-          ?.collection(TASK_COLLECTION)
+          ?.collection(env["TASK_COLLECTION"].toString())
           .insert(Task(
                   ObjectId().$oid,
                   "Read our technical articles on genezio blog",
@@ -171,7 +171,7 @@ class TaskService {
 
     // Get tasks from database
     final initTasks = await db
-        ?.collection(TASK_COLLECTION)
+        ?.collection(env["TASK_COLLECTION"].toString())
         .find({
           "token": token,
         })
@@ -210,7 +210,7 @@ class TaskService {
     Task task = Task(ObjectId().$oid, title, url, token, false, DateTime.now());
 
     // Add task into the database
-    await db?.collection(TASK_COLLECTION).insert(task.toJson()).catchError((e) {
+    await db?.collection(env["TASK_COLLECTION"].toString()).insert(task.toJson()).catchError((e) {
       print("Error adding task to database: $e");
       throw e;
     });
@@ -233,7 +233,7 @@ class TaskService {
     }
 
     // Delete the task from the database
-    await db?.collection(TASK_COLLECTION).remove({
+    await db?.collection(env["TASK_COLLECTION"].toString()).remove({
       "id": id,
       "token": token,
     }).catchError((e) {
@@ -262,7 +262,7 @@ class TaskService {
     }
 
     // Update the task in the database
-    await db?.collection(TASK_COLLECTION).update({
+    await db?.collection(env["TASK_COLLECTION"].toString()).update({
       "id": id,
       "token": token,
     }, {
@@ -284,7 +284,7 @@ class TaskService {
   /// @returns A string "success" if everything went well.
   Future<String> _connect() async {
     // Connect to the database
-    db = await Db.create(MONGODB_URI).catchError((e) {
+    db = await Db.create(env["MONGODB_URI"].toString()).catchError((e) {
       print("Error connecting to database: $e");
       throw e;
     });
