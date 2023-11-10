@@ -33,7 +33,7 @@ If you want to deploy your application step-by-step, follow the guidelines below
 
 1. Run `dart pub get` in the `server/` folder to install the dependencies.
 2. Run `flutter pub get` in the `client/` folder to install the dependencies.
-3. Create a `.env` file in the `server/` folder and add MongoDB URI and the database table name
+3. Create a `.env` file in the `server/` folder and add MongoDB URI and the database table name.
 
 ## Run the example locally
 
