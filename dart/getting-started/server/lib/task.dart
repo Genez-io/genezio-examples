@@ -1,6 +1,7 @@
+import 'package:dotenv/dotenv.dart';
 import 'package:mongo_dart/mongo_dart.dart';
-import 'package:getting_started/helper.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 
 part 'task.g.dart';
 
@@ -88,6 +89,7 @@ class DeleteTaskResponse {
 }
 
 class TaskService {
+  var env = DotEnv(includePlatformEnvironment: true)..load();
   Db? db;
 
   /// Method that returns all tasks for a given user ID.
@@ -101,6 +103,8 @@ class TaskService {
 
     // Check if the database is connected
     if (db == null) {
+      String taskCollectionEnv = env["TASK_COLLECTION"].toString();
+      print("The task collection is: $taskCollectionEnv");
       // Connect to the database
       await _connect();
     }
@@ -284,7 +288,8 @@ class TaskService {
   /// @returns A string "success" if everything went well.
   Future<String> _connect() async {
     // Connect to the database
-    db = await Db.create(env["MONGODB_URI"].toString()).catchError((e) {
+    String mongodbURI =env["MONGODB_URI"].toString();
+    db = await Db.create(mongodbURI).catchError((e) {
       print("Error connecting to database: $e");
       throw e;
     });

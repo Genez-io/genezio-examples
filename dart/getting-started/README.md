@@ -9,17 +9,23 @@
 ## You can check a [demo getting-started app here](https://getting-started-dart.dev.app.genez.io/).
 
 This is an example of a todo application that uses:
- * `Dart` for the backend
- * `Flutter` for the frontend
- * `MongoDB`
- * `genezio` for developing and deploying the project
+
+- `Dart` for the backend
+- `Flutter` for the frontend
+- `MongoDB`
+- `genezio` for developing and deploying the project
 
 Note: `genezio deploy` deploys both backend and frontend.
 If you want to test this example out-of-the-box by running 1 command, head to the `server` directory and run `genezio deploy`.
 
 If you want to deploy your application step-by-step, follow the guidelines below.
 
+## Prerequisites:
+
+1. Host a Mongo Database. Follow this [tutorial](https://www.mongodb.com/basics/mongodb-atlas-tutorial) to get a free tier database.
+
 ## Clone the example
+
 1. Run `git clone https://github.com/Genez-io/genezio-examples`
 2. Navigate to the folder `cd ./genezio-examples/dart/getting-started`
 
