@@ -185,6 +185,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
+  dotenv:
+    dependency: "direct main"
+    description:
+      name: dotenv
+      sha256: "379e64b6fc82d3df29461d349a1796ecd2c436c480d4653f3af6872eccbc90e1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.0"
   file:
     dependency: transitive
     description:
@@ -586,4 +594,4 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.19.6 <3.0.0"
+  dart: ">=2.19.6 <4.0.0"

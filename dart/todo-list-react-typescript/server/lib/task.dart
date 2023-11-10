@@ -1,5 +1,5 @@
+import 'package:dotenv/dotenv.dart';
 import 'package:mongo_dart/mongo_dart.dart';
-import 'package:getting_started/helper.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'task.g.dart';
@@ -29,6 +29,7 @@ class TaskModel {
 }
 
 class Task {
+  var env = DotEnv(includePlatformEnvironment: true)..load();
   Db? db;
 
   /// Method that returns all tasks for a given user ID.
@@ -48,7 +49,7 @@ class Task {
 
     // Get tasks from database
     List<TaskModel>? tasks = await db
-        ?.collection(TASK_COLLECTION)
+        ?.collection(env["TASK_COLLECTION"].toString())
         .find({
           "token": token,
         })
@@ -63,7 +64,7 @@ class Task {
 
     if (tasks == null || tasks.isEmpty) {
       await db
-          ?.collection(TASK_COLLECTION)
+          ?.collection(env["TASK_COLLECTION"].toString())
           .insert(TaskModel(
                   ObjectId().$oid,
                   "Check our documentation",
@@ -78,7 +79,7 @@ class Task {
       });
 
       await db
-          ?.collection(TASK_COLLECTION)
+          ?.collection(env["TASK_COLLECTION"].toString())
           .insert(TaskModel(
                   ObjectId().$oid,
                   "Watch our Youtube tutorials",
@@ -93,7 +94,7 @@ class Task {
       });
 
       await db
-          ?.collection(TASK_COLLECTION)
+          ?.collection(env["TASK_COLLECTION"].toString())
           .insert(TaskModel(
                   ObjectId().$oid,
                   "Read our technical articles on genezio blog",
@@ -112,7 +113,7 @@ class Task {
 
     // Get tasks from database
     final initTasks = await db
-        ?.collection(TASK_COLLECTION)
+        ?.collection(env["TASK_COLLECTION"].toString())
         .find({
           "token": token,
         })
@@ -151,7 +152,7 @@ class Task {
         ObjectId().$oid, title, url, token, "false", DateTime.now().toString());
 
     // Add task into the database
-    await db?.collection(TASK_COLLECTION).insert(task.toJson()).catchError((e) {
+    await db?.collection(env["TASK_COLLECTION"].toString()).insert(task.toJson()).catchError((e) {
       print("Error adding task to database: $e");
       throw e;
     });
@@ -174,7 +175,7 @@ class Task {
     }
 
     // Delete the task from the database
-    await db?.collection(TASK_COLLECTION).remove({
+    await db?.collection(env["TASK_COLLECTION"].toString()).remove({
       "id": id,
       "token": token,
     }).catchError((e) {
@@ -203,7 +204,7 @@ class Task {
     }
 
     // Update the task in the database
-    await db?.collection(TASK_COLLECTION).update({
+    await db?.collection(env["TASK_COLLECTION"].toString()).update({
       "id": id,
       "token": token,
     }, {
@@ -225,7 +226,7 @@ class Task {
   /// @returns A string "success" if everything went well.
   Future<String> _connect() async {
     // Connect to the database
-    db = await Db.create(MONGODB_URI).catchError((e) {
+    db = await Db.create(env["MONGODB_URI"].toString()).catchError((e) {
       print("Error connecting to database: $e");
       throw e;
     });
