@@ -10,7 +10,6 @@ scripts:
   preFrontendDeploy: cd ../client/ && flutter clean && flutter pub get && flutter build web
 frontend:
   path: ../client/build/web
-  subdomain: aquamarine-monthly-zebra
 classes:
   - path: ./lib/task.dart
     type: jsonrpc

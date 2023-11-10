@@ -10,7 +10,6 @@ scripts:
   preFrontendDeploy: cd ../client && npm install && npm run build
 frontend:
   path: ../client/build/
-  subdomain: orange-calm-cat
 classes:
   - path: ./lib/task.dart
     type: jsonrpc
