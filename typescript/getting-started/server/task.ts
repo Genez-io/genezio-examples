@@ -15,7 +15,8 @@ export type Task = {
 
 export type GetTasksResponse = {
   success: boolean,
-  tasks: Task[]
+  tasks: Task[],
+  err?: string
 }
 
 export type GetTaskResponse = {
@@ -36,6 +37,7 @@ export type DeleteTaskResponse = {
  */
  @GenezioDeploy({type: "jsonrpc"})
 export class TaskService {
+  envSet :boolean = true
   constructor() {
     this.#connect();
   }
@@ -46,10 +48,12 @@ export class TaskService {
   #connect() {
       if(!process.env.MONGO_DB_URI){ 
         console.log(red_color,"ERROR: Your MONGO_DB_URI environment variable is not set, go to https://genez.io/blog/how-to-add-a-mongodb-to-your-genezio-project/ to learn how to integrate your project with Mongo DB")
+        this.envSet = false
         return;
       }
       mongoose.connect(process.env.MONGO_DB_URI||"").catch((err)=>{
         console.log(yellow_color,"WARNING: Check if your environment variables are correctly set");
+        this.envSet = false
         console.log(err);
       });
   }
@@ -65,8 +69,12 @@ export class TaskService {
    */
   async getAllTasksByUser(token: string): Promise<GetTasksResponse> {
     console.log(`Get all tasks by user request received with token ${token}`)
+    if(!this.envSet){
+      return {success:false,tasks:[],err:"Error at the database"}
+    }
 
-    const tasks = (await TaskModel.find({ token: token })).map((task) => {
+    const tasks = await TaskModel.find({ token: token });
+    tasks.map((task) => {
       return {
         id: task._id.toString(),
         token: task.token,
@@ -130,6 +138,9 @@ export class TaskService {
    */
   async createTask(token: string, title: string): Promise<GetTaskResponse> {
     console.log(`Create task request received for user with ${token} with title ${title}`)
+    if(!this.envSet){
+      return {success:false}
+    }
 
     const task = await TaskModel.create({
       title: title,
@@ -156,6 +167,9 @@ export class TaskService {
    */
   async updateTask(token: string, id: string, title: string, solved: boolean) : Promise<UpdateTaskResponse>{
     console.log(`Update task request received with id ${id} with title ${title} and solved value ${solved}`)
+    if(!this.envSet){
+      return {success:false}
+    }
 
     await TaskModel.updateOne(
       { _id: id, token: token },
@@ -180,6 +194,9 @@ export class TaskService {
    */
   async deleteTask(token: string, id: string):Promise<DeleteTaskResponse> {
     console.log(`Delete task with id ${id} request received`)
+    if(!this.envSet){
+      return {success:false}
+    }
 
     await TaskModel.deleteOne({ token: token, _id: id });
 
