@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button, Col, Container, Row } from 'reactstrap';
+import { Button, Col, Container, Row, Spinner } from 'reactstrap';
 import './App.css';
 import axios from 'axios';
 import { FaShoppingCart, FaTrash } from 'react-icons/fa';
@@ -7,6 +7,14 @@ import { CartItem, Product } from './models/products';
 import { ShoppingCartService } from '@genezio-sdk/shopping-cart_us-east-1';
 
 function App() {
+  const [clearCartLoading, setClearCartLoading] = useState(false);
+  const [deleteItemLoading, setDeleteItemLoading] = useState<{
+    [key: string]: boolean;
+  }>({});
+  const [addItemLoading, setAddItemLoading] = useState<{
+    [key: number]: boolean;
+  }>({});
+
   const [productData, setProductData] = useState<{ products: Product[] }>({
     products: [],
   });
@@ -40,7 +48,6 @@ function App() {
   useEffect(() => {
     // Fetch the cart data when the modal is opened
     if (isCartVisible) {
-      // Call your ShoppingCartService.getCart method to fetch the cart data
       if (!token) {
         console.log('No token found');
         return;
@@ -52,6 +59,7 @@ function App() {
             console.log('No token found');
             return;
           }
+          // Call your ShoppingCartService.getCart method to fetch the cart data
           const cart = await ShoppingCartService.getCart(token);
           setCartData(cart);
         } catch (error) {
@@ -76,21 +84,33 @@ function App() {
       return;
     }
 
+    // Set loading state to true to show the spinner
+    setAddItemLoading((prevStates) => ({ ...prevStates, [product.id]: true }));
+
     // You can implement your buy logic here, e.g., add the product to a cart
     await ShoppingCartService.addItemToCart(token, product.title);
 
     // Update the local state to reflect the purchased quantity
     setPurchasedQuantity((prevQuantity) => prevQuantity + 1);
+
+    // Set loading state to false to hide the spinner
+    setAddItemLoading((prevStates) => ({ ...prevStates, [product.id]: false }));
   };
 
   const handleDeleteItem = async (e: any, cartItem: CartItem) => {
     e.preventDefault();
     // You can implement your delete logic here
-    console.log(`Delete ${cartItem.title}`);
     if (!token) {
       console.log('No token found');
       return;
     }
+
+    // Set loading state to true to show the spinner
+    setDeleteItemLoading((prevState) => ({
+      ...prevState,
+      [cartItem.title]: true,
+    }));
+
     await ShoppingCartService.removeItemFromCart(token, cartItem.title);
 
     // Update the cart data
@@ -98,6 +118,12 @@ function App() {
     setCartData(updatedCartData);
 
     setPurchasedQuantity((prevQuantity) => prevQuantity - 1);
+
+    // Set loading state to false to hide the spinner
+    setDeleteItemLoading((prevState) => ({
+      ...prevState,
+      [cartItem.title]: false,
+    }));
   };
 
   const handleClearCart = async (e: any) => {
@@ -106,6 +132,10 @@ function App() {
       console.log('No token found');
       return;
     }
+
+    // Set loading state to true to show the spinner
+    setClearCartLoading(true);
+
     await ShoppingCartService.deleteCart(token);
 
     // Update the cart data
@@ -113,6 +143,9 @@ function App() {
     setCartData(updatedCartData);
 
     setPurchasedQuantity(0);
+
+    // Set loading state to false to hide the spinner
+    setClearCartLoading(false);
   };
 
   return (
@@ -148,8 +181,13 @@ function App() {
                 <Button
                   color="primary"
                   onClick={(e) => handleBuyClick(e, product)}
+                  disabled={addItemLoading[product.id]}
                 >
-                  Buy Now!
+                  {addItemLoading[product.id] ? (
+                    <Spinner size="sm" color="light" />
+                  ) : (
+                    'Buy Now'
+                  )}
                 </Button>
               </div>
             </Col>
@@ -176,8 +214,13 @@ function App() {
                         size="sm"
                         className="m-2"
                         onClick={(e) => handleDeleteItem(e, cartItem)}
+                        disabled={deleteItemLoading[cartItem.title]}
                       >
-                        <FaTrash />
+                        {deleteItemLoading[cartItem.title] ? (
+                          <Spinner size="sm" color="light" />
+                        ) : (
+                          <FaTrash />
+                        )}
                       </Button>
                     </div>
                   </li>
@@ -189,15 +232,20 @@ function App() {
             {cartData.length > 0 ? (
               <Button
                 color="primary"
-                className="m-2 m-2"
+                className="m-2"
                 onClick={(e) => handleClearCart(e)}
+                disabled={clearCartLoading}
               >
-                Clear Cart
+                {clearCartLoading ? (
+                  <Spinner size="sm" color="light" />
+                ) : (
+                  'Clear Cart'
+                )}
               </Button>
             ) : null}
             <Button
               color="primary"
-              className="m-2 m-2"
+              className="m-2"
               onClick={(e) => toggleCartModal(e)}
             >
               Close
