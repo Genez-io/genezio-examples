@@ -3,9 +3,13 @@ package com.example.qrgeneratorfrontend
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -29,6 +33,7 @@ class ViewCodeActivity : AppCompatActivity() {
     private lateinit var qrCodeViewModel: QRCodeViewModel
     private lateinit var progressBar: ProgressBar
     private lateinit var titleView: TextView
+    private lateinit var shareBtn: Button
 
     fun showAlertDialog(text: String){
 
@@ -50,11 +55,13 @@ class ViewCodeActivity : AppCompatActivity() {
         val gson : Gson = Gson()
         val jsonString = intentAuth.getStringExtra("userLogged")
         val jsonStringId = intentAuth.getStringExtra("codeId")
+        var imageBitmap: Bitmap? = null
         userLogged = gson.fromJson(jsonString, UserId::class.java)
 
         val imageView : ImageView = binding.idQrcodeView
         progressBar = binding.loadingProgressBarViewQr
         titleView = binding.idTitleViewQr
+        shareBtn = binding.idBtnShare
 
         imageView.visibility = View.GONE
         titleView.visibility = View.GONE
@@ -68,6 +75,7 @@ class ViewCodeActivity : AppCompatActivity() {
                 for(elem in qrcodes){
                     if(elem._id == jsonStringId){
                         val bitmap : Bitmap = BitmapFactory.decodeByteArray(elem.bitmap,0,elem.bitmap.size)
+                        imageBitmap = bitmap
                         if(bitmap != null){
                             imageView.setImageBitmap(bitmap)
                             progressBar.visibility = View.GONE
@@ -83,6 +91,29 @@ class ViewCodeActivity : AppCompatActivity() {
                 }
             }
         })
+
+        shareBtn.setOnClickListener{
+            if(imageBitmap==null){
+                showAlertDialog("Wait for the Qr code to be loaded")
+                return@setOnClickListener
+            }
+//            val mBitmap = (imageBitmap as BitmapDrawable).bitmap
+
+            val path = MediaStore.Images.Media.insertImage(contentResolver,imageBitmap,"Image Description",null)
+
+            val uri = Uri.parse(path)
+
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.type="image/*"
+            shareIntent.putExtra(Intent.EXTRA_TEXT,"This is the text that's you want to share with your image")
+            shareIntent.putExtra(Intent.EXTRA_STREAM,uri)
+            startActivity(Intent.createChooser(shareIntent,"share image"))
+
+        }
+
+
+
+
 
         setContentView(binding.root)
     }
