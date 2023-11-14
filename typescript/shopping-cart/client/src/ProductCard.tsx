@@ -8,14 +8,14 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, token }) => {
-  const handleBuyClick = () => {
+  const handleBuyClick = async () => {
     // You can implement your buy logic here, e.g., add the product to a cart.
     console.log(`Buy ${product.title}`);
     if (!token) {
       console.log("No token found");
       return;
     }
-    ShoppingCartService.addItemToCart(token, product.title)
+    await ShoppingCartService.addItemToCart(token, product.title)
   };
 
   return (
