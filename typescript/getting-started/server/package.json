@@ -12,6 +12,6 @@
   "dependencies": {
     "@genezio/types": "^0.1.9",
     "dotenv": "^16.0.3",
-    "mongoose": "^6.6.4"
+    "mongoose": "^8.0.0"
   }
 }

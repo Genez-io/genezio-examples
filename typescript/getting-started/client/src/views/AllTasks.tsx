@@ -39,6 +39,7 @@ export default function AllTasks() {
     const res = await TaskService.getAllTasksByUser(
       localStorage.getItem("apiToken") || ""
     );
+    console.log(res);
 
     if (!res.success) {
       setAlertErrorMessage(

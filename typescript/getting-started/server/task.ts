@@ -56,6 +56,8 @@ export class TaskService {
     }
     mongoose.connect(process.env.MONGO_DB_URI || "").catch((err) => {
       console.log(err);
+      console.log(red_color, missing_env_error);
+      throw err;
     });
   }
 
@@ -82,7 +84,7 @@ export class TaskService {
       return { success: false, tasks: [], err: err.toString() };
     }
 
-    tasks.map((task) => {
+    tasks.map((task: any) => {
       return {
         id: task._id.toString(),
         token: task.token,
@@ -144,15 +146,17 @@ export class TaskService {
 
       let initTasks = [];
       try {
-        initTasks = (await TaskModel.find({ token: token })).map((task) => {
-          return {
-            id: task._id.toString(),
-            token: task.token,
-            title: task.title,
-            solved: task.solved,
-            date: task.date,
-          };
-        });
+        initTasks = (await TaskModel.find({ token: token })).map(
+          (task: any) => {
+            return {
+              id: task._id.toString(),
+              token: task.token,
+              title: task.title,
+              solved: task.solved,
+              date: task.date,
+            };
+          }
+        );
       } catch (err: any) {
         return { success: false, tasks: [], err: err.toString() };
       }
