@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import ProductCard from './ProductCard';
 import axios from 'axios';
-import ShoppingCartIcon from './ShoppingCart';
+import { FaShoppingCart } from 'react-icons/fa';
 import { CartItem, Product } from './models/products';
 import { ShoppingCartService } from '@genezio-sdk/shopping-cart_us-east-1';
 
@@ -96,7 +96,7 @@ function App() {
        <div className="header">
         <h1>Product List</h1>
         <button className="cart-button" onClick={toggleCartModal}>
-            <ShoppingCartIcon />
+            <FaShoppingCart />
         </button>
       </div>
       <div className="product-list">
