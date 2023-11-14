@@ -4,6 +4,7 @@ import { GenezioDeploy } from "@genezio/types"
 
 const red_color = '\x1b[31m%s\x1b[0m'
 const yellow_color = '\x1b[33m%s\x1b[0m'
+const missing_env_error = 'ERROR: Your MONGO_DB_URI environment variable is not properly set, go to https://genez.io/blog/how-to-add-a-mongodb-to-your-genezio-project/ to learn how to integrate your project with Mongo DB'
 
 export type Task = {
   id: string,
@@ -21,15 +22,18 @@ export type GetTasksResponse = {
 
 export type GetTaskResponse = {
   success: boolean,
-  task?: Task
+  task?: Task,
+  err?:string
 }
 
 export type UpdateTaskResponse = {
   success: boolean,
+  err?:string
 }
 
 export type DeleteTaskResponse = {
   success: boolean,
+  err?:string
 }
 
 /**
@@ -47,12 +51,12 @@ export class TaskService {
    */
   #connect() {
       if(!process.env.MONGO_DB_URI){ 
-        console.log(red_color,"ERROR: Your MONGO_DB_URI environment variable is not set, go to https://genez.io/blog/how-to-add-a-mongodb-to-your-genezio-project/ to learn how to integrate your project with Mongo DB")
+        console.log(red_color,missing_env_error)
         this.envSet = false
         return;
       }
       mongoose.connect(process.env.MONGO_DB_URI||"").catch((err)=>{
-        console.log(yellow_color,"WARNING: Check if your environment variables are correctly set");
+        console.log(red_color,missing_env_error);
         this.envSet = false
         console.log(err);
       });
@@ -68,10 +72,12 @@ export class TaskService {
    * @returns An object containing two properties: { success: true, tasks: tasks }
    */
   async getAllTasksByUser(token: string): Promise<GetTasksResponse> {
-    console.log(`Get all tasks by user request received with token ${token}`)
     if(!this.envSet){
-      return {success:false,tasks:[],err:"Error at the database"}
+      console.log(red_color,missing_env_error);
+      return {success:false,tasks:[],err:missing_env_error}
     }
+    console.log(`Get all tasks by user request received with token ${token}`)
+    
 
     const tasks = await TaskModel.find({ token: token });
     tasks.map((task) => {
@@ -137,10 +143,12 @@ export class TaskService {
    * @returns An object containing two properties: { success: true, tasks: tasks }
    */
   async createTask(token: string, title: string): Promise<GetTaskResponse> {
-    console.log(`Create task request received for user with ${token} with title ${title}`)
     if(!this.envSet){
-      return {success:false}
+      console.log(red_color,missing_env_error);
+      return {success:false,err:missing_env_error}
     }
+    console.log(`Create task request received for user with ${token} with title ${title}`)
+    
 
     const task = await TaskModel.create({
       title: title,
@@ -166,10 +174,12 @@ export class TaskService {
    * @returns An object containing two properties: { success: true }
    */
   async updateTask(token: string, id: string, title: string, solved: boolean) : Promise<UpdateTaskResponse>{
-    console.log(`Update task request received with id ${id} with title ${title} and solved value ${solved}`)
     if(!this.envSet){
-      return {success:false}
+      console.log(red_color,missing_env_error);
+      return {success:false,err:missing_env_error}
     }
+    console.log(`Update task request received with id ${id} with title ${title} and solved value ${solved}`)
+    
 
     await TaskModel.updateOne(
       { _id: id, token: token },
@@ -193,10 +203,12 @@ export class TaskService {
    * @returns An object containing one property: { success: true }
    */
   async deleteTask(token: string, id: string):Promise<DeleteTaskResponse> {
-    console.log(`Delete task with id ${id} request received`)
     if(!this.envSet){
-      return {success:false}
+      console.log(red_color,missing_env_error);
+      return {success:false,err:missing_env_error}
     }
+    console.log(`Delete task with id ${id} request received`)
+    
 
     await TaskModel.deleteOne({ token: token, _id: id });
 

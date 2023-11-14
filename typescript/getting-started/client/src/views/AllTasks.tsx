@@ -28,7 +28,7 @@ export default function AllTasks() {
   };
 
   const [error, setError] = useState<string>("");
-  const [dbError, setDbError] = useState<string>("");
+  const [alertErrorMessage, setAlertErrorMessage] = useState<string>("");
 
   const [taskTitle, setTaskTitle] = useState("");
 
@@ -41,8 +41,12 @@ export default function AllTasks() {
     );
 
     if (!res.success) {
-      setDbError(
-        "Unexpected error, please check that your backend and environment variables are properly configured"
+      setAlertErrorMessage(
+        `Unexpected error: ${
+          res.err
+            ? res.err
+            : "Please check the backend logs in the project dashboard - https://app.genez.io."
+        }`
       );
       return;
     }
@@ -60,10 +64,10 @@ export default function AllTasks() {
         localStorage.setItem("apiToken", token);
       }
     }
-    if (!tasks && dbError == "") {
+    if (!tasks && alertErrorMessage == "") {
       fetchTasks();
     }
-  }, [tasks, dbError]);
+  }, [tasks, alertErrorMessage]);
 
   async function handleDelete(id: string) {
     const res = await TaskService.deleteTask(
@@ -72,8 +76,12 @@ export default function AllTasks() {
     );
 
     if (!res.success) {
-      setDbError(
-        "Unexpected error, please check that your backend and environment variables are properly configured"
+      setAlertErrorMessage(
+        `Unexpected error: ${
+          res.err
+            ? res.err
+            : "Please check the backend logs in the project dashboard - https://app.genez.io."
+        }`
       );
       navigate(0);
       return;
@@ -92,8 +100,12 @@ export default function AllTasks() {
       solved
     );
     if (!res.success) {
-      setDbError(
-        "Unexpected error, please check that your backend and environment variables are properly configured"
+      setAlertErrorMessage(
+        `Unexpected error: ${
+          res.err
+            ? res.err
+            : "Please check the backend logs in the project dashboard - https://app.genez.io."
+        }`
       );
       navigate(0);
       return;
@@ -122,8 +134,12 @@ export default function AllTasks() {
       taskTitle
     );
     if (!res.success) {
-      setDbError(
-        "Unexpected error, please check that your backend and environment variables are properly configured"
+      setAlertErrorMessage(
+        `Unexpected error: ${
+          res.err
+            ? res.err
+            : "Please check the backend logs in the project dashboard - https://app.genez.io."
+        }`
       );
       navigate(0);
       return;
@@ -189,9 +205,9 @@ export default function AllTasks() {
                   Here you have a list of resources that you can use to learn
                   how to continue building awesome projects with genezio:
                 </p>
-                {dbError != "" ? (
+                {alertErrorMessage != "" ? (
                   <Row>
-                    <Alert color="danger">{dbError}</Alert>
+                    <Alert color="danger">{alertErrorMessage}</Alert>
                   </Row>
                 ) : (
                   <></>
