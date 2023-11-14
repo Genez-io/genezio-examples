@@ -69,6 +69,10 @@ export class TaskService {
    * @returns An object containing two properties: { success: true, tasks: tasks }
    */
   async getAllTasksByUser(token: string): Promise<GetTasksResponse> {
+    if (!process.env.MONGO_DB_URI) {
+      console.log(red_color, missing_env_error);
+      return { success: false, tasks: [], err: missing_env_error };
+    }
     console.log(`Get all tasks by user request received with token ${token}`);
 
     let tasks = [];
@@ -170,6 +174,10 @@ export class TaskService {
    * @returns An object containing two properties: { success: true, tasks: tasks }
    */
   async createTask(token: string, title: string): Promise<GetTaskResponse> {
+    if (!process.env.MONGO_DB_URI) {
+      console.log(red_color, missing_env_error);
+      return { success: false, err: missing_env_error };
+    }
     console.log(
       `Create task request received for user with ${token} with title ${title}`
     );
@@ -213,6 +221,10 @@ export class TaskService {
     title: string,
     solved: boolean
   ): Promise<UpdateTaskResponse> {
+    if (!process.env.MONGO_DB_URI) {
+      console.log(red_color, missing_env_error);
+      return { success: false, err: missing_env_error };
+    }
     console.log(
       `Update task request received with id ${id} with title ${title} and solved value ${solved}`
     );
@@ -243,6 +255,10 @@ export class TaskService {
    * @returns An object containing one property: { success: true }
    */
   async deleteTask(token: string, id: string): Promise<DeleteTaskResponse> {
+    if (!process.env.MONGO_DB_URI) {
+      console.log(red_color, missing_env_error);
+      return { success: false, err: missing_env_error };
+    }
     console.log(`Delete task with id ${id} request received`);
 
     try {
