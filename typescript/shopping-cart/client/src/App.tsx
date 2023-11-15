@@ -3,7 +3,7 @@ import { Button, Col, Container, Row, Spinner } from 'reactstrap';
 import './App.css';
 import axios from 'axios';
 import { FaShoppingCart, FaTrash } from 'react-icons/fa';
-import { CartItem, Product } from './models/products';
+import { CartItem, Product } from './models';
 import { ShoppingCartService } from '@genezio-sdk/shopping-cart_us-east-1';
 
 function App() {
@@ -14,7 +14,6 @@ function App() {
   const [addItemLoading, setAddItemLoading] = useState<{
     [key: number]: boolean;
   }>({});
-
   const [productData, setProductData] = useState<{ products: Product[] }>({
     products: [],
   });
@@ -23,18 +22,18 @@ function App() {
   const [purchasedQuantity, setPurchasedQuantity] = useState(0);
 
   // Check if the token is set in localStorage
-  let token = localStorage.getItem('token');
+  let token = localStorage.getItem('token') as string;
 
   // If token is not set, generate a 32-character token
-  if (!token) {
+  if (!token || token === '' || token === 'undefined') {
     token =
       Math.random().toString(36).substring(2, 15) +
       Math.random().toString(36).substring(2, 15);
     localStorage.setItem('token', token);
   }
 
+  // Fetch the dummy products from the dummyjson API
   useEffect(() => {
-    // Fetch the JSON data from the URL
     axios
       .get('https://dummyjson.com/products')
       .then((response) => {
@@ -45,21 +44,12 @@ function App() {
       });
   }, []);
 
+  // Fetch the cart contents when the cart modal is visible
   useEffect(() => {
-    // Fetch the cart data when the modal is opened
     if (isCartVisible) {
-      if (!token) {
-        console.log('No token found');
-        return;
-      }
-
       const fetchCartData = async () => {
         try {
-          if (!token) {
-            console.log('No token found');
-            return;
-          }
-          // Call your ShoppingCartService.getCart method to fetch the cart data
+          // Call your ShoppingCartService.getCart method to the contents of the cart
           const cart = await ShoppingCartService.getCart(token);
           setCartData(cart);
         } catch (error) {
@@ -71,6 +61,7 @@ function App() {
     }
   }, [isCartVisible, token]);
 
+  // Toggle the cart modal
   const toggleCartModal = (e: any) => {
     e.preventDefault();
     setIsCartVisible(!isCartVisible);
@@ -78,11 +69,6 @@ function App() {
 
   const handleBuyClick = async (e: any, product: Product) => {
     e.preventDefault();
-
-    if (!token) {
-      console.log('No token found');
-      return;
-    }
 
     // Set loading state to true to show the spinner
     setAddItemLoading((prevStates) => ({ ...prevStates, [product.id]: true }));
@@ -99,11 +85,6 @@ function App() {
 
   const handleDeleteItem = async (e: any, cartItem: CartItem) => {
     e.preventDefault();
-    // You can implement your delete logic here
-    if (!token) {
-      console.log('No token found');
-      return;
-    }
 
     // Set loading state to true to show the spinner
     setDeleteItemLoading((prevState) => ({
@@ -113,10 +94,11 @@ function App() {
 
     await ShoppingCartService.removeItemFromCart(token, cartItem.title);
 
-    // Update the cart data
+    // You can implement your delete logic here
     const updatedCartData = await ShoppingCartService.getCart(token);
     setCartData(updatedCartData);
 
+    // Update the local state to reflect the purchased quantity
     setPurchasedQuantity((prevQuantity) => prevQuantity - 1);
 
     // Set loading state to false to hide the spinner
@@ -128,20 +110,18 @@ function App() {
 
   const handleClearCart = async (e: any) => {
     e.preventDefault();
-    if (!token) {
-      console.log('No token found');
-      return;
-    }
 
     // Set loading state to true to show the spinner
     setClearCartLoading(true);
 
+    // You can implement your clear cart logic here
     await ShoppingCartService.deleteCart(token);
 
     // Update the cart data
     const updatedCartData = await ShoppingCartService.getCart(token);
     setCartData(updatedCartData);
 
+    // Update the local state to reflect the purchased quantity
     setPurchasedQuantity(0);
 
     // Set loading state to false to hide the spinner
