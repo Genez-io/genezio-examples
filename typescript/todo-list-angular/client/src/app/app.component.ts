@@ -5,20 +5,23 @@ import { AuthService } from './services/auth/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   constructor(private authService: AuthService, private router: Router) {
-    this.router.events.subscribe((e) => {
+    this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
-        this.navigationEnd(e.url)
+        this.navigationEnd(e.url);
       }
-   });
-   
+    });
   }
   navigationEnd(url: string) {
-    if (url !== "/login" && url !== "/register" && !this.authService.isAuthenticated()) {
-      this.router.navigate(["login"])
+    if (
+      url !== '/login' &&
+      url !== '/register' &&
+      !this.authService.isAuthenticated()
+    ) {
+      this.router.navigate(['login']);
     }
   }
 }

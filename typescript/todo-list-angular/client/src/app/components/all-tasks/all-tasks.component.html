@@ -25,6 +25,7 @@
 <div class="p-4 mt-2 card">
     <div class="mt-2 row">
         <div class="col-sm-11">
+            <ngb-alert type="danger" *ngIf="dbError">{{dbError}}</ngb-alert>
             <h3>All Tasks</h3>
             <div class="row">
                 <app-task *ngFor="let task of allTasks" [title]='task.title' [id]="task._id" [solved]="task.solved" (onDelete)="taskDeleted(task._id)"></app-task>
