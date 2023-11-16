@@ -55,7 +55,6 @@ export class TaskService {
     }
     mongoose.connect(process.env.MONGO_DB_URI || "").catch((err) => {
       console.log(err);
-      console.log(red_color, missing_env_error);
       throw err;
     });
   }

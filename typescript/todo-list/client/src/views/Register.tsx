@@ -1,7 +1,7 @@
 import { Button, Card, Container, Row, Col, Input } from "reactstrap";
 import { useState } from "react";
-import { UserService } from "@genezio-sdk/todo-list-ts_us-east-1"
-import { useNavigate } from 'react-router-dom';
+import { UserService } from "@genezio-sdk/todo-list-ts_us-east-1";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -29,7 +29,17 @@ export default function Register() {
     const res = await UserService.register(name, email, password);
 
     if (!res.success) {
-      setError(res.msg!);
+      if (!res.err) {
+        setError(
+          `Unexpected error: ${
+            res.msg
+              ? res.msg
+              : "Please check the backend logs in the project dashboard - https://app.genez.io."
+          }`
+        );
+      } else {
+        setError(res.err);
+      }
       return;
     } else {
       navigate("/login");
@@ -110,4 +120,4 @@ export default function Register() {
       </Row>
     </Container>
   );
-};
+}
