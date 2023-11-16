@@ -10,7 +10,7 @@ generator client {
 // Define the data source for the Prisma schema
 datasource db {
   provider = "mysql"
-  url      = "mysql://admin:xcMmW0ZJdhnqQHcifnuo@test-examples-genezio.c4182iwjrpge.us-east-1.rds.amazonaws.com:3306/examplePrismaDb"
+  url      = env("MYSQL_DB_URL")
 }
 
 // Define the data model for the 'leaderboard' table

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Container, Row, Col } from "reactstrap";
+import { Button, Card, Container, Row, Col, Alert } from "reactstrap";
 import { Leaderboard } from "@genezio-sdk/prisma-example_us-east-1";
 import { shuffleArray } from "../utils/utils";
 import {
@@ -17,12 +17,14 @@ export default function Questions() {
   const [score, setScore] = useState<number>(0);
   const [gameStatus, setGameStatus] = useState<GameStatus>(GameStatus.Loading);
   const [leaderboard, setLeaderboard] = useState<LeaderboardInterface[] | null>(
-    null,
+    null
   );
   const [leaderboardLoaded, setLeaderboardLoaded] = useState<boolean>(false);
   const playerName = localStorage.getItem("playerName") || "";
   const selectCategory = localStorage.getItem("selectCategory") || "";
   const selectedDifficulty = localStorage.getItem("selectedDifficulty") || "";
+
+  const [alertErrorMessage, setAlertErrorMessage] = useState<string>("");
 
   // Fetch questions from API based on selected options
   useEffect(() => {
@@ -61,7 +63,16 @@ export default function Questions() {
             setLeaderboard(data.leaderboard);
             setLeaderboardLoaded(true);
           } else {
-            console.error("Error fetching leaderboard");
+            if (!data.success) {
+              setAlertErrorMessage(
+                `Unexpected error: ${
+                  data.err
+                    ? data.err
+                    : "Please check the backend logs in the project dashboard - https://app.genez.io."
+                }`
+              );
+              return;
+            }
           }
         } catch (error) {
           console.error("Error fetching leaderboard:", error);
@@ -91,6 +102,17 @@ export default function Questions() {
       console.log(status);
       if (status.success) {
         setGameStatus(GameStatus.Finished);
+      } else {
+        if (!status.success) {
+          setAlertErrorMessage(
+            `Unexpected error: ${
+              status.err
+                ? status.err
+                : "Please check the backend logs in the project dashboard - https://app.genez.io."
+            }`
+          );
+          return;
+        }
       }
     }
   };
@@ -155,10 +177,14 @@ export default function Questions() {
       );
     }
 
-    if (resultComponent) {
+    if (resultComponent && alertErrorMessage == "") {
       return resultComponent;
     } else {
-      return null;
+      return (
+        <Row className="ms-5 me-5 ps-5 pe-5 mt-5 pt-5">
+          <Alert color="danger">{alertErrorMessage}</Alert>
+        </Row>
+      );
     }
   } else {
     const currentQuestion = questions[currentQuestionIndex];

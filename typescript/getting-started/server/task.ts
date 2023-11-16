@@ -3,7 +3,6 @@ import { TaskModel } from "./models/task";
 import { GenezioDeploy } from "@genezio/types";
 
 const red_color = "\x1b[31m%s\x1b[0m";
-const yellow_color = "\x1b[33m%s\x1b[0m";
 const missing_env_error =
   "ERROR: Your MONGO_DB_URI environment variable is not properly set, go to https://genez.io/blog/how-to-add-a-mongodb-to-your-genezio-project/ to learn how to integrate your project with Mongo DB";
 
