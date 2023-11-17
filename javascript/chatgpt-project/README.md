@@ -17,12 +17,12 @@ In this project, we are creating an application that uses the ChatGPT API. It's 
 
 ## Demo - this can be optional
 
-A hosted demo of this examples is available at [rephrasing-chatgpt.app.genez.io](https://rephrasing-chatgpt.app.genez.io).
+A hosted demo of this example is available at [rephrasing-chatgpt.app.genez.io](https://rephrasing-chatgpt.app.genez.io).
 
 ## Prerequisites
-- ✅ [NodeJs]() >= 16.0.0
-- ✅ [npm]()
-- ✅ [genezio]()
+- ✅ [NodeJs](https://nodejs.org/) >= 16.0.0
+- ✅ [npm](https://genez.io/)
+- ✅ [genezio](https://genez.io/)
 
 Note: We recommend using [nvm]() to install Node.js and npm.
 
