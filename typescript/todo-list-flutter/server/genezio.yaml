@@ -11,4 +11,3 @@ scripts:
     build web --web-renderer html
 frontend:
   path: ../client/build/web
-  subdomain: fuchsia-ancient-snail
