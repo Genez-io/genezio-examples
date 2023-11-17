@@ -146,3 +146,9 @@ Check out:
 
 If you need support or you have any questions, please join us in our [Discord channel](https://discord.gg/uc9H5YKjXv). We'd love to chat!
 
+
+## Built With
+- [Genezio](https://genez.io/)
+- [Node.JS](https://nodejs.org/en/)
+- [React](https://reactjs.org/)
+- [Upstash](https://upstash.com/)
