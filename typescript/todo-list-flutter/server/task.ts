@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import { ObjectId } from "mongodb";
-import { MONGO_DB_URI } from "./helper";
 import { TaskModel } from "./models/task";
 import { GenezioDeploy } from "@genezio/types";
 
@@ -20,23 +19,23 @@ export type Task = {
 export type GetTasksResponse = {
   success: boolean;
   tasks: Task[];
-  err?: string;
+  err: string;
 };
 
 export type GetTaskResponse = {
   success: boolean;
-  task?: Task;
-  err?: string;
+  task: Task;
+  err: string;
 };
 
 export type UpdateTaskResponse = {
   success: boolean;
-  err?: string;
+  err: string;
 };
 
 export type DeleteTaskResponse = {
   success: boolean;
-  err?: string;
+  err: string;
 };
 
 /**
@@ -129,14 +128,14 @@ export class TaskService {
         console.log(
           `Found ${initTasks.length} tasks for user with token ${token}`
         );
-        return { success: true, tasks: initTasks };
+        return { success: true, tasks: initTasks, err: "" };
       } catch (error: any) {
         return { success: false, tasks: [], err: error.toString() };
       }
     }
 
     console.log(`Found ${tasks.length} tasks for user with token ${token}`);
-    return { success: true, tasks: tasks };
+    return { success: true, tasks: tasks, err: "" };
   }
 
   /**
@@ -156,7 +155,19 @@ export class TaskService {
   ): Promise<GetTaskResponse> {
     if (!process.env.MONGO_DB_URI) {
       console.log(red_color, missing_env_error);
-      return { success: false, err: missing_env_error };
+
+      return {
+        success: false,
+        task: {
+          id: "err",
+          token: "err",
+          title: "err",
+          description: "err",
+          solved: false,
+          date: "",
+        },
+        err: missing_env_error,
+      };
     }
     console.log(`Create task request received for user with title ${title}`);
 
@@ -173,7 +184,18 @@ export class TaskService {
         solved: false,
       });
     } catch (error: any) {
-      return { success: false, err: error.toString() };
+      return {
+        success: false,
+        task: {
+          id: "err",
+          token: "err",
+          title: "err",
+          description: "err",
+          solved: false,
+          date: "",
+        },
+        err: error.toString(),
+      };
     }
 
     return {
@@ -186,6 +208,7 @@ export class TaskService {
         solved: false,
         date: "",
       },
+      err: "",
     };
   }
 
@@ -236,7 +259,7 @@ export class TaskService {
       return { success: false, err: error.toString() };
     }
 
-    return { success: true };
+    return { success: true, err: "" };
   }
 
   /**
@@ -261,6 +284,6 @@ export class TaskService {
       return { success: false, err: error.toString() };
     }
 
-    return { success: true };
+    return { success: true, err: "" };
   }
 }
