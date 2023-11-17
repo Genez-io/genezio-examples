@@ -12,7 +12,6 @@
   "dependencies": {
     "@genezio/types": "^0.1.9",
     "bcryptjs": "^2.4.3",
-    "crypto": "^1.0.1",
     "dotenv": "^16.0.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^8.0.1"
