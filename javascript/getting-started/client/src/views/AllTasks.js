@@ -8,6 +8,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  Alert,
 } from "reactstrap";
 import React, { useState, useEffect } from "react";
 import { TaskService } from "@genezio-sdk/getting-started-genezio_us-east-1";
@@ -19,7 +20,7 @@ import logo from "./logo.png";
 export default (props) => {
   const navigate = useNavigate();
 
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(null);
   const [modalAddTask, setModalAddTask] = useState(false);
   const toggleModalAddTask = () => {
     setModalAddTask(!modalAddTask);
@@ -27,6 +28,7 @@ export default (props) => {
   };
 
   const [error, setError] = useState("");
+  const [alertErrorMessage, setAlertErrorMessage] = useState("");
 
   const [taskTitle, setTaskTitle] = useState("");
 
@@ -45,19 +47,42 @@ export default (props) => {
         const res = await TaskService.getAllTasksByUser(
           localStorage.getItem("apiToken")
         );
+        if (!res.success) {
+          setAlertErrorMessage(
+            `Unexpected error: ${
+              res.err
+                ? res.err
+                : "Please check the backend logs in the project dashboard - https://app.genez.io."
+            }`
+          );
+          return;
+        }
         if (res.success) {
           setTasks(res.tasks);
         }
       }
-      fetchTasks();
+      if (!tasks && alertErrorMessage == "") {
+        fetchTasks();
+      }
     }
-  }, []);
+  }, [tasks, alertErrorMessage]);
 
   async function handleDelete(id) {
     const res = await TaskService.deleteTask(
       localStorage.getItem("apiToken"),
       id
     );
+    if (!res.success) {
+      setAlertErrorMessage(
+        `Unexpected error: ${
+          res.err
+            ? res.err
+            : "Please check the backend logs in the project dashboard - https://app.genez.io."
+        }`
+      );
+      navigate(0);
+      return;
+    }
     if (res.success) {
       navigate(0);
     }
@@ -71,6 +96,17 @@ export default (props) => {
       title,
       solved
     );
+    if (!res.success) {
+      setAlertErrorMessage(
+        `Unexpected error: ${
+          res.err
+            ? res.err
+            : "Please check the backend logs in the project dashboard - https://app.genez.io."
+        }`
+      );
+      navigate(0);
+      return;
+    }
     if (res.success) {
       const newTasks = tasks.map((task) => {
         if (task.id === id) {
@@ -93,6 +129,17 @@ export default (props) => {
       localStorage.getItem("apiToken"),
       taskTitle
     );
+    if (!res.success) {
+      setAlertErrorMessage(
+        `Unexpected error: ${
+          res.err
+            ? res.err
+            : "Please check the backend logs in the project dashboard - https://app.genez.io."
+        }`
+      );
+      navigate(0);
+      return;
+    }
     if (res.success) {
       setTasks([...tasks, res.task]);
       setTaskTitle("");
@@ -154,15 +201,26 @@ export default (props) => {
                   Here you have a list of resources that you can use to learn
                   how to continue building awesome projects with genezio:
                 </p>
+                {alertErrorMessage != "" ? (
+                  <Row>
+                    <Alert color="danger">{alertErrorMessage}</Alert>
+                  </Row>
+                ) : (
+                  <></>
+                )}
 
-                {tasks.map((task) => (
-                  <TaskView
-                    key={TaskService.id}
-                    task={task}
-                    onChange={handleEdit}
-                    onDelete={handleDelete}
-                  ></TaskView>
-                ))}
+                {tasks != null ? (
+                  tasks.map((task) => (
+                    <TaskView
+                      key={TaskService.id}
+                      task={task}
+                      onChange={handleEdit}
+                      onDelete={handleDelete}
+                    ></TaskView>
+                  ))
+                ) : (
+                  <></>
+                )}
                 <div
                   style={{
                     display: "flex",
