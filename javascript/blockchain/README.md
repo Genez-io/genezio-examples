@@ -120,9 +120,9 @@ All commands are run from the root of the project, from a terminal:
 ## Want to learn more?
 
 Check out:
-- [ ] https://genez.io/docs
-- [ ] https://genez.io/blog
-- [ ] Discord channel
+- [Official genezio documentation](https://genez.io/docs)
+- [Web development tutorials](https://genez.io/blog)
+- [Discord channel](https://discord.gg/uc9H5YKjXv)
 
 
 ## Contact
