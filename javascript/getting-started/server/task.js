@@ -58,7 +58,7 @@ export class TaskService {
         };
       });
     } catch (error) {
-      return { success: false, err: error };
+      return { success: false, err: error.toString() };
     }
 
     if (tasks.length === 0) {
@@ -100,7 +100,7 @@ export class TaskService {
 
         return { success: true, tasks: initTasks };
       } catch (error) {
-        return { success: false, err: err };
+        return { success: false, err: err.toString() };
       }
     }
 
@@ -134,7 +134,7 @@ export class TaskService {
         token: token,
       });
     } catch (error) {
-      return { success: false, err: error };
+      return { success: false, err: error.toString() };
     }
 
     return {
@@ -173,7 +173,7 @@ export class TaskService {
         }
       );
     } catch (error) {
-      return { success: false, err: error };
+      return { success: false, err: error.toString() };
     }
 
     return { success: true };
@@ -200,7 +200,7 @@ export class TaskService {
     try {
       await TaskModel.deleteOne({ token: token, _id: id });
     } catch (error) {
-      return { success: false, err: error };
+      return { success: false, err: error.toString() };
     }
 
     return { success: true };
