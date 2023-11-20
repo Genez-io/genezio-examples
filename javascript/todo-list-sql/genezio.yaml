@@ -4,9 +4,10 @@ language: js
 cloudProvider: genezio
 scripts:
   preBackendDeploy: npm install
-  preFrontendDeploy: cd ../client && npm install && npm run build
+  preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
 frontend:
   path: ./client/build
+  subdomain: rose-novel-roadrunner
 packageManager: npm
 workspace:
   backend: server

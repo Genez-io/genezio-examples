@@ -1,7 +1,7 @@
 import { Button, Card, Container, Row, Col, Input } from "reactstrap";
 import React, { useState } from "react";
 import { User } from "@genezio-sdk/todo-list_us-east-1";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export default (props) => {
   const navigate = useNavigate();
@@ -30,7 +30,18 @@ export default (props) => {
     setError("res", res);
 
     if (!res.success) {
-      setError(res.msg);
+      if (res.err) {
+        setError(res.err);
+      } else {
+        if (res.msg) {
+          setError(res.msg);
+        } else {
+          setError(
+            "Unexpected Error:Please check the backend logs in the project dashboard - https://app.genez.io. "
+          );
+        }
+      }
+
       return;
     } else {
       navigate("/login");

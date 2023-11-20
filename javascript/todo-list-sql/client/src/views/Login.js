@@ -1,8 +1,7 @@
 import { Button, Card, Container, Row, Col, Input } from "reactstrap";
 import React, { useState, useEffect, useRef } from "react";
 import { User } from "@genezio-sdk/todo-list_us-east-1";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 export default (props) => {
   const navigate = useNavigate();
@@ -22,7 +21,18 @@ export default (props) => {
     const res = await User.login(email, password);
 
     if (!res.success) {
-      setError(res.msg);
+      if (res.err) {
+        setError(res.err);
+      } else {
+        if (res.msg) {
+          setError(res.msg);
+        } else {
+          setError(
+            "Unexpected Error:Please check the backend logs in the project dashboard - https://app.genez.io. "
+          );
+        }
+      }
+
       return;
     } else {
       localStorage.setItem("apiToken", res.token);
@@ -74,10 +84,8 @@ export default (props) => {
                   </div>
                   <div className="mt-2">
                     <span>
-                      Don't have an account?{" "}
-                    <a href="/register">Register</a>
-                      
-                      </span>
+                      Don't have an account? <a href="/register">Register</a>
+                    </span>
                   </div>
                 </form>
               </div>

@@ -1,8 +1,12 @@
 import bcrypt from "bcryptjs";
-import db from "./models/";
 
-export async function reqAuth(token) {
-  const session = await db.ActiveSession.findAll({ where: { token: token }});
+export async function reqAuth(db, token) {
+  let session;
+  try {
+    session = await db.ActiveSession.find({ token: token });
+  } catch (error) {
+    return { success: false, err: error.toString() };
+  }
   if (session.length == 1) {
     return { success: true };
   } else {
@@ -11,8 +15,8 @@ export async function reqAuth(token) {
 }
 
 export async function validatePassword(saltedPassword, password) {
-  return new Promise(resolve => {
-    bcrypt.compare(password, saltedPassword, async function(err, res) {
+  return new Promise((resolve) => {
+    bcrypt.compare(password, saltedPassword, async function (err, res) {
       if (err) {
         throw err;
       }
@@ -27,13 +31,13 @@ export async function validatePassword(saltedPassword, password) {
 }
 
 export async function saltPassword(password) {
-  return new Promise(resolve => {
-    bcrypt.genSalt(2, function(err, salt) {
+  return new Promise((resolve) => {
+    bcrypt.genSalt(2, function (err, salt) {
       if (err) {
         throw err;
       }
 
-      bcrypt.hash(password, salt, async function(err, hash) {
+      bcrypt.hash(password, salt, async function (err, hash) {
         if (err) {
           throw err;
         }
