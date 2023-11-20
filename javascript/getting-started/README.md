@@ -54,6 +54,9 @@ to the client via RPC.
 
 The `frontend` directory contains a React application that talks with the genezio server.
 
+To glue this two component together, an auto-generated SDK is installed in the `client/node_modules` folder.
+This can be used by simply importing it into the frontend source code like any other dependency of your project.
+
 ## Run the project
 
 ### Clone this example

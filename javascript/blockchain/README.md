@@ -16,7 +16,7 @@
 In this project, we are creating an application that queries Ethereum smart contract events using Bware Endpoints
 and saves the log events in MongoDB.
 
-## Demo - this can be optional
+## Demo
 
 A hosted demo of this examples is available at [eth-event-indexer.app.genez.io](https://rephrasing-chatgpt.app.genez.io).
 
@@ -45,7 +45,6 @@ Inside the project folder, you will find the following files and folders:
 ├── genezio.yaml
 ├── README.md
 ├── .genezioignore
-├── .gitignore
 └── tsconfig.json
 ```
 
@@ -54,6 +53,9 @@ Genezio looks for `genezio.yaml` to read the settings for deploying the project 
 The `backend` directory contains the implementation of the server side of the project.
 
 The `frontend` directory contains a React application that talks with the genezio server.
+
+To glue this two component together, an auto-generated SDK is installed in the `client/node_modules` folder.
+This can be used by simply importing it into the frontend source code like any other dependency of your project.
 
 ## Run the project
 
@@ -130,9 +132,9 @@ Check out:
 If you need support or you have any questions, please join us in our [Discord channel](). We'd love to chat!
 
 ## Built With
-- [Bware]()
-- [Ethereum]()
-- [MongoDB]()
-- [Genezio]()
-- [React.js]()
+- [Bware](https://bwarelabs.com/)
+- [Ethereum](https://ethereum.org/en/)
+- [MongoDB](https://www.mongodb.com/atlas/database)
+- [Genezio](https://genez.io/)
+- [React.js](https://github.com/facebook/react)
 

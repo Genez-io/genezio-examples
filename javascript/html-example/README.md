@@ -1,32 +1,3 @@
-# Pure Html example
-
-
-Note: `genezio deploy` deploys both backend and frontend. If you want to test this example out-of-the-box by running 1 command, head to the `server` directory and run `genezio deploy`.
-
-If you want to deploy your application step-by-step, follow the guidelines below.
-
-## Clone the example
-1. Run `git clone https://github.com/Genez-io/genezio-examples`
-2. Navigate to the folder `cd ./genezio-examples/javascript/html-example`
-
-## Initialization
-
-1. Run `npm install` in the `server/` folder to install the dependencies.
-
-## Run the example locally
-
-1. Run `genezio local` in the `server/` folder to start the local server.
-2. Start the index.html by going to the `client/` folder and run `npm start`.
-
-## Deploy the example in the Genezio infrastructure
-
-1. Run `genezio deploy --backend` in the `server/` folder that contains also the `genezio.yaml` file. This will deploy your code in the Genezio infrastructure and it will also create an SDK that can be used to call the methods remotely.
-
-## Deploy the frontend in Genezio Infrastructure
-
-1. Run `genezio deploy --frontend` in the `server` folder to deploy the frontend in the Genezio infrastructure.
-
-
 <div align="center"> <a href="https://genez.io/"></a>
 <img alt="genezio logo" src="https://github.com/genez-io/graphics/raw/HEAD/svg/Icon_Genezio_Black.svg" style="max-height: 50px;">
 
@@ -78,6 +49,9 @@ The `backend` directory contains the implementation of the server side of the pr
 
 The `frontend` directory contains a simple NodeJS application that talks with the genezio server.
 
+To glue this two component together, an auto-generated SDK is installed in the `client/node_modules` folder.
+This can be used by simply importing it into the frontend source code like any other dependency of your project.
+
 ## Run the project
 
 ### Clone this example
@@ -100,7 +74,7 @@ Test the project locally:
 genezio local
 ```
 
-Open a new terminal, navigate to the following directory, and run npm start to launch the React application:
+Open a new terminal, navigate to the following directory, and run npm start to launch the web application:
 ```
 cd ./client
 npm run install-local-sdk

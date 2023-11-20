@@ -37,8 +37,7 @@ Inside the project folder, you will find the following files and folders:
 │   ├── package.json
 ├── genezio.yaml
 ├── README.md
-├── .genezioignore
-└── tsconfig.json
+└── .genezioignore
 ```
 
 Genezio looks for `genezio.yaml` to read the settings for deploying the project or for spinning a local dev server for testing.
@@ -88,7 +87,7 @@ Log in to Genezio using the command genezio login:
 genezio login
 ```
 
-Deploy your project using the genezio deploy command from the ``./genezio-examples/javascript/todo-list`` directory.
+Deploy your project using the genezio deploy command from the ``./genezio-examples/javascript/todo-list-vue`` directory.
 ```
 genezio deploy
 ```

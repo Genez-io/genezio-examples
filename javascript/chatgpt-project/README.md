@@ -31,14 +31,14 @@ Note: We recommend using [nvm]() to install Node.js and npm.
 Inside the project folder, you will find the following files and folders:
 
 ```
-├── backend/
-│   ├── index.ts
-│   └── models/
-├── frontend/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
+├── server/
+│   ├── gptCaller.js
+│   └── package.json 
+├── client/
+│   ├── build/
+│   ├── public/
+│   ├── src/
+│   └── package.json
 ├── genezio.yaml
 ├── README.md
 ├── .genezioignore
@@ -121,7 +121,7 @@ Check out:
 If you need support or you have any questions, please join us in our [Discord channel](). We'd love to chat!
 
 ## Built With
-- [ChatGPT]()
-- [Genezio]()
-- [React.js]()
+- [ChatGPT](https://openai.com/blog/openai-api)
+- [Genezio](https://genez.io/)
+- [React.js](https://github.com/facebook/react)
 

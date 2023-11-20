@@ -37,7 +37,6 @@ Inside the project folder, you will find the following files and folders:
 │   ├── package.json
 ├── genezio.yaml
 ├── README.md
-├── .genezioignore
 └── tsconfig.json
 ```
 
