@@ -16,10 +16,6 @@
 In this project, we are creating an application that queries Ethereum smart contract events using Bware Endpoints
 and saves the log events in MongoDB.
 
-## Demo
-
-A hosted demo of this examples is available at [eth-event-indexer.app.genez.io](https://rephrasing-chatgpt.app.genez.io).
-
 ## Prerequisites
 - ✅ [NodeJs](https://nodejs.org/) >= 16.0.0
 - ✅ [npm](https://genez.io/)

@@ -15,10 +15,6 @@
 # Rephrasing Using ChatGPT, Genezio, and ReactJS
 In this project, we are creating an application that uses the ChatGPT API. It's backed by Genezio on the server side and features a React.js frontend.
 
-## Demo - this can be optional
-
-A hosted demo of this example is available at [rephrasing-chatgpt.app.genez.io](https://rephrasing-chatgpt.app.genez.io).
-
 ## Prerequisites
 - ✅ [NodeJs](https://nodejs.org/) >= 16.0.0
 - ✅ [npm](https://genez.io/)

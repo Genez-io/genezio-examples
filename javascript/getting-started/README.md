@@ -15,10 +15,6 @@
 # Your first genezio project
 This is a simple full stack application that illustrates how genezio works.
 
-## Demo - this can be optional
-
-A hosted demo of this examples is available at [getting-started.app.genez.io](https://rephrasing-chatgpt.app.genez.io).
-
 ## Prerequisites
 - ✅ [NodeJs](https://nodejs.org/en) >= 16.0.0
 - ✅ [npm](https://www.npmjs.com/)
