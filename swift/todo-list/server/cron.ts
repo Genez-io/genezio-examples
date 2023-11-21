@@ -1,9 +1,11 @@
-import { TaskModel } from "./models/task"
-import { UserModel } from "./models/user"
-import { ActiveSession } from "./models/activeSession"
-import mongoose from "mongoose"
-import { MONGO_DB_URI } from "./helper"
+import { TaskModel } from "./models/task";
+import { UserModel } from "./models/user";
+import { ActiveSession } from "./models/activeSession";
+import mongoose from "mongoose";
 
+const red_color = "\x1b[31m%s\x1b[0m";
+const missing_env_error =
+  "ERROR: Your MONGO_DB_URI environment variable is not properly set, go to https://genez.io/blog/how-to-add-a-mongodb-to-your-genezio-project/ to learn how to integrate your project with Mongo DB";
 
 export class Cron {
   constructor() {
@@ -14,15 +16,26 @@ export class Cron {
    * Private method used to connect to the DB.
    */
   #connect() {
-    mongoose.connect(MONGO_DB_URI);
+    if (!process.env.MONGO_DB_URI) {
+      console.log(red_color, missing_env_error);
+      return;
+    }
+    mongoose.connect(process.env.MONGO_DB_URI || "").catch((err) => {
+      console.log(err);
+      throw err;
+    });
   }
 
   /**
    * Method that will be called by the cron job.
-   * 
+   *
    * The method will delete all the data from the DB.
    */
   async deleteAllData() {
+    if (!process.env.MONGO_DB_URI) {
+      console.log(red_color, missing_env_error);
+      return;
+    }
     console.log("Deleting all data from the DB");
     try {
       await TaskModel.deleteMany({});
@@ -44,6 +57,5 @@ export class Cron {
     } catch (error) {
       console.log("Error deleting users", error);
     }
-
   }
 }
