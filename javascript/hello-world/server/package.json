@@ -1,4 +1,13 @@
 {
+  "name": "hello-world-genezio",
+  "version": "1.0.0",
+  "description": "A hello world app using genezio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "@genezio/types": "^0.1.9"
   }

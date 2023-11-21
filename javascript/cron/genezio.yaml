@@ -3,3 +3,6 @@ region: us-east-1
 language: js
 cloudProvider: genezio
 packageManager: npm
+scripts:
+  preBackendDeploy: npm install
+  preStartLocal: npm install

@@ -5,6 +5,7 @@ cloudProvider: genezio
 scripts:
   preBackendDeploy: npm install
   preFrontendDeploy: cd ../client && npm install && npm run build
+  preStartLocal: (cd client && npm install) && (cd server && npm install)
 frontend:
   path: ./client/build
 packageManager: npm
