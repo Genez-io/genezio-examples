@@ -22,7 +22,7 @@ export default {
     async signup() {
       try {
         User.register(this.name, this.email, this.password).then((response) => {
-          if (response.success === false) {
+          if (!response || response.success === false || response=="Internal error") {
             if(response.err){
               alert(response.err);
             return;

@@ -24,7 +24,7 @@ export default {
     async login() {
       try {
         User.login(this.email, this.password).then((response) => {
-          if (response.success === false) {
+          if (!response || response.success === false || response=="Internal error") {
             if(response.err){
               alert(response.err);
             return;
@@ -46,6 +46,7 @@ export default {
           this.$router.push('/');
         });
       } catch (error) {
+        
         console.error(error);
         alert('An error occured.');
       }
