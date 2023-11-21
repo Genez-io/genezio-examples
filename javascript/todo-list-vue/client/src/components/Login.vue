@@ -25,8 +25,20 @@ export default {
       try {
         User.login(this.email, this.password).then((response) => {
           if (response.success === false) {
-            alert(response.msg);
+            if(response.err){
+              alert(response.err);
             return;
+            }
+            else{
+              if(response.msg){
+                alert(response.msg);
+            return;
+              }
+              else{
+                alert("Unexpected Error:Please check the backend logs in the project dashboard - https://app.genez.io. ")
+                return
+              }
+            }
           }
           localStorage.token = response.token;
           // eslint-disable-next-line

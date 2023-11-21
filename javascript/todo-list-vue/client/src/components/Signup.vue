@@ -23,8 +23,20 @@ export default {
       try {
         User.register(this.name, this.email, this.password).then((response) => {
           if (response.success === false) {
-            alert(response.msg);
+            if(response.err){
+              alert(response.err);
             return;
+            }
+            else{
+              if(response.msg){
+                alert(response.msg);
+            return;
+              }
+              else{
+                alert("Unexpected Error:Please check the backend logs in the project dashboard - https://app.genez.io. ")
+                return
+              }
+            }
           }
 
           this.$router.push('/login');
