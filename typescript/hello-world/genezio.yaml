@@ -3,6 +3,8 @@ region: us-east-1
 language: ts
 cloudProvider: genezio
 packageManager: npm
+scripts:
+  preStartLocal: (cd client && npm install) && (cd server && npm install)
 workspace:
   backend: server
   frontend: client
