@@ -7,7 +7,6 @@ scripts:
   preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
 frontend:
   path: ./client/build
-  subdomain: copper-global-lark
 packageManager: npm
 workspace:
   backend: ./server
