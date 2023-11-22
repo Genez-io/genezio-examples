@@ -25,7 +25,7 @@ class TaskService {
     val taskCollection : MongoCollection<Task>
     init {
         // Replace the placeholder with your Atlas connection string
-        val uri = "mongodb+srv://genezio:genezio@cluster0.c6qmwnq.mongodb.net/?retryWrites=true&w=majority"
+        val uri = "Your MongoDB URI"
         // Construct a ServerApi instance using the ServerApi.builder() method
         val serverApi = ServerApi.builder()
             .version(ServerApiVersion.V1)

@@ -1,9 +1,8 @@
 name: todo-list-react-typescript
 region: us-east-1
+language: ts
 cloudProvider: genezio
 sdk:
-  options:
-   runtime: browser
   language: ts
   path: ../client/src/sdk
 scripts:
@@ -13,6 +12,6 @@ frontend:
   path: ../client/build/
 classes:
   - path: ./lib/task.dart
-    name: Task
     type: jsonrpc
+    name: Task
     methods: []

@@ -135,13 +135,31 @@ class _TasksState extends State<Tasks> {
     super.initState();
 
     _getTasks().then((response) {
-      tasks.addAll(response.tasks);
-      // Update UI
-      setState(() {
-        tasks = tasks;
-      });
+      if (!response.success) {
+        // Create a snackbar
+        final snackBar = SnackBar(
+          content: Text('Error: ${response.err}'),
+          backgroundColor: Colors.red,
+        );
+        // Show snackbar
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        tasks.addAll(response.tasks);
+        // Update UI
+        setState(() {
+          tasks = tasks;
+        });
+      }
     }).catchError((error) {
       print(error);
+      // Create a snackbar
+      final snackBar = SnackBar(
+        content: Text(
+            'Unknon Error: $error Please check the backend logs in the project dashboard - https://app.genez.io.'),
+        backgroundColor: Colors.red,
+      );
+      // Show snackbar
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     });
   }
 

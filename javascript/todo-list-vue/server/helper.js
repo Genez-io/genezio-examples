@@ -1,9 +1,13 @@
-import bcrypt from "bcryptjs"
-import { ActiveSession } from "./models/activeSession"
-
+import bcrypt from "bcryptjs";
+import { ActiveSession } from "./models/activeSession";
 
 export async function reqAuth(token) {
-  const session = await ActiveSession.find({ token: token });
+  let session;
+  try {
+    session = await ActiveSession.find({ token: token });
+  } catch (error) {
+    return { success: false, err: error.toString() };
+  }
   if (session.length == 1) {
     return { success: true };
   } else {
@@ -15,13 +19,13 @@ export async function validatePassword(saltedPassword, password) {
   return new Promise((resolve) => {
     bcrypt.compare(password, saltedPassword, async function (err, res) {
       if (err) {
-        throw err
+        throw err;
       }
-      
+
       if (res) {
-        resolve(true)
+        resolve(true);
       } else {
-        resolve(false)
+        resolve(false);
       }
     });
   });
@@ -31,12 +35,12 @@ export async function saltPassword(password) {
   return new Promise((resolve) => {
     bcrypt.genSalt(2, function (err, salt) {
       if (err) {
-        throw err
+        throw err;
       }
 
       bcrypt.hash(password, salt, async function (err, hash) {
         if (err) {
-          throw err
+          throw err;
         }
 
         resolve(hash);
@@ -44,5 +48,3 @@ export async function saltPassword(password) {
     });
   });
 }
-
-export const MONGO_DB_URI = "mongodb+srv://genezio:genezio@cluster0.c6qmwnq.mongodb.net/?retryWrites=true&w=majority"

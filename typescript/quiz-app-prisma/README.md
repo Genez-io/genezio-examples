@@ -7,13 +7,17 @@
 
 [![deployed with: genezio](https://img.shields.io/badge/deployed_with-genezio-6742c1.svg?labelColor=62C353&style=flat)](https://github.com/genez-io/genezio)
 
+
 [![Join our community](https://img.shields.io/discord/1024296197575422022?style=social&label=Join%20our%20community%20&logo=discord&labelColor=6A7EC2)](https://discord.gg/uc9H5YKjXv)
 [![Follow @geneziodev](https://img.shields.io/twitter/url/https/twitter.com/geneziodev.svg?style=social&label=Follow%20%40geneziodev)](https://twitter.com/geneziodev)
 
+
 </div>
+
 
 # Simple genezio quiz app with prisma ORM
 This is a simple project with a server and a client for a quiz app. The server is built with [Node.js](https://nodejs.org/en/) and [Prisma](https://www.prisma.io/). The client is built with [React](https://reactjs.org/).
+
 
 ## Prerequisites
 - ✅ [NodeJs](https://nodejs.org) >= 16.0.0
@@ -39,6 +43,7 @@ Inside the project folder, you will find the following files and folders:
 ├── README.md
 ├── .genezioignore
 ```
+
 
 Genezio looks for `genezio.yaml` to read the settings for deploying the project or for spinning a local dev server for testing.
 

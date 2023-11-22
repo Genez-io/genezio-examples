@@ -4,7 +4,7 @@ language: ts
 cloudProvider: genezio
 packageManager: npm
 scripts:
-  preStartLocal: (cd client && npm install) && (cd server && npm install)
+  preStartLocal: cd client && npm install && cd ../server && npm install
 workspace:
   backend: server
   frontend: client

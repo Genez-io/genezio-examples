@@ -1,9 +1,9 @@
 name: getting-started-dart
 region: us-east-1
+language: ts
 cloudProvider: genezio
 sdk:
   language: dart
-  options: {}
   path: ../client/lib/sdk
 scripts:
   preBackendDeploy: dart pub get
@@ -12,6 +12,6 @@ frontend:
   path: ../client/build/web
 classes:
   - path: ./lib/task.dart
-    name: "TaskService"
     type: jsonrpc
+    name: TaskService
     methods: []

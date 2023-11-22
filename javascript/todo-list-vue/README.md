@@ -97,6 +97,7 @@ genezio deploy
 
 All commands are run from the root of the project, from a terminal:
 
+
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
 | `npm install -g genezio`  | Installs genezio globally                        |
@@ -117,6 +118,7 @@ Check out:
 ## Contact
 
 If you need support or you have any questions, please join us in our [Discord channel](). We'd love to chat!
+
 
 ## Built With
 - [Vue](https://vuejs.org/)

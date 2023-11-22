@@ -11,24 +11,47 @@ if (!token) {
 }
 
 // iterate over all tasks
-const tasks = (await Task.getAllTasksByUser(token)).tasks;
-for (const task of tasks) {
-  // add it to the DOM as pure HTML to a div with id="tasks"
-  document.getElementById("tasks").innerHTML += `
-  <div class="mb-3">
+const res = await Task.getAllTasksByUser(token);
+if (!res.success) {
+  if (res.err) {
+    document.getElementById("tasks").innerHTML += `    
+    <div class="mb-3">
     <div class="d-flex align-items-center">
-      <input type="checkbox" id=""/>
-
-      <p class="mb-0" style="margin-right: auto; margin-left: 20px">
-        <span>${task.title}</span>
-        <a href="${task.url}" target="_blank">link</a>
-      </p>
-      <div style="cursor: pointer" class="task-delete-btn" id="${task._id}">
-        <img width="20px" src="public/trash.svg" />
+      <div style="color:red;" class="alert">
+      Unexpected error: ${res.err}
       </div>
     </div>
-  </div>
-  `;
+  </div>`;
+  } else {
+    document.getElementById("tasks").innerHTML += `    
+    <div class="mb-3">
+    <div class="d-flex align-items-center">
+      <div style="color:red;" class="alert">
+      Unexpected error: Please check the backend logs in the project dashboard - https://app.genez.io.
+      </div>
+    </div>
+  </div>`;
+  }
+} else {
+  for (const task of res.tasks) {
+    console.log("Hello");
+    // add it to the DOM as pure HTML to a div with id="tasks"
+    document.getElementById("tasks").innerHTML += `
+    <div class="mb-3">
+      <div class="d-flex align-items-center">
+        <input type="checkbox" id=""/>
+  
+        <p class="mb-0" style="margin-right: auto; margin-left: 20px">
+          <span>${task.title}</span>
+          <a href="${task.url}" target="_blank">link</a>
+        </p>
+        <div style="cursor: pointer" class="task-delete-btn" id="${task._id}">
+          <img width="20px" src="public/trash.svg" />
+        </div>
+      </div>
+    </div>
+    `;
+  }
 }
 
 // delete a task by id
@@ -63,6 +86,18 @@ async function handleAdd() {
   if (res.success) {
     // reload the page
     location.reload();
+  } else {
+    if (res.err) {
+      document.getElementById(
+        "modal-error-elem"
+      ).innerHTML = `Unknown error: ${res.err}`;
+    } else {
+      {
+        document.getElementById(
+          "modal-error-elem"
+        ).innerHTML = `Unknown error: Please check the backend logs in the project dashboard - https://app.genez.io.`;
+      }
+    }
   }
 }
 

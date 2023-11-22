@@ -89,11 +89,39 @@ class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
           onPressed: () {
             final title = taskNameController.text;
             final description = taskDescriptionController.text;
-            TaskService.createTask(widget.token, title, description).then((_) {
+            TaskService.createTask(widget.token, title, description)
+                .then((response) {
+              if (!response.success) {
+                // Create a snackbar
+                final snackBar = SnackBar(
+                  content: Text('Error: ${response.err}'),
+                  backgroundColor: Colors.red,
+                );
+                // Show snackbar
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                Navigator.popAndPushNamed(
+                  context,
+                  '/',
+                );
+              } else {
+                // Create a snackbar
+                final snackBar = SnackBar(
+                  content: Text('Task created successfully!'),
+                  backgroundColor: Colors.green,
+                );
+                // Show snackbar
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                Navigator.popAndPushNamed(
+                  context,
+                  '/',
+                );
+              }
+            }).catchError((error) {
               // Create a snackbar
               final snackBar = SnackBar(
-                content: Text('Task created successfully!'),
-                backgroundColor: Colors.green,
+                content: Text(
+                    'Unknon Error: $error Please check the backend logs in the project dashboard - https://app.genez.io.'),
+                backgroundColor: Colors.red,
               );
               // Show snackbar
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -101,14 +129,6 @@ class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
                 context,
                 '/',
               );
-            }).catchError((error) {
-              // Create a snackbar
-              final snackBar = SnackBar(
-                content: Text('Error: $error'),
-                backgroundColor: Colors.red,
-              );
-              // Show snackbar
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
             });
           },
           child: const Text('Save'),

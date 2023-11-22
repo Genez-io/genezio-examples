@@ -5,7 +5,7 @@ cloudProvider: genezio
 scripts:
   preBackendDeploy: npm install
   preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
-  preStartLocal: (cd server && npm install) && (cd client && npm install)
+  preStartLocal: cd client && npm install && cd ../server && npm install
 frontend:
   path: ./client/dist/todo-list
 packageManager: npm

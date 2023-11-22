@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { StripeHandler } from "@genezio-sdk/stripe-integration_us-east-1"
+import { StripeHandler } from "@genezio-sdk/stripe-integration_us-east-1";
 
 async function getCheckoutSession(e) {
   e.preventDefault();
@@ -9,10 +9,18 @@ async function getCheckoutSession(e) {
 
   if (res.error) {
     console.log(res.error);
+    alert(res.error);
     return;
   }
-
-  console.log(res);
+  if (!res.error && !res.url) {
+    console.log(
+      "Unkown error: Please check the backend logs in the project dashboard - https://app.genez.io."
+    );
+    alert(
+      "Unkown error: Please check the backend logs in the project dashboard - https://app.genez.io."
+    );
+    return;
+  }
 
   // When the customer clicks on the button, redirect them to Checkout.
   window.location.replace(res.url);
@@ -21,19 +29,14 @@ async function getCheckoutSession(e) {
 const ProductDisplay = () => (
   <section>
     <div className="product">
-      <img
-        src="https://genez.io/images/capy.webp"
-        alt="Genezio capybara"
-      />
+      <img src="https://genez.io/images/capy.webp" alt="Genezio capybara" />
       <div className="description">
-      <h5>20.00 EUR</h5>
+        <h5>20.00 EUR</h5>
       </div>
     </div>
-      <button type="button"
-        onClick={(e) => getCheckoutSession(e)}
-       >
-        Checkout
-      </button>
+    <button type="button" onClick={(e) => getCheckoutSession(e)}>
+      Checkout
+    </button>
   </section>
 );
 
@@ -62,12 +65,8 @@ export default function App() {
   }, []);
 
   return (
-    <div className="App" style={{marginTop: "5em"}}>
-      {message ? (
-        <Message message={message} />
-      ) : (
-        <ProductDisplay />
-      )}
+    <div className="App" style={{ marginTop: "5em" }}>
+      {message ? <Message message={message} /> : <ProductDisplay />}
     </div>
   );
 }
