@@ -1,0 +1,147 @@
+.header-all {
+  background-color: bisque;
+  text-align: center;
+  font-size: 30px;
+  width: 100%;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.header {
+  text-align: center;
+  font-size: 30px;
+  width: 100%;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.form-group > label {
+  font-size: 20px;
+}
+
+.form-group > input {
+  height: 30px;
+  font-size: 16px;
+  border-radius: 10px;
+  padding-left: 10px;
+  border: 1px solid black;
+}
+
+.radio-button-container {
+  font-size: 20px;
+  text-align: left;
+}
+.radio-button-container > input {
+  transform: scale(1.5);
+  margin-right: 10px;
+}
+
+.submit > button {
+  font-size: 20px;
+  border-radius: 10px;
+  height: 40px;
+  border: 1px solid black;
+  width: 100%;
+}
+
+.submit > button:hover {
+  cursor: pointer;
+}
+
+.error-alert {
+  font-size: 20px;
+  color: red;
+}
+
+.add-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-user-container {
+  width: 250px;
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+
+.add-user-container > form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.users-container {
+  margin-top: 30px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.users-container > button {
+  font-size: 20px;
+  border-radius: 10px;
+  height: 40px;
+  border: 1px solid black;
+}
+
+.users-container > button:hover {
+  cursor: pointer;
+}
+
+.user {
+  display: flex;
+  gap: 20px;
+  background-color: #ffe4c4;
+
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.edit-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-user-container {
+  width: 250px;
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+
+.edit-user-container > form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-group > div {
+  font-size: 20px;
+}
+
+.loader{
+  margin: auto;
+  margin-top: 40vh;
+}
