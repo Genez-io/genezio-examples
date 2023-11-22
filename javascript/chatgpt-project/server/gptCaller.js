@@ -29,9 +29,10 @@ export class GptCaller {
       console.log(red_color, missing_env_error);
       return { success: false, err: missing_env_error };
     }
+    let completion;
     if (this.openai != null) {
       try {
-        const completion = await this.openai.chat.completions.create({
+        completion = await this.openai.chat.completions.create({
           model: "gpt-3.5-turbo",
           messages: [{ role: "user", content: "rephrase this:" + requestText }],
         });
