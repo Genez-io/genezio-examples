@@ -12,6 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@genezio-sdk/hello-world_us-east-1": "^1.0.0-prod"
+    
   }
 }
