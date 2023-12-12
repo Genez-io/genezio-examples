@@ -30,9 +30,15 @@ Inside the project folder, you will find the following files and folders:
 │   ├── package.json
 │   └── tsconfig.json
 ├── client/
-│   ├── src
+│   ├── index.html
+│   ├── node_modules
+│   ├── package-lock.json
 │   ├── package.json
-|   └── tsconfig.json
+│   ├── public
+│   ├── src
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
 ├── genezio.yaml
 ├── README.md
 ├── .genezioignore
@@ -69,8 +75,7 @@ genezio local
 Open a new terminal, navigate to the following directory, and run npm start to launch the application:
 ```
 cd ./client
-npm run install-local-sdk
-npm start
+npm run dev 
 ```
 
 ### Deploy your project with genezio

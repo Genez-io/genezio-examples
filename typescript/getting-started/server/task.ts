@@ -82,7 +82,7 @@ export class TaskService {
       return { success: false, tasks: [], err: err.toString() };
     }
 
-    tasks.map((task: any) => {
+    tasks = tasks.map((task: any) => {
       return {
         id: task._id.toString(),
         token: task.token,
@@ -91,6 +91,7 @@ export class TaskService {
         date: task.date
       };
     });
+    console.log(tasks.length);
 
     if (tasks.length === 0) {
       try {
@@ -99,40 +100,19 @@ export class TaskService {
           title: "Check the other example projects",
           url: "https://github.com/Genez-io/genezio-examples"
         });
-      } catch (err: any) {
-        return { success: false, tasks: [], err: err.toString() };
-      }
 
-      try {
         await TaskModel.create({
           token: token,
           title: "Check our documentation",
           url: "https://genezio.com/docs/"
         });
-      } catch (err: any) {
-        return { success: false, tasks: [], err: err.toString() };
-      }
-      try {
-        await TaskModel.create({
-          token: token,
-          title: "Check our documentation",
-          url: "https://genezio.com/docs/"
-        });
-      } catch (err: any) {
-        return { success: false, tasks: [], err: err.toString() };
-      }
 
-      try {
         await TaskModel.create({
           token: token,
           title: "Watch our Youtube tutorials",
           url: "https://www.youtube.com/@genezio7235"
         });
-      } catch (err: any) {
-        return { success: false, tasks: [], err: err.toString() };
-      }
 
-      try {
         await TaskModel.create({
           token: token,
           title: "Read our technical articles on genezio blog",
