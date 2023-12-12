@@ -13,7 +13,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { TaskService } from "@genezio-sdk/getting-started-genezio_us-east-1";
 import { useNavigate } from "react-router-dom";
-import TaskView from "./TaskView.js";
+import TaskView from "./TaskView.jsx";
 import uuid from "react-uuid";
 import logo from "./logo.png";
 

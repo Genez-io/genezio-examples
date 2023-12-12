@@ -1,8 +1,8 @@
 import { Input } from "reactstrap";
-import { ReactComponent as Icon } from "./trash.svg";
+import Icon from "./trash.svg";
 
 export default (props) => {
-  return (
+  return ( 
     <div key={props.task.id} className="mb-3">
       <div className="d-flex align-items-center">
         <Input
@@ -17,7 +17,7 @@ export default (props) => {
           {props.task.url ? <a href={props.task.url}>link</a> : ""}
         </p>
         <div style={{ cursor: "pointer" }}>
-          <Icon onClick={() => props.onDelete(props.task.id)} width="1rem" />
+          <img onClick={() => props.onDelete(props.task.id)} src={Icon} />
         </div>
       </div>
     </div>
