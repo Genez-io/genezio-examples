@@ -58,10 +58,11 @@ Inside the project folder, you will find the following files and folders:
 │   │   ├── App.css
 │   │   ├── App.tsx
 │   │   ├── index.css
-│   │   ├── index.tsx
-│   │   ├── models.tsx
-│   │   ├── react-app-env.d.ts
-│   │   └── reportWebVitals.ts
+│   │   ├── main.tsx
+│   │   ├── vite-env.d.ts
+│   │   └── models.tsx
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
 │   └── tsconfig.json
 └── server
     ├── package-lock.json
@@ -101,11 +102,13 @@ Test the project locally:
 genezio local
 ```
 
-Open a new terminal, navigate to the following directory, and run npm start to launch the React application:
+Open a new terminal, navigate to the following directory, and run `npm run dev` to launch the React application:
 ```bash
 cd ./client
-npm install && npm run install-sdk-local && npm start
+npm install && npm run dev
 ```
+
+The React application is built using [Vite](https://vitejs.dev/). Vite will open a server on port `5173` by default.
 
 ### Deploy your project with genezio
 
@@ -116,7 +119,7 @@ Log in to Genezio using the command genezio login:
 genezio login
 ```
 
-Deploy your project using the genezio deploy command from the ``./genezio-examples/javascript/chatgpt-project`` directory.
+Run the following command from the root of the project:
 ```bash
 genezio deploy
 ```
@@ -141,14 +144,13 @@ Check out:
 - [Web development tutorials](https://genez.io/blog)
 - [Discord channel](https://discord.gg/uc9H5YKjXv)
 
-
 ## Contact
 
 If you need support or you have any questions, please join us in our [Discord channel](https://discord.gg/uc9H5YKjXv). We'd love to chat!
-
 
 ## Built With
 - [Genezio](https://genez.io/)
 - [Node.JS](https://nodejs.org/en/)
 - [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
 - [Upstash](https://upstash.com/)
