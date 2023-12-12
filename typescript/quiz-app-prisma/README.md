@@ -73,13 +73,6 @@ Test the project locally:
 genezio local
 ```
 
-Open a new terminal, navigate to the following directory, and run npm start to launch the application:
-```
-cd ./client
-npm run install-local-sdk
-npm start
-```
-
 ### Deploy your project with genezio
 
 If you wish to deploy your project to the Genezio infrastructure, follow these steps:
