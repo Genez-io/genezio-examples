@@ -91,7 +91,6 @@ export class TaskService {
         date: task.date
       };
     });
-    console.log(tasks.length);
 
     if (tasks.length === 0) {
       try {
