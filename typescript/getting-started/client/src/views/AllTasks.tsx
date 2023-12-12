@@ -93,7 +93,6 @@ export default function AllTasks() {
 
   async function handleEdit(id: string, title: string, solved: boolean) {
     console.log("handle edit called", id, title, solved);
-    console.log("new tasks", tasks, id);
      const res = await TaskService.updateTask(
        localStorage.getItem("apiToken") || "",
        id,
