@@ -1,0 +1,9 @@
+name: todo-list-react-typescript
+region: us-east-1
+language: ts
+cloudProvider: genezio
+scripts:
+  preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
+frontend:
+  path: ./dist
+  subdomain: crimson-rubber-giraffe

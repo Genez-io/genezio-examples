@@ -2,14 +2,9 @@ name: todo-list-react-typescript
 region: us-east-1
 language: ts
 cloudProvider: genezio
-sdk:
-  language: ts
-  path: ../client/src/sdk
+packageManager: npm
 scripts:
   preBackendDeploy: dart pub get
-  preFrontendDeploy: cd ../client && npm install && npm run build
-frontend:
-  path: ../client/build/
 classes:
   - path: ./lib/task.dart
     type: jsonrpc
