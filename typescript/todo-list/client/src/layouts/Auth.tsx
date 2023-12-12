@@ -1,15 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Auth(props: any) {
+export default function Auth(props: { element: React.ReactNode }) {
   const navigate = useNavigate();
 
   React.useEffect(() => {
     if (localStorage.getItem("apiToken") != null) {
       navigate("/admin/all-tasks");
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [navigate]);
 
   return <>{props.element}</>;
-};
+}
