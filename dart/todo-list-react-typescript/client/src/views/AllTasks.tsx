@@ -10,17 +10,18 @@ import {
   ModalFooter,
 } from "reactstrap";
 import { useState, useEffect } from "react";
-import { Task, TaskModel } from "../sdk/task.sdk";
 import { useNavigate } from "react-router-dom";
-import TaskView from './TaskView';
-import uuid from 'react-uuid';
-import logo from './logo.png';
+import uuid from "react-uuid";
 
+import TaskView from "./TaskView";
+import logo from "../assets/genezio.svg"
+
+import { Task, TaskModel } from "@genezio-sdk/todo-list-react-typescript_us-east-1"
 
 export default function AllTasks() {
   const navigate = useNavigate();
 
-  const [tasks, setTasks] = useState<any[]>([]);
+  const [tasks, setTasks] = useState<TaskModel[]>([]);
   const [modalAddTask, setModalAddTask] = useState<boolean>(false);
   const toggleModalAddTask = () => {
     setModalAddTask(!modalAddTask);
@@ -31,23 +32,23 @@ export default function AllTasks() {
 
   const [taskTitle, setTaskTitle] = useState("");
 
-  let initialized = false
+  let initialized = false;
 
   // eslint-disable-next-line no-inner-declarations
   async function fetchTasks() {
     const res = await Task.getAllTasksByUser(
-      localStorage.getItem("apiToken") || "",
+      localStorage.getItem("apiToken") || ""
     );
-      setTasks(res);
+    setTasks(res);
   }
   useEffect(() => {
     if (!initialized) {
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      initialized = true
-      let token = localStorage.getItem("apiToken")
+      initialized = true;
+      let token = localStorage.getItem("apiToken");
       if (!token) {
-        token = uuid()
-        localStorage.setItem("apiToken", token)
+        token = uuid();
+        localStorage.setItem("apiToken", token);
       }
 
       fetchTasks();
@@ -55,15 +56,18 @@ export default function AllTasks() {
   }, []);
 
   async function handleDelete(id: string) {
-    console.log("handle delete called", id)
-    const res = await Task.deleteTask(localStorage.getItem("apiToken") || "", id);
+    console.log("handle delete called", id);
+    const res = await Task.deleteTask(
+      localStorage.getItem("apiToken") || "",
+      id
+    );
     if (res === "success") {
       navigate(0);
     }
   }
 
   async function handleEdit(id: string, title: string, solved: string) {
-    console.log("handle edit called", id, title, solved)
+    console.log("handle edit called", id, title, solved);
     await Task.updateTask(
       localStorage.getItem("apiToken") || "",
       id,
@@ -82,7 +86,7 @@ export default function AllTasks() {
     setTasks(newTasks);
   }
 
-  async function handleAdd(e: any) {
+  async function handleAdd(e: React.MouseEvent) {
     e.preventDefault();
     setError("");
     if (!taskTitle) {
@@ -129,37 +133,63 @@ export default function AllTasks() {
         </form>
       </Modal>
       <Container className="mt-2">
-
         <Row className="mt-2">
           <Col sm="12">
             <Row>
-              <Col sm="2" className="mt-4">
-              </Col>
+              <Col sm="2" className="mt-4"></Col>
               <Col sm="8" style={{ backgroundColor: "white" }}>
                 <div style={{ display: "flex", justifyContent: "center" }}>
-                  <img style={{width: "50px" }} src={logo} alt="logo" />
+                  <img style={{ width: "50px" }} src={logo} alt="logo" />
                 </div>
-                <h3 style={{ marginBottom: "30px", marginTop: "15px", textAlign: "center" }}>Welcome to genezio!</h3>
-                <p style={{ marginBottom: "30px", textAlign: "center" }}>You have successfully deployed your first genezio project!</p>
-                <p style={{ marginBottom: "30px", textAlign: "center" }}>Here you have a list of resources that you can use to learn how to continue building awesome projects with genezio:</p>
+                <h3
+                  style={{
+                    marginBottom: "30px",
+                    marginTop: "15px",
+                    textAlign: "center",
+                  }}
+                >
+                  Welcome to genezio!
+                </h3>
+                <p style={{ marginBottom: "30px", textAlign: "center" }}>
+                  You have successfully deployed your first genezio project!
+                </p>
+                <p style={{ marginBottom: "30px", textAlign: "center" }}>
+                  Here you have a list of resources that you can use to learn
+                  how to continue building awesome projects with genezio:
+                </p>
 
                 {tasks.map((task: TaskModel) => (
-                  <TaskView key={task.id} task={task} onChange={handleEdit} onDelete={handleDelete}></TaskView>
+                  <TaskView
+                    key={task.id}
+                    task={task}
+                    onChange={handleEdit}
+                    onDelete={handleDelete}
+                  ></TaskView>
                 ))}
-                <div style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>
-                  <Button outline color="secondary" onClick={() => {
-                    toggleModalAddTask();
-                  }}>Add New Task</Button>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "50px",
+                  }}
+                >
+                  <Button
+                    outline
+                    color="secondary"
+                    onClick={() => {
+                      toggleModalAddTask();
+                    }}
+                  >
+                    Add New Task
+                  </Button>
                 </div>
               </Col>
 
-              <Col sm="2" className="mt-4">
-              </Col>
+              <Col sm="2" className="mt-4"></Col>
             </Row>
           </Col>
         </Row>
-
       </Container>
     </>
   );
-};
+}
