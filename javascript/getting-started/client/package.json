@@ -11,7 +11,6 @@
     "install-prod-sdk": "npm install @genezio-sdk/getting-started-genezio_us-east-1@1.0.0-prod"
   },
   "dependencies": {
-    "@genezio-sdk/getting-started-genezio_us-east-1": "^1.0.0-prod",
     "@genezio/vite-plugin-genezio": "^1.0.3",
     "bootstrap": "^5.2.2",
     "react": "^18.2.0",
