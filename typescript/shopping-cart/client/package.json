@@ -11,7 +11,6 @@
     "install-prod-sdk": "npm install @genezio-sdk/shopping-cart_us-east-1@1.0.0-prod"
   },
   "dependencies": {
-    "@genezio-sdk/shopping-cart_us-east-1": "^1.0.0-prod",
     "@genezio/vite-plugin-genezio": "^1.0.3",
     "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
