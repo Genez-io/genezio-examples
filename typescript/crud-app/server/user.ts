@@ -2,12 +2,11 @@
 import { UserModel } from "./models/userModel";
 import { GenezioDeploy } from "@genezio/types";
 import { DataTypes, Sequelize } from "sequelize";
-import pg from 'pg';
-
+import pg from "pg";
 
 // The type that will be used for handling a user object
 export type User = {
-  userId: number; 
+  userId: number;
   name: string;
   email: string;
   verified: boolean;
@@ -29,14 +28,12 @@ export type AllUsersResponse = {
   err?: string;
 };
 
-
 /**
  * The User server class that will be deployed on the genezio infrastructure.
  */
 @GenezioDeploy()
 export class UserHandler {
   constructor() {
-
     this.#connect();
   }
 
@@ -44,13 +41,16 @@ export class UserHandler {
    * Private method used to connect to the DB.
    */
   #connect() {
-    try { 
+    try {
       // Check if you have a NEON_POSTGRES_URL variable
-      if(!process.env.NEON_POSTGRES_URL){ 
-        console.log('\x1b[31m%s\x1b[0m',"ERROR: Your NEON_POSTGRES_URL environment variable is not set, go to https://docs.genez.io/genezio-documentation/integrations/neon-postgres to learn how to integrate your project with Neon Postgres")
+      if (!process.env.NEON_POSTGRES_URL) {
+        console.log(
+          "\x1b[31m%s\x1b[0m",
+          "ERROR: Your NEON_POSTGRES_URL environment variable is not set, go to https://docs.genez.io/genezio-documentation/integrations/neon-postgres to learn how to integrate your project with Neon Postgres"
+        );
         return;
       }
-      
+
       // Initialize the database connection manager
       const sequelize = new Sequelize(process.env.NEON_POSTGRES_URL || "", {
         dialect: "postgres", // or your database type
@@ -64,7 +64,6 @@ export class UserHandler {
           },
         },
       });
-      
 
       // Intialize the UserModel
       UserModel.init(
@@ -85,27 +84,29 @@ export class UserHandler {
           modelName: "User",
           tableName: "users", // Change 'users' to your actual table name
         }
-      ); 
+      );
 
-      
       sequelize.sync();
     } catch (err) {
-      console.log('\x1b[33m%s\x1b[0m',"WARNING: Check if your environment variables are correctly set")
+      console.log(
+        "\x1b[33m%s\x1b[0m",
+        "WARNING: Check if your environment variables are correctly set"
+      );
       console.log(err);
     }
   }
   /**
    * Method that returns the (max userId) + 1 from the database
    * or 0 if there are no users in the database
-   * 
+   *
    * @returns a number reprezenting the max id in the table
    */
   async #generateUniqueId(): Promise<number> {
-    const maxId:number = await UserModel.max("userId");
-    if(maxId == null){
-      return 0
+    const maxId: number = await UserModel.max("userId");
+    if (maxId == null) {
+      return 0;
     }
-    return maxId+1;
+    return maxId + 1;
   }
 
   /**
@@ -140,7 +141,7 @@ export class UserHandler {
 
     try {
       var maxId = await this.#generateUniqueId();
-      console.log(maxId)
+      console.log(maxId);
       var newUser = await UserModel.create({
         userId: maxId,
         name: name,
