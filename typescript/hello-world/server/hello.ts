@@ -1,8 +1,9 @@
 import { GenezioDeploy } from "@genezio/types";
+import { testFunction } from "./testFunction";
 
 export enum Season {
   Winter = "Winter",
-  Summer = "Summer"
+  Summer = "Summer",
 }
 
 /**
@@ -11,17 +12,15 @@ export enum Season {
  */
 @GenezioDeploy()
 export class HelloWorld {
-
   constructor() {
-    console.log("Constructor called!")
+    console.log("Constructor called!");
   }
 
   /**
-  * Method that returns a "Hello world" message.
-  */
+   * Method that returns a "Hello world" message.
+   */
   helloWorld() {
-    console.log("Hello world request received!")
-
+    console.log("Hello world request received!");
     return "Hello world!";
   }
 
@@ -29,11 +28,16 @@ export class HelloWorld {
    * Method that returns a personalized "Hello world" message.
    */
   hello(name: string, from: string, value: Season): string {
-    console.log(`Hello world request received with name ${name} from ${from} value ${value}!`)
+    console.log(
+      `Hello world request received with name ${name} from ${from} value ${value}!`
+    );
+    // if (name.length > 3) {
+    //   throw new Error("Length too big");
+    // }
+    let nameTested = testFunction(name);
+    const message = `Hello, ${nameTested}, from ${from} during this ${value}`;
+    console.log(message);
 
-    const message = `Hello, ${name}, from ${from} during this ${value}`;
-    console.log(message)
-
-    return message
+    return message;
   }
 }
