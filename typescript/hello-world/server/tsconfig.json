@@ -17,7 +17,8 @@
         "allowJs": true,
         "types": [
             "node"
-        ]
+        ],
+        "sourceMap": true
     },
     "include": [
         "**/*"
