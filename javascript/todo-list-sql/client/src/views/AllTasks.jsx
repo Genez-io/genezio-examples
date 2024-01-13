@@ -9,12 +9,11 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  ButtonGroup
+  ButtonGroup,
 } from "reactstrap";
 import React, { useState, useEffect, useRef } from "react";
-import { TaskController } from "@genezio-sdk/todo-list_us-east-1"
+import { TaskController } from "@genezio-sdk/todo-list_us-east-1";
 import { useNavigate } from "react-router-dom";
-
 
 export default (props) => {
   const navigate = useNavigate();
@@ -34,17 +33,21 @@ export default (props) => {
     async function fetchTasks() {
       const res = await TaskController.getAllTasksByUser(
         localStorage.getItem("apiToken"),
-        JSON.parse(localStorage.getItem("user")).id
+        JSON.parse(localStorage.getItem("user")).id,
       );
       if (res.success) {
         setTasks(res.tasks);
       }
     }
+
     fetchTasks();
   }, []);
 
   async function handleDelete(id) {
-    const res = await TaskController.deleteTask(localStorage.getItem("apiToken"), id);
+    const res = await TaskController.deleteTask(
+      localStorage.getItem("apiToken"),
+      id,
+    );
     if (res.success) {
       navigate(0);
     }
@@ -55,7 +58,7 @@ export default (props) => {
       localStorage.getItem("apiToken"),
       id,
       title,
-      solved
+      solved,
     );
     if (res.success) {
       const newTasks = tasks.map((task) => {
@@ -78,7 +81,7 @@ export default (props) => {
     const res = await TaskController.createTask(
       localStorage.getItem("apiToken"),
       taskTitle,
-      JSON.parse(localStorage.getItem("user")).id
+      JSON.parse(localStorage.getItem("user")).id,
     );
     if (res.success) {
       setTasks([...tasks, res.task]);
@@ -117,10 +120,9 @@ export default (props) => {
         </form>
       </Modal>
       <Container className="mt-2">
-			<Card className="p-4 mt-2">
-
-        <Row className="mt-2">
-          <Col sm="11">
+        <Card className="p-4 mt-2">
+          <Row className="mt-2">
+            <Col sm="11">
               <h3>All Tasks</h3>
 
               <Row>
@@ -162,22 +164,21 @@ export default (props) => {
                   </Button>
                 </Col>
               </Row>
-          </Col>
-          <Col sm="1" className="text-right">
-            <Button
-              color="primary"
-              onClick={() => {
-                localStorage.removeItem("apiToken");
-                localStorage.removeItem("user");
-                navigate("/login");
-              }}
-            >
-              Logout
-            </Button>
-          </Col>
-        </Row>
-				</Card>
-
+            </Col>
+            <Col sm="1" className="text-right">
+              <Button
+                color="primary"
+                onClick={() => {
+                  localStorage.removeItem("apiToken");
+                  localStorage.removeItem("user");
+                  navigate("/login");
+                }}
+              >
+                Logout
+              </Button>
+            </Col>
+          </Row>
+        </Card>
       </Container>
     </>
   );

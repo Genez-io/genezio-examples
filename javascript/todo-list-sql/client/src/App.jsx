@@ -2,7 +2,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate
+  Navigate,
 } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./views/Login";

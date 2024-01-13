@@ -28,7 +28,7 @@ export default (props) => {
           setError(res.msg);
         } else {
           setError(
-            "Unexpected Error:Please check the backend logs in the project dashboard - https://app.genez.io. "
+            "Unexpected Error:Please check the backend logs in the project dashboard - https://app.genez.io. ",
           );
         }
       }
