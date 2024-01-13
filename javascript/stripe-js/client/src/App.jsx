@@ -14,10 +14,10 @@ async function getCheckoutSession(e) {
   }
   if (!res.error && !res.url) {
     console.log(
-      "Unkown error: Please check the backend logs in the project dashboard - https://app.genez.io."
+      "Unkown error: Please check the backend logs in the project dashboard - https://app.genez.io.",
     );
     alert(
-      "Unkown error: Please check the backend logs in the project dashboard - https://app.genez.io."
+      "Unkown error: Please check the backend logs in the project dashboard - https://app.genez.io.",
     );
     return;
   }
@@ -59,7 +59,7 @@ export default function App() {
 
     if (query.get("canceled")) {
       setMessage(
-        "Order canceled -- continue to shop around and checkout when you're ready."
+        "Order canceled -- continue to shop around and checkout when you're ready.",
       );
     }
   }, []);
