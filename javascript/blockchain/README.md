@@ -37,7 +37,11 @@ Inside the project folder, you will find the following files and folders:
 ├── frontend/
 │   ├── src/
 │   ├── public/
+│   ├── .eslintrc.json
 │   ├── package.json
+│   ├── index.html
+│   ├── .gitignore
+│   └── .vite.config.js
 ├── genezio.yaml
 ├── README.md
 ├── .genezioignore
@@ -83,8 +87,7 @@ genezio local
 Open a new terminal, navigate to the following directory, and run npm start to launch the React application:
 ```
 cd ./client
-npm run install-local-sdk
-npm start
+npm run dev
 ```
 
 ### Deploy your project with genezio
@@ -133,4 +136,5 @@ If you need support or you have any questions, please join us in our [Discord ch
 - [MongoDB](https://www.mongodb.com/atlas/database)
 - [Genezio](https://genez.io/)
 - [React.js](https://github.com/facebook/react)
+- [Vite.js](https://vitejs.dev/)
 

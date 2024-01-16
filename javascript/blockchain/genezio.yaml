@@ -7,7 +7,7 @@ scripts:
   preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
   preStartLocal: cd client && npm install && cd ../server && npm install
 frontend:
-  path: ./client/build/
+  path: ./client/dist
 packageManager: npm
 workspace:
   backend: server
