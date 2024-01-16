@@ -31,7 +31,7 @@ Inside the project folder, you will find the following files and folders:
 │   ├── gptCaller.js
 │   └── package.json 
 ├── client/
-│   ├── build/
+│   ├── dist/
 │   ├── public/
 │   ├── src/
 │   ├── .eslintrc.json
