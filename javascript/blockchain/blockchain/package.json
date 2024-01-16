@@ -11,12 +11,7 @@
     "install-prod-sdk": "npm install @genezio-sdk/genezio-blockchain_us-east-1@1.0.0-prod"
   },
   "dependencies": {
-    "@genezio/vite-plugin-genezio": "^1.0.4",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/material": "^5.15.4",
     "react": "^18.2.0",
-    "reactstrap": "^9.1.5",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
