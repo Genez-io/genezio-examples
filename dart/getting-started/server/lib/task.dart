@@ -130,7 +130,7 @@ class TaskService {
           .insert(Task(
                   ObjectId().$oid,
                   "Check our documentation",
-                  "https://docs.genez.io/genezio-documentation/",
+                  "https://docs.genezio.com/genezio-documentation/",
                   token,
                   false,
                   DateTime.now())
@@ -160,7 +160,7 @@ class TaskService {
           .insert(Task(
                   ObjectId().$oid,
                   "Read our technical articles on genezio blog",
-                  "https://genez.io/blog",
+                  "https://genezio.com/blog",
                   token,
                   false,
                   DateTime.now())

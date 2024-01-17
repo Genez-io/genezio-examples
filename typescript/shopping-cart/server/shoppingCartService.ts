@@ -12,7 +12,7 @@ export class ShoppingCartService{
 
   constructor() {
     if (!process.env.UPSTASH_REDIS_URL) {
-      throw new Error("It seems that UPSTASH_REDIS_URL is not set in the `.env` file. Check the documentation https://docs.genez.io/genezio-documentation/integrations/upstash-redis to learn how to integrate with Upstash Redis into your project.")
+      throw new Error("It seems that UPSTASH_REDIS_URL is not set in the `.env` file. Check the documentation https://docs.genezio.com/genezio-documentation/integrations/upstash-redis to learn how to integrate with Upstash Redis into your project.")
     }
 
     this.client = new Redis(process.env.UPSTASH_REDIS_URL);

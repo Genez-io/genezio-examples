@@ -29,7 +29,7 @@ async function getCheckoutSession(e) {
 const ProductDisplay = () => (
   <section>
     <div className="product">
-      <img src="https://genez.io/images/capy.webp" alt="Genezio capybara" />
+      <img src="https://genezio.com/images/capy.webp" alt="Genezio capybara" />
       <div className="description">
         <h5>20.00 EUR</h5>
       </div>
