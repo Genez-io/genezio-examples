@@ -3,7 +3,7 @@ import { GenezioDeploy } from "@genezio/types";
 
 const red_color = "\x1b[31m%s\x1b[0m";
 const missing_env_error =
-  "ERROR: Your OPENAI_SECRET_KEY environment variable is not properly set, go to https://genez.io/blog/create-your-first-app-using-chatgpt/ to learn how to obtain an OpenAI key";
+  "ERROR: Your OPENAI_SECRET_KEY environment variable is not properly set, go to https://genezio.com/blog/create-your-first-app-using-chatgpt/ to learn how to obtain an OpenAI key";
 
 @GenezioDeploy()
 export class GptCaller {

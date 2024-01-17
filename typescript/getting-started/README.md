@@ -1,4 +1,4 @@
-<div align="center"> <a href="https://genez.io/"></a>
+<div align="center"> <a href="https://genezio.com/"></a>
 <img alt="genezio logo" src="https://github.com/genez-io/graphics/raw/HEAD/svg/Icon_Genezio_Black.svg" style="max-height: 50px;">
 
 </div>
@@ -18,7 +18,7 @@ This is a simple project with a server and a client for a todo list application.
 ## Prerequisites
 - ✅ [NodeJs](https://nodejs.org) >= 16.0.0
 - ✅ [npm](https://www.npmjs.com/)
-- ✅ [genezio](https://genez.io/)
+- ✅ [genezio](https://genezio.com/)
 
 ## Project Structure
 
@@ -104,8 +104,8 @@ All commands are run from the root of the project, from a terminal:
 ## Want to learn more?
 
 Check out:
-- [Official genezio documentation](https://genez.io/docs)
-- [Web development tutorials](https://genez.io/blog)
+- [Official genezio documentation](https://genezio.com/docs)
+- [Web development tutorials](https://genezio.com/blog)
 - [Discord channel](https://discord.gg/uc9H5YKjXv)
 
 
@@ -114,6 +114,6 @@ Check out:
 If you need support or you have any questions, please join us in our [Discord channel](). We'd love to chat!
 
 ## Built With
-- [Genezio](https://genez.io/)
+- [Genezio](https://genezio.com/)
 - [Node.JS](https://nodejs.org/en/)
 - [React](https://reactjs.org/)

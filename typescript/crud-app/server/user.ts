@@ -43,11 +43,9 @@ export class UserHandler {
   #connect() {
     try {
       // Check if you have a NEON_POSTGRES_URL variable
-      if (!process.env.NEON_POSTGRES_URL) {
-        console.log(
-          "\x1b[31m%s\x1b[0m",
-          "ERROR: Your NEON_POSTGRES_URL environment variable is not set, go to https://docs.genez.io/genezio-documentation/integrations/neon-postgres to learn how to integrate your project with Neon Postgres"
-        );
+
+      if(!process.env.NEON_POSTGRES_URL){ 
+        console.log('\x1b[31m%s\x1b[0m',"ERROR: Your NEON_POSTGRES_URL environment variable is not set, go to https://docs.genezio.com/genezio-documentation/integrations/neon-postgres to learn how to integrate your project with Neon Postgres")
         return;
       }
 

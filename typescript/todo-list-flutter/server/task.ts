@@ -5,7 +5,7 @@ import { GenezioDeploy } from "@genezio/types";
 
 const red_color = "\x1b[31m%s\x1b[0m";
 const missing_env_error =
-  "ERROR: Your MONGO_DB_URI environment variable is not properly set, go to https://genez.io/blog/how-to-add-a-mongodb-to-your-genezio-project/ to learn how to integrate your project with Mongo DB";
+  "ERROR: Your MONGO_DB_URI environment variable is not properly set, go to https://genezio.com/blog/how-to-add-a-mongodb-to-your-genezio-project/ to learn how to integrate your project with Mongo DB";
 
 export type Task = {
   id: string;
@@ -103,13 +103,13 @@ export class TaskService {
         await TaskModel.create({
           token: token,
           title: "Check our documentation",
-          description: "https://docs.genez.io/genezio-documentation/",
+          description: "https://docs.genezio.com/genezio-documentation/",
         });
 
         await TaskModel.create({
           token: token,
           title: "Read our technical articles on genezio blog",
-          description: "https://genez.io/blog/",
+          description: "https://genezio.com/blog/",
         });
 
         const initTasks: Task[] = (await TaskModel.find({ token: token })).map(

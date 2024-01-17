@@ -8,7 +8,7 @@
 
 ## You can check [a beta chat application integrated with Chat GPT here](https://chat-with-chatgpt.dev.app.genez.io/).
 
-Welcome to our demo chat app integrated with Chat GPT, written in Flutter (frontend), Dart(backend), MongoDB as a datavase and deployed [genezio](https://genez.io).
+Welcome to our demo chat app integrated with Chat GPT, written in Flutter (frontend), Dart(backend), MongoDB as a datavase and deployed [genezio](https://genezio.com).
 
 This app allows users to engage in conversations with a chatbot powered by Chat GPT. This app is meant to be a demo for a technical talk on the topic of building full stack apps with Dart and genezio.
 
@@ -35,7 +35,7 @@ If you want to deploy this demo and play around with it, follow these steps:
 
 For more details on how to use genezio, check the links below:
 
-- https://genez.io/docs
+- https://genezio.com/docs
 - https://github.com/genez-io/genezio-examples
 
 For more details on each dart package, you can check out [pub.dev](https://pub.dev)

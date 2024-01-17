@@ -29,4 +29,4 @@ The list of available projects can be found below.
  - Swift
      - [todo-list](swift/todo-list)
 
-For more details, you can check out the [documentation](https://docs.genez.io/genezio-documentation/).
+For more details, you can check out the [documentation](https://docs.genezio.com/genezio-documentation/).
