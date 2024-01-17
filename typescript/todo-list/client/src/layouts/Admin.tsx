@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { UserService } from "@genezio-sdk/todo-list-ts_us-east-1"
+import { UserService } from "@genezio-sdk/todo-list-ts_us-east-1";
 
-export default function Admin(props: any) {
+export default function Admin(props: { element: React.ReactNode }) {
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -20,7 +20,7 @@ export default function Admin(props: any) {
         navigate("/login");
         return;
       }
-      
+
       const res = await UserService.checkSession(apiToken);
       if (!res.success) {
         localStorage.clear();
@@ -28,8 +28,7 @@ export default function Admin(props: any) {
       }
     }
     checkToken();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <>{props.element}</>;
-};
+}

@@ -12,7 +12,7 @@ import {
   ButtonGroup,
   Alert,
 } from "reactstrap";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   TaskService,
   Task,
@@ -114,7 +114,7 @@ export default function AllTasks() {
     }
   }
 
-  async function handleAdd(e: any) {
+  async function handleAdd(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (!taskTitle) {
       setError("Title is mandatory");

@@ -13,7 +13,7 @@ export default function Register() {
 
   const [error, setError] = useState("");
 
-  async function handleSubmit(event: any) {
+  async function handleSubmit(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     if (!email || !password || !password2 || !name) {
       setError("All fields are mandatory");

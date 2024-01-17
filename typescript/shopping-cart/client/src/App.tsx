@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import { Button, Col, Container, Row, Spinner } from 'reactstrap';
-import './App.css';
-import axios from 'axios';
 import { FaShoppingCart, FaTrash } from 'react-icons/fa';
+import axios from 'axios';
+
+import './App.css'
 import { CartItem, Product } from './models';
+
 import { ShoppingCartService } from '@genezio-sdk/shopping-cart_us-east-1';
 
 function App() {
@@ -62,12 +64,12 @@ function App() {
   }, [isCartVisible, token]);
 
   // Toggle the cart modal
-  const toggleCartModal = (e: any) => {
+  const toggleCartModal = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsCartVisible(!isCartVisible);
   };
 
-  const handleBuyClick = async (e: any, product: Product) => {
+  const handleBuyClick = async (e: React.MouseEvent, product: Product) => {
     e.preventDefault();
 
     // Set loading state to true to show the spinner
@@ -83,7 +85,7 @@ function App() {
     setAddItemLoading((prevStates) => ({ ...prevStates, [product.id]: false }));
   };
 
-  const handleDeleteItem = async (e: any, cartItem: CartItem) => {
+  const handleDeleteItem = async (e: React.MouseEvent, cartItem: CartItem) => {
     e.preventDefault();
 
     // Set loading state to true to show the spinner
@@ -108,7 +110,7 @@ function App() {
     }));
   };
 
-  const handleClearCart = async (e: any) => {
+  const handleClearCart = async (e: React.MouseEvent) => {
     e.preventDefault();
 
     // Set loading state to true to show the spinner
@@ -237,4 +239,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

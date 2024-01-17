@@ -74,7 +74,6 @@ genezio local
 Open a new terminal, navigate to the following directory, and run npm start to launch the React application:
 ```
 cd ./client
-npm run install-local-sdk
 npm start
 ```
 

@@ -17,7 +17,7 @@ function AddUser() {
       return;
     }
     if (email == "") {
-      setError("Email is mandatory");
+      setError("Email s mandatory");
       return;
     }
     if (verified == null) {

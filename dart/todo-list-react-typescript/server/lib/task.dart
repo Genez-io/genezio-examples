@@ -32,6 +32,13 @@ class Task {
   var env = DotEnv(includePlatformEnvironment: true)..load();
   Db? db;
 
+  const Task() {
+    // set TASK_COLLECTION environment variable if it's undefined
+    if (env["TASK_COLLECTION"] == null) {
+      env["TASK_COLLECTION"] = "tasks";
+    }
+  }
+
   /// Method that returns all tasks for a given user ID.
   ///
   /// The method will be exported to a SDK using genezio.
@@ -152,7 +159,10 @@ class Task {
         ObjectId().$oid, title, url, token, "false", DateTime.now().toString());
 
     // Add task into the database
-    await db?.collection(env["TASK_COLLECTION"].toString()).insert(task.toJson()).catchError((e) {
+    await db
+        ?.collection(env["TASK_COLLECTION"].toString())
+        .insert(task.toJson())
+        .catchError((e) {
       print("Error adding task to database: $e");
       throw e;
     });

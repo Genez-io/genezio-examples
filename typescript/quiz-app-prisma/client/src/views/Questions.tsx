@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Card, Container, Row, Col, Alert } from "reactstrap";
 import { Leaderboard } from "@genezio-sdk/prisma-example_us-east-1";
 import { shuffleArray } from "../utils/utils";
@@ -17,7 +17,7 @@ export default function Questions() {
   const [score, setScore] = useState<number>(0);
   const [gameStatus, setGameStatus] = useState<GameStatus>(GameStatus.Loading);
   const [leaderboard, setLeaderboard] = useState<LeaderboardInterface[] | null>(
-    null
+    null,
   );
   const [leaderboardLoaded, setLeaderboardLoaded] = useState<boolean>(false);
   const playerName = localStorage.getItem("playerName") || "";
@@ -69,7 +69,7 @@ export default function Questions() {
                   data.err
                     ? data.err
                     : "Please check the backend logs in the project dashboard - https://app.genez.io."
-                }`
+                }`,
               );
               return;
             }
@@ -109,7 +109,7 @@ export default function Questions() {
               status.err
                 ? status.err
                 : "Please check the backend logs in the project dashboard - https://app.genez.io."
-            }`
+            }`,
           );
           return;
         }

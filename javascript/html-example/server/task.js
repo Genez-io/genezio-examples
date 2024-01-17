@@ -40,7 +40,6 @@ export class Task {
    * @returns An object containing two properties: { success: true, tasks: tasks }
    */
   async getAllTasksByUser(token) {
-    console.log("we got here");
     if (!process.env.MONGO_DB_URI) {
       console.log(red_color, missing_env_error);
       return { success: false, err: missing_env_error };
@@ -118,7 +117,6 @@ export class Task {
    * @returns An object containing two properties: { success: true, tasks: tasks }
    */
   async createTask(token, title) {
-    console.log("we got here");
     if (!process.env.MONGO_DB_URI) {
       console.log(red_color, missing_env_error);
       return { success: false, err: missing_env_error };
