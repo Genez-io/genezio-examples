@@ -34,7 +34,13 @@ Inside the project folder, you will find the following files and folders:
 ├── client/
 │   ├── src/
 │   ├── public
+│   ├── dist
+│   ├── index.html
+│   ├── node_modules
 │   ├── package.json
+│   ├── package-lock.json
+│   └── vite.config.ts
+│   └── README.md
 ├── genezio.yaml
 ├── README.md
 └── .genezioignore
@@ -61,7 +67,7 @@ git clone https://github.com/Genez-io/genezio-examples
 
 Navigate to the following directory:
 ```
-cd ./genezio-examples/javascript/todo-list
+cd ./genezio-examples/javascript/todo-list-vue
 ```
 
 ### Test your project locally
@@ -74,8 +80,7 @@ genezio local
 Open a new terminal, navigate to the following directory, and run npm start to launch the React application:
 ```
 cd ./client
-npm run install-local-sdk
-npm start
+npm run dev
 ```
 
 ### Deploy your project with genezio
@@ -124,3 +129,4 @@ If you need support or you have any questions, please join us in our [Discord ch
 - [Vue](https://vuejs.org/)
 - [Genezio](https://genezio.com/)
 - [Node.JS](https://nodejs.org/en/)
+- [Vite](https://vitejs.dev/)
