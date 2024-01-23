@@ -31,7 +31,7 @@ function App() {
               response.err
                 ? response.err
                 : "Please check the backend logs in the project dashboard - https://app.genez.io."
-            }`
+            }`,
           );
           return;
         }
