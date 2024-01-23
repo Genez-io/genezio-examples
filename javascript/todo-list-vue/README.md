@@ -67,7 +67,7 @@ git clone https://github.com/Genez-io/genezio-examples
 
 Navigate to the following directory:
 ```
-cd ./genezio-examples/javascript/todo-list
+cd ./genezio-examples/javascript/todo-list-vue
 ```
 
 ### Test your project locally
