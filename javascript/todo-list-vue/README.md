@@ -34,7 +34,13 @@ Inside the project folder, you will find the following files and folders:
 ├── client/
 │   ├── src/
 │   ├── public
+│   ├── dist
+│   ├── index.html
+│   ├── node_modules
 │   ├── package.json
+│   ├── package-lock.json
+│   └── vite.config.ts
+│   └── README.md
 ├── genezio.yaml
 ├── README.md
 └── .genezioignore
@@ -74,8 +80,7 @@ genezio local
 Open a new terminal, navigate to the following directory, and run npm start to launch the React application:
 ```
 cd ./client
-npm run install-local-sdk
-npm start
+npm run dev
 ```
 
 ### Deploy your project with genezio
