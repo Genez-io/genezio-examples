@@ -124,3 +124,4 @@ If you need support or you have any questions, please join us in our [Discord ch
 - [Vue](https://vuejs.org/)
 - [Genezio](https://genezio.com/)
 - [Node.JS](https://nodejs.org/en/)
+- [Vite](https://vitejs.dev/)

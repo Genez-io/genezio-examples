@@ -1,4 +1,4 @@
-name: todo-list-angular
+name: todo-list-vue
 region: us-east-1
 language: js
 cloudProvider: genezio
