@@ -21,6 +21,7 @@ export default (props) => {
         navigate("/login");
       }
     }
+
     checkToken();
   }, []);
 
