@@ -1,28 +1,32 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import TodoList from '@/components/TodoList';
-import Login from '@/components/Login';
-import Signup from '@/components/Signup';
+import * as VueRouter from "vue-router";
+import TodoList from "../components/TodoList.vue";
+import Login from "../components/Login.vue";
+import Signup from "../components/Signup.vue";
 
-Vue.use(Router);
+const routes = [
+  {
+    path: "/",
+    name: "TodoList",
+    component: TodoList,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+  },
+  {
+    path: "/signup",
+    name: "Signup",
+    component: Signup,
+  },
+];
 
-export default new Router({
-  mode: 'history',
-  routes: [
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login,
-    },
-    {
-      path: '/signup',
-      name: 'Signup',
-      component: Signup,
-    },
-    {
-      path: '/',
-      name: 'TodoList',
-      component: TodoList,
-    },
-  ],
+const router = VueRouter.createRouter({
+  history: VueRouter.createWebHistory(),
+  routes,
 });
+
+export default router;
