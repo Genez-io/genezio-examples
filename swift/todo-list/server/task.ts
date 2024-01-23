@@ -4,7 +4,7 @@ import { TaskModel } from "./models/task";
 
 const red_color = "\x1b[31m%s\x1b[0m";
 const missing_env_error =
-  "ERROR: Your MONGO_DB_URI environment variable is not properly set, go to https://genez.io/blog/how-to-add-a-mongodb-to-your-genezio-project/ to learn how to integrate your project with Mongo DB";
+  "ERROR: Your MONGO_DB_URI environment variable is not properly set, go to https://genezio.com/blog/how-to-add-a-mongodb-to-your-genezio-project/ to learn how to integrate your project with Mongo DB";
 
 export type Task = {
   _id: string;
