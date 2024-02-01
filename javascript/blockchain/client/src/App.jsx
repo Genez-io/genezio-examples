@@ -24,7 +24,7 @@ function App() {
     // Use the SDK to get events from the BlockchainServer class hosted on genezio
     BlockchainServer.getEvents(currentIndex, CHUNKS)
       .then((response) => {
-        if (!response || !response.success) {
+        if (!response) {
           setEvents([]);
           setErrorAlert(
             `Unexpected error: ${
