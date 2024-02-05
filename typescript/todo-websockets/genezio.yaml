@@ -1,4 +1,4 @@
-name: chat-app-websockets
+name: todo-websockets
 region: us-east-1
 language: ts
 cloudProvider: cluster
