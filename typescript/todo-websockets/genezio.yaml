@@ -1,0 +1,15 @@
+name: chat-app-websockets
+region: us-east-1
+language: ts
+cloudProvider: cluster
+scripts:
+  preBackendDeploy: npm install
+  preFrontendDeploy: npm install && npm run build
+  preStartLocal: cd client && npm install && cd ../server && npm install
+frontend:
+  path: ./client/dist
+  subdomain: ivory-scornful-badger
+packageManager: npm
+workspace:
+  backend: server
+  frontend: client
