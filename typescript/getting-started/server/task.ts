@@ -88,7 +88,7 @@ export class TaskService {
         token: task.token,
         title: task.title,
         solved: task.solved,
-        date: task.date,
+        date: task.date
       };
     });
 
@@ -97,7 +97,7 @@ export class TaskService {
         await TaskModel.create({
           token: token,
           title: "Check the other example projects",
-          url: "https://github.com/Genez-io/genezio-examples",
+          url: "https://github.com/Genez-io/genezio-examples"
         });
       } catch (err: any) {
         return { success: false, tasks: [], err: err.toString() };
@@ -107,7 +107,7 @@ export class TaskService {
         await TaskModel.create({
           token: token,
           title: "Check our documentation",
-          url: "https://docs.genezio.com/genezio-documentation/",
+          url: "https://genezio.com/docs/"
         });
       } catch (err: any) {
         return { success: false, tasks: [], err: err.toString() };
@@ -116,7 +116,7 @@ export class TaskService {
         await TaskModel.create({
           token: token,
           title: "Check our documentation",
-          url: "https://docs.genezio.com/genezio-documentation/",
+          url: "https://genezio.com/docs/"
         });
       } catch (err: any) {
         return { success: false, tasks: [], err: err.toString() };
@@ -126,7 +126,7 @@ export class TaskService {
         await TaskModel.create({
           token: token,
           title: "Watch our Youtube tutorials",
-          url: "https://www.youtube.com/@genezio7235",
+          url: "https://www.youtube.com/@genezio7235"
         });
       } catch (err: any) {
         return { success: false, tasks: [], err: err.toString() };
@@ -136,7 +136,7 @@ export class TaskService {
         await TaskModel.create({
           token: token,
           title: "Read our technical articles on genezio blog",
-          url: "https://genezio.com/blog/",
+          url: "https://genezio.com/blog/"
         });
       } catch (err: any) {
         return { success: false, tasks: [], err: err.toString() };
@@ -151,7 +151,7 @@ export class TaskService {
               token: task.token,
               title: task.title,
               solved: task.solved,
-              date: task.date,
+              date: task.date
             };
           }
         );
@@ -188,7 +188,7 @@ export class TaskService {
     try {
       task = await TaskModel.create({
         title: title,
-        token: token,
+        token: token
       });
     } catch (err: any) {
       return { success: false, err: err.toString() };
@@ -200,8 +200,8 @@ export class TaskService {
         token: token,
         id: task._id.toString(),
         solved: false,
-        date: new Date(),
-      },
+        date: new Date()
+      }
     };
   }
 
@@ -236,7 +236,7 @@ export class TaskService {
         { _id: id, token: token },
         {
           title: title,
-          solved: solved,
+          solved: solved
         }
       );
     } catch (err: any) {

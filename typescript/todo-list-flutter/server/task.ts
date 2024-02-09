@@ -85,7 +85,7 @@ export class TaskService {
           title: task.title,
           description: task.description,
           solved: task.solved,
-          date: task.date.toString(),
+          date: task.date.toString()
         };
       });
     } catch (error: any) {
@@ -97,19 +97,19 @@ export class TaskService {
         await TaskModel.create({
           token: token,
           title: "Check the other example projects",
-          description: "https://github.com/Genez-io/genezio-examples",
+          description: "https://github.com/Genez-io/genezio-examples"
         });
 
         await TaskModel.create({
           token: token,
           title: "Check our documentation",
-          description: "https://docs.genezio.com/genezio-documentation/",
+          description: "https://genezio.com/docs/"
         });
 
         await TaskModel.create({
           token: token,
           title: "Read our technical articles on genezio blog",
-          description: "https://genezio.com/blog/",
+          description: "https://genezio.com/blog/"
         });
 
         const initTasks: Task[] = (await TaskModel.find({ token: token })).map(
@@ -120,7 +120,7 @@ export class TaskService {
               title: task.title,
               description: task.description,
               solved: task.solved,
-              date: task.date.toString(),
+              date: task.date.toString()
             };
           }
         );
@@ -164,9 +164,9 @@ export class TaskService {
           title: "err",
           description: "err",
           solved: false,
-          date: "",
+          date: ""
         },
-        err: missing_env_error,
+        err: missing_env_error
       };
     }
     console.log(`Create task request received for user with title ${title}`);
@@ -181,7 +181,7 @@ export class TaskService {
         token: token,
         title: title,
         description: description,
-        solved: false,
+        solved: false
       });
     } catch (error: any) {
       return {
@@ -192,9 +192,9 @@ export class TaskService {
           title: "err",
           description: "err",
           solved: false,
-          date: "",
+          date: ""
         },
-        err: error.toString(),
+        err: error.toString()
       };
     }
 
@@ -206,9 +206,9 @@ export class TaskService {
         title: title,
         description: description,
         solved: false,
-        date: "",
+        date: ""
       },
-      err: "",
+      err: ""
     };
   }
 
@@ -247,12 +247,12 @@ export class TaskService {
       await TaskModel.updateOne(
         {
           _id: new ObjectId(id.toString()),
-          token: token,
+          token: token
         },
         {
           title: title,
           description: description,
-          solved: solved,
+          solved: solved
         }
       );
     } catch (error: any) {

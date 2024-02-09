@@ -71,7 +71,7 @@ export class Task {
         await TaskModel.create({
           token: token,
           title: "Check our documentation",
-          url: "https://docs.genezio.com/genezio-documentation/",
+          url: "https://genezio.com/docs/",
         });
 
         await TaskModel.create({
