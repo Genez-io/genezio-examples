@@ -1,16 +1,15 @@
+import 'dart:io';
 import 'package:dart_openai/dart_openai.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:chat_with_chatgpt/constants.dart';
-import 'package:dotenv/dotenv.dart';
 
 class ChatBackend {
-  var env = DotEnv(includePlatformEnvironment: true)..load();
   Db? db = null;
 
   // Private constructor
   ChatBackend() {
     // Set the OpenAI API key
-    OpenAI.apiKey = env["OPENAPI_KEY"].toString();
+    OpenAI.apiKey = Platform.environment["OPENAPI_KEY"].toString();
   }
 
   Future<String> askChatGpt(String prompt, String question) async {
@@ -42,7 +41,7 @@ class ChatBackend {
   }
 
   Future<String> _connect() async {
-    final MONGODB_URI = env["MONGODB_URI"].toString();
+    final MONGODB_URI = Platform.environment["MONGODB_URI"].toString();
     // Connect to the database
     db = await Db.create(MONGODB_URI).catchError((e) {
       print("Error connecting to database: $e");

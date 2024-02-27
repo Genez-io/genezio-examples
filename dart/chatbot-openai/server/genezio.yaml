@@ -1,0 +1,16 @@
+name: chat-with-chatgpt
+region: us-east-1
+language: dart 
+cloudProvider: genezio
+sdk:
+  language: dart
+  path: ../client/lib/sdk
+scripts:
+  preFrontendDeploy: cd ../client/ && flutter clean && flutter pub get && flutter build web
+frontend:
+  path: ../client/build/web
+classes:
+  - path: lib/chat_backend.dart
+    type: jsonrpc
+    name: ChatBackend
+    methods: []
