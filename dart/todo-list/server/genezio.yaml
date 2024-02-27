@@ -1,6 +1,6 @@
-name: getting-started-dart
+name: todo-list
 region: us-east-1
-language: ts
+language: dart
 cloudProvider: genezio
 sdk:
   language: dart
