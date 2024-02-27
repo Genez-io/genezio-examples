@@ -1,7 +1,7 @@
-import 'package:dotenv/dotenv.dart';
+import 'dart:io';
+
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:json_annotation/json_annotation.dart';
-
 
 part 'task.g.dart';
 
@@ -89,7 +89,6 @@ class DeleteTaskResponse {
 }
 
 class TaskService {
-  var env = DotEnv(includePlatformEnvironment: true)..load();
   Db? db;
 
   /// Method that returns all tasks for a given user ID.
@@ -100,18 +99,17 @@ class TaskService {
   /// @returns A list containing tasks.
   Future<GetTasksResponse> getAllTasksByUser(String token) async {
     print("Trying to get all tasks by user with token: $token");
+    String taskCollection = "dart-tasks";
 
     // Check if the database is connected
     if (db == null) {
-      String taskCollectionEnv = env["TASK_COLLECTION"].toString();
-      print("The task collection is: $taskCollectionEnv");
       // Connect to the database
       await _connect();
     }
 
     // Get tasks from database
     final tasks = await db
-        ?.collection(env["TASK_COLLECTION"].toString())
+        ?.collection(taskCollection)
         .find({
           "token": token,
         })
@@ -126,14 +124,9 @@ class TaskService {
 
     if (tasks == null || tasks.isEmpty) {
       await db
-          ?.collection(env["TASK_COLLECTION"].toString())
-          .insert(Task(
-                  ObjectId().$oid,
-                  "Check our documentation",
-                  "https://genezio.com/docs/",
-                  token,
-                  false,
-                  DateTime.now())
+          ?.collection(taskCollection)
+          .insert(Task(ObjectId().$oid, "Check our documentation",
+                  "https://genezio.com/docs/", token, false, DateTime.now())
               .toJson())
           .catchError((e) {
         print("Error adding task to database: $e");
@@ -141,7 +134,7 @@ class TaskService {
       });
 
       await db
-          ?.collection(env["TASK_COLLECTION"].toString())
+          ?.collection(taskCollection)
           .insert(Task(
                   ObjectId().$oid,
                   "Watch our Youtube tutorials",
@@ -156,7 +149,7 @@ class TaskService {
       });
 
       await db
-          ?.collection(env["TASK_COLLECTION"].toString())
+          ?.collection(taskCollection)
           .insert(Task(
                   ObjectId().$oid,
                   "Read our technical articles on genezio blog",
@@ -175,7 +168,7 @@ class TaskService {
 
     // Get tasks from database
     final initTasks = await db
-        ?.collection(env["TASK_COLLECTION"].toString())
+        ?.collection(taskCollection)
         .find({
           "token": token,
         })
@@ -203,6 +196,7 @@ class TaskService {
   Future<GetTaskResponse> createTask(
       String token, String title, String url) async {
     print("Trying to add a new task with title: $title");
+    String taskCollection = "dart-tasks";
 
     // Check if the database is connected
     if (db == null) {
@@ -214,7 +208,7 @@ class TaskService {
     Task task = Task(ObjectId().$oid, title, url, token, false, DateTime.now());
 
     // Add task into the database
-    await db?.collection(env["TASK_COLLECTION"].toString()).insert(task.toJson()).catchError((e) {
+    await db?.collection(taskCollection).insert(task.toJson()).catchError((e) {
       print("Error adding task to database: $e");
       throw e;
     });
@@ -229,6 +223,7 @@ class TaskService {
   /// @returns A list the string "success" if everything went well.
   Future<DeleteTaskResponse> deleteTask(String token, String id) async {
     print("Trying to delete the task with id: $id");
+    String taskCollection = "dart-tasks";
 
     // Check if the database is connected
     if (db == null) {
@@ -237,7 +232,7 @@ class TaskService {
     }
 
     // Delete the task from the database
-    await db?.collection(env["TASK_COLLECTION"].toString()).remove({
+    await db?.collection(taskCollection).remove({
       "id": id,
       "token": token,
     }).catchError((e) {
@@ -258,6 +253,7 @@ class TaskService {
   Future<UpdateTaskResponse> updateTask(
       String id, String token, String title, String url, bool solved) async {
     print("Trying to update the task with id: $id");
+    String taskCollection = "dart-tasks";
 
     // Check if the database is connected
     if (db == null) {
@@ -266,7 +262,7 @@ class TaskService {
     }
 
     // Update the task in the database
-    await db?.collection(env["TASK_COLLECTION"].toString()).update({
+    await db?.collection(taskCollection).update({
       "id": id,
       "token": token,
     }, {
@@ -288,7 +284,8 @@ class TaskService {
   /// @returns A string "success" if everything went well.
   Future<String> _connect() async {
     // Connect to the database
-    String mongodbURI =env["MONGODB_URI"].toString();
+    String mongodbURI = Platform.environment["MONGODB_URI"]!;
+
     db = await Db.create(mongodbURI).catchError((e) {
       print("Error connecting to database: $e");
       throw e;
