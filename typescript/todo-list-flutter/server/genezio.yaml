@@ -1,4 +1,4 @@
-name: getting-started-flutter
+name: todo-list-flutter
 region: us-east-1
 language: ts
 cloudProvider: genezio
@@ -9,5 +9,8 @@ scripts:
   preBackendDeploy: npm install
   preFrontendDeploy: cd ../client/ && flutter clean && flutter pub get && flutter
     build web --web-renderer html
+  preStartLocal: cd ../client && flutter clean && flutter pub get && cd ../server
+    && npm install
 frontend:
   path: ../client/build/web
+
