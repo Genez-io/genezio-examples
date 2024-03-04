@@ -31,12 +31,17 @@ If you want to deploy your application step-by-step, follow the guidelines below
 
 1. Run `dart pub get` in the `server/` folder to install the dependencies.
 2. Run `flutter pub get` in the `client/` folder to install the dependencies.
-3. Create a `.env` file in the `server/` folder and add MongoDB URI and the database table name.
+3. Create a `.env` file in the `server/` folder and add the following content:
+
+```env
+MONGODB_URI=<your-mongo-uri>
+```
 
 ## Deploy the example in the genezio infrastructure
 
-Run `genezio deploy` in the `server/` folder that contains also the `genezio.yaml` file. This will deploy your code in the genezio infrastructure. The application will be available at the URL provided in the terminal.
-
+Run `genezio deploy --env .env` in the `server/` folder that contains also the `genezio.yaml` file.
+This will deploy your code in the genezio infrastructure.
+The application will be available at the URL provided in the terminal.
 
 ## Run the example locally
 
