@@ -18,7 +18,7 @@ This is a simple full stack application that illustrates how genezio works.
 
 ## Prerequisites
 
-- ✅ [NodeJs](https://nodejs.org/en) >= 16.0.0
+- ✅ [NodeJs](https://nodejs.org/en) >= 18.0.0
 - ✅ [npm](https://www.npmjs.com/)
 - ✅ [genezio](https://genezio.com/)
 
@@ -117,6 +117,7 @@ All commands are run from the root of the project, from a terminal:
 ## Want to learn more?
 
 Check out:
+
 - [Official genezio documentation](https://genezio.com/docs)
 - [Web development tutorials](https://genezio.com/blog)
 - [Discord channel](https://discord.gg/uc9H5YKjXv)
