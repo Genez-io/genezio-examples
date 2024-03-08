@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { Button, Col, Container, Row, Spinner } from 'reactstrap';
-import { FaShoppingCart, FaTrash } from 'react-icons/fa';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { Button, Col, Container, Row, Spinner } from "reactstrap";
+import { FaShoppingCart, FaTrash } from "react-icons/fa";
+import axios from "axios";
 
-import './App.css'
-import { CartItem, Product } from './models';
+import "./App.css";
+import { CartItem, Product } from "./models";
 
-import { ShoppingCartService } from '@genezio-sdk/shopping-cart_us-east-1';
+import { ShoppingCartService } from "@genezio-sdk/shopping-cart";
 
 function App() {
   const [clearCartLoading, setClearCartLoading] = useState(false);
@@ -24,25 +24,25 @@ function App() {
   const [purchasedQuantity, setPurchasedQuantity] = useState(0);
 
   // Check if the token is set in localStorage
-  let token = localStorage.getItem('token') as string;
+  let token = localStorage.getItem("token") as string;
 
   // If token is not set, generate a 32-character token
-  if (!token || token === '' || token === 'undefined') {
+  if (!token || token === "" || token === "undefined") {
     token =
       Math.random().toString(36).substring(2, 15) +
       Math.random().toString(36).substring(2, 15);
-    localStorage.setItem('token', token);
+    localStorage.setItem("token", token);
   }
 
   // Fetch the dummy products from the dummyjson API
   useEffect(() => {
     axios
-      .get('https://dummyjson.com/products')
+      .get("https://dummyjson.com/products")
       .then((response) => {
         setProductData(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching data: ', error);
+        console.error("Error fetching data: ", error);
       });
   }, []);
 
@@ -55,7 +55,7 @@ function App() {
           const cart = await ShoppingCartService.getCart(token);
           setCartData(cart);
         } catch (error) {
-          console.error('Error fetching or parsing cart data:', error);
+          console.error("Error fetching or parsing cart data:", error);
         }
       };
 
@@ -168,7 +168,7 @@ function App() {
                   {addItemLoading[product.id] ? (
                     <Spinner size="sm" color="light" />
                   ) : (
-                    'Buy Now'
+                    "Buy Now"
                   )}
                 </Button>
               </div>
@@ -180,7 +180,7 @@ function App() {
       {isCartVisible && (
         <div
           className="cart-overlay d-flex justify-content-center align-items-center position-fixed top-0 left-0 w-100 h-100"
-          style={{ background: 'rgba(0, 0, 0, 0.7)' }}
+          style={{ background: "rgba(0, 0, 0, 0.7)" }}
         >
           <div className="cart-modal bg-white p-4 rounded shadow-lg">
             <h2 className="mb-4 center">Shopping Cart</h2>
@@ -221,7 +221,7 @@ function App() {
                 {clearCartLoading ? (
                   <Spinner size="sm" color="light" />
                 ) : (
-                  'Clear Cart'
+                  "Clear Cart"
                 )}
               </Button>
             ) : null}
@@ -239,4 +239,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

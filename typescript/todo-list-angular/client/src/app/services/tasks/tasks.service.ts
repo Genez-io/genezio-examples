@@ -4,7 +4,7 @@ import {
   GetTaskResponse,
   GetTasksResponse,
   TaskService,
-} from '@genezio-sdk/todo-list-ts_us-east-1';
+} from '@genezio-sdk/todo-list-ts';
 import { AuthService } from '../auth/auth.service';
 import { BehaviorSubject } from 'rxjs';
 

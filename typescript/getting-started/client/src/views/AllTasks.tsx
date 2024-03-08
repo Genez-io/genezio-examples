@@ -11,7 +11,10 @@ import {
   Alert,
 } from "reactstrap";
 import { useState, useEffect } from "react";
-import { TaskService, Task } from "@genezio-sdk/getting-started-genezio-typescript_us-east-1";
+import {
+  TaskService,
+  Task,
+} from "@genezio-sdk/getting-started-genezio-typescript";
 import { useNavigate } from "react-router-dom";
 import TaskView from "./TaskView";
 import uuid from "react-uuid";
@@ -63,9 +66,9 @@ export default function AllTasks() {
         token = uuid();
         localStorage.setItem("apiToken", token);
       }
-        if (!tasks && alertErrorMessage == "") {
-            fetchTasks();
-        }
+      if (!tasks && alertErrorMessage == "") {
+        fetchTasks();
+      }
     }
   }, [tasks, alertErrorMessage]);
 
@@ -93,33 +96,33 @@ export default function AllTasks() {
 
   async function handleEdit(id: string, title: string, solved: boolean) {
     console.log("handle edit called", id, title, solved);
-     const res = await TaskService.updateTask(
-       localStorage.getItem("apiToken") || "",
-       id,
-       title,
-       solved
-     );
-     if (!res.success) {
-       setAlertErrorMessage(
-         `Unexpected error: ${
-           res.err
-             ? res.err
-             : "Please check the backend logs in the project dashboard - https://app.genez.io."
-         }`
-       );
-       navigate(0);
-       return;
-     }
-     if (res.success) {
-       const newTasks = tasks!.map((task) => {
-         if (task.id === id) {
-           task.title = title;
-           task.solved = solved;
-         }
-         return task;
-       });
-       setTasks(newTasks);
-     }
+    const res = await TaskService.updateTask(
+      localStorage.getItem("apiToken") || "",
+      id,
+      title,
+      solved
+    );
+    if (!res.success) {
+      setAlertErrorMessage(
+        `Unexpected error: ${
+          res.err
+            ? res.err
+            : "Please check the backend logs in the project dashboard - https://app.genez.io."
+        }`
+      );
+      navigate(0);
+      return;
+    }
+    if (res.success) {
+      const newTasks = tasks!.map((task) => {
+        if (task.id === id) {
+          task.title = title;
+          task.solved = solved;
+        }
+        return task;
+      });
+      setTasks(newTasks);
+    }
   }
 
   async function handleAdd(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {

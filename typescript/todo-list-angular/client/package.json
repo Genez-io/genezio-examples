@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "install-prod-sdk": "npm install @genezio-sdk/todo-list-ts_us-east-1@1.0.0-prod"
+    "install-prod-sdk": "npm install @genezio-sdk/todo-list-ts@1.0.0-prod"
   },
   "private": true,
   "dependencies": {

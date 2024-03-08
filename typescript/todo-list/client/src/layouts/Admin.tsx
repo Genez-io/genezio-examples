@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { UserService } from "@genezio-sdk/todo-list-ts_us-east-1";
+import { UserService } from "@genezio-sdk/todo-list-ts";
 
 export default function Admin(props: { element: React.ReactNode }) {
   const navigate = useNavigate();

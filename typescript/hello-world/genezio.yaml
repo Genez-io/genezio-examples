@@ -1,11 +1,27 @@
 name: hello-world-ts
 region: us-east-1
-language: ts
-cloudProvider: genezio
-packageManager: npm
-scripts:
-  preBackendDeploy: npm install
-  preStartLocal: cd client && npm install && cd ../server && npm install
-workspace:
-  backend: server
-  frontend: client
+yamlVersion: 2
+backend:
+  path: server
+  language:
+    name: ts
+    packageManager: npm
+  scripts:
+    deploy:
+      - npm install
+    local:
+      - npm install
+  cloudProvider: genezio
+frontend:
+  path: client
+  language: ts
+  publish: build
+  scripts:
+    build: npm run build
+    start:
+      - npm install
+      - npm run install-local-sdk
+      - npm start
+    deploy:
+      - npm run install-prod-sdk
+      - npm install

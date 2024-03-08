@@ -1,14 +1,27 @@
 name: prisma-example
 region: us-east-1
-language: ts
-cloudProvider: genezio
-scripts:
-  preBackendDeploy: npm install && npx prisma generate
-  preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
-  preStartLocal: cd client && npm install && cd ../server && npm install
+yamlVersion: 2
+backend:
+  path: server
+  language:
+    name: ts
+    packageManager: npm
+  scripts:
+    deploy:
+      - npm install
+      - npx prisma generate
+    local:
+      - npm install
+  cloudProvider: genezio
 frontend:
-  path: ./client/dist
-packageManager: npm
-workspace:
-  backend: server
-  frontend: client
+  path: ./client
+  language: ts
+  publish: dist
+  scripts:
+    build: npm run build
+    start:
+      - npm install
+      - npm run dev
+    deploy:
+      - npm run install-prod-sdk
+      - npm install

@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Input } from "reactstrap";
-import { MultiversXService, Response } from "@genezio-sdk/multiverse-ts_us-east-1";
+import { MultiversXService, Response } from "@genezio-sdk/multiverse-ts";
 import { useState, useEffect } from "react";
 
 export default function App() {
@@ -20,7 +20,7 @@ export default function App() {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div style={{ width: "80%" }}>
-        <h1 style={{textAlign: "center"}}>Genezio MultiversX Demo</h1>
+        <h1 style={{ textAlign: "center" }}>Genezio MultiversX Demo</h1>
         <Input
           className="form-control"
           placeholder="Address"

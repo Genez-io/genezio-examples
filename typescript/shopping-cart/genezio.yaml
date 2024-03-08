@@ -1,16 +1,24 @@
 name: shopping-cart
 region: us-east-1
-language: ts
-cloudProvider: genezio
-scripts:
-  preBackendDeploy: npm install
-  preFrontendDeploy: npm run install-prod-sdk && npm install && npm run build
+yamlVersion: 2
+backend:
+  path: server
+  language:
+    name: ts
+    packageManager: npm
+  scripts:
+    deploy:
+      - npm install
+  cloudProvider: genezio
 frontend:
-  path: ./client/dist
-  subdomain: turquoise-autonomous-weasel
-packageManager: npm
-workspace:
-  backend: server
-  frontend: client
-database:
-  type: redis
+  path: ./client
+  language: ts
+  publish: dist
+  scripts:
+    build: npm run build
+    start:
+      - npm install
+      - npm run dev
+    deploy:
+      - npm run install-prod-sdk
+      - npm install
