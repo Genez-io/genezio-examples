@@ -1,27 +1,46 @@
+# The name of the project.
 name: hello-world-ts
+# The region where the project is deployed.
 region: us-east-1
+# The version of the Genezio YAML configuration to parse.
 yamlVersion: 2
 backend:
-  path: server
+  # The root directory of the backend.
+  path: ./server
+  # Information about the backend's programming language.
   language:
+    # The name of the programming language.
     name: ts
+    # The package manager used by the backend.
     packageManager: npm
+  # Scripts are running in the specified `path` directory.
   scripts:
+    # List of scripts to run before deploying the backend.
     deploy:
       - npm install
+    # List of scripts to run before starting `genezio local`.
     local:
       - npm install
+  # The cloud provider where the backend is deployed.
   cloudProvider: genezio
+# Information about the frontend, including the path, language, and publish directory.
+# It is optional. It can also be an array if there are multiple frontends you want to deploy.
 frontend:
-  path: client
+  # The folder where the frontend scripts will run.  
+  path: ./client
+  # The language the frontend is written in. Used to generate the proper Genezio SDK for this frontend.
   language: ts
+  # The directory that will be published to the CDN. It is relative to the path. 
   publish: build
   scripts:
+    # List of scripts that build your frontend before deployment. It should populate the specified `publish` directory. 
     build: npm run build
+    # List of scripts to run when starting the local development server. 
     start:
       - npm install
       - npm run install-local-sdk
       - npm start
+    # List of scripts to run before deploying the frontend.
     deploy:
       - npm run install-prod-sdk
       - npm install
