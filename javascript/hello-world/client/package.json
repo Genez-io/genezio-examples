@@ -1,17 +1,14 @@
 {
-  "name": "hello-world",
-  "version": "1.0.0",
-  "description": "",
-  "type": "module",
-  "main": "hello.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install-local-sdk": "npm link @genezio-sdk/hello-world_us-east-1",
-    "install-prod-sdk": "npm install @genezio-sdk/hello-world_us-east-1@1.0.0-prod"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    
-  }
+    "name": "hello-world",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "main": "hello.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "install-prod-sdk": "npm install @genezio-sdk/hello-world@1.0.0-prod"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {}
 }

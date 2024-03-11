@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { User } from "@genezio-sdk/todo-list-vue_us-east-1";
+import { User } from "@genezio-sdk/todo-list-vue";
 
 export default {
   data() {

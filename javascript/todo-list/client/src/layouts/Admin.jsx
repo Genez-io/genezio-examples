@@ -1,28 +1,28 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { User } from "@genezio-sdk/todo-list_us-east-1"
+import { User } from "@genezio-sdk/todo-list";
 
 export default (props) => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  React.useEffect(() => {
-    if (
-      localStorage.getItem("apiToken") == null ||
-      localStorage.getItem("user") == null
-    ) {
-      localStorage.clear();
-      navigate("/login");
-    }
+    React.useEffect(() => {
+        if (
+            localStorage.getItem("apiToken") == null ||
+            localStorage.getItem("user") == null
+        ) {
+            localStorage.clear();
+            navigate("/login");
+        }
 
-    async function checkToken() {
-      const res = await User.checkSession(localStorage.getItem("apiToken"));
-      if (!res.success) {
-        localStorage.clear();
-        navigate("/login");
-      }
-    }
-    checkToken();
-  }, []);
+        async function checkToken() {
+            const res = await User.checkSession(localStorage.getItem("apiToken"));
+            if (!res.success) {
+                localStorage.clear();
+                navigate("/login");
+            }
+        }
+        checkToken();
+    }, []);
 
-  return <>{props.element}</>;
+    return <>{props.element}</>;
 };

@@ -1,5 +1,21 @@
+# The name of the project.
 name: webhook-example
+# The region where the project is deployed.
 region: us-east-1
-language: ts
-cloudProvider: genezio
-packageManager: npm
+# The version of the Genezio YAML configuration to parse.
+yamlVersion: 2
+backend:
+    # The root directory of the backend.
+    path: .
+    # Information about the backend's programming language.
+    language:
+        # The name of the programming language.
+        name: js
+        # The package manager used by the backend.
+        packageManager: npm
+    # Scripts are running in the specified `path` directory.
+    scripts:
+        local: npm install
+        deploy: npm install
+    # The cloud provider where the backend is deployed.
+    cloudProvider: genezio
