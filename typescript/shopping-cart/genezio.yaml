@@ -43,3 +43,4 @@ frontend:
     deploy:
       - npm run install-prod-sdk
       - npm install
+
