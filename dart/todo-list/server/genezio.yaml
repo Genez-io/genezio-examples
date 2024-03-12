@@ -13,7 +13,7 @@ backend:
     name: dart
   # Classes that will be deployed
   classes:
-    - name: Task
+    - name: TaskService
       path: lib/task.dart
       type: jsonrpc
   # Scripts are running in the specified `path` directory.
