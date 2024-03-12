@@ -28,8 +28,10 @@ backend:
 frontend:
     # The folder where the frontend scripts will run.
     path: client
-    # The language the frontend is written in. Used to generate the proper Genezio SDK for this frontend.
-    language: js
+    # Specifies information about the SDK generation. If not specified, the SDK will not be generated for this frontend.
+    sdk:
+        # The language the SDK will be written in. Usually the same as the frontend language.
+        language: js
     scripts:
         # List of scripts to run when starting the local development server.
         start:
