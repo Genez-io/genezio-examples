@@ -14,7 +14,7 @@ backend:
   # Classes that will be deployed
   classes:
     - name: ChatBackend
-      path: lib/chat_backend.dart
+      path: ./lib/chat_backend.dart
       type: jsonrpc
   # Scripts are running in the specified `path` directory.
   scripts:
@@ -30,11 +30,15 @@ backend:
 # It is optional. It can also be an array if there are multiple frontends you want to deploy.
 frontend:
   # The folder where the frontend scripts will run.
-  path: ../client/lib
-  # The language the frontend is written in. Used to generate the proper Genezio SDK for this frontend.
-  language: dart
+  path: ../client/
+  # Specifies information about the SDK generation. If not specified, the SDK will not be generated for this frontend.
+  sdk:
+    # The language the SDK will be written in. Usually the same as the frontend language.
+    language: dart
+    # The path where the SDK will be generated. Not required for languages that export the SDK to a package manager.
+    path: ./lib/sdk
   # The directory that will be published to the CDN. It is relative to the path.
-  publish: ../build/web
+  publish: ./build/web
   scripts:
     # List of scripts that build your frontend before deployment. It should populate the specified `publish` directory.
     build:
