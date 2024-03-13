@@ -57,13 +57,13 @@ export class UserHandler {
         dialect: "postgres", // or your database type
         dialectModule: pg,
         define: {
-          timestamps: false // This disables the created_at and updated_at columns
+          timestamps: false, // This disables the created_at and updated_at columns
         },
         dialectOptions: {
           ssl: {
-            require: true // Use SSL with the 'require' option
-          }
-        }
+            require: true, // Use SSL with the 'require' option
+          },
+        },
       });
 
       // Intialize the UserModel
@@ -71,19 +71,19 @@ export class UserHandler {
         {
           userId: {
             type: DataTypes.INTEGER,
-            primaryKey: true
+            primaryKey: true,
           },
           name: DataTypes.STRING(512),
           email: {
             type: DataTypes.STRING(512),
-            unique: true
+            unique: true,
           },
-          verified: DataTypes.BOOLEAN
+          verified: DataTypes.BOOLEAN,
         },
         {
           sequelize,
           modelName: "User",
-          tableName: "users" // Change 'users' to your actual table name
+          tableName: "users", // Change 'users' to your actual table name
         }
       );
 
@@ -147,20 +147,20 @@ export class UserHandler {
         userId: maxId,
         name: name,
         email: email,
-        verified: verified
+        verified: verified,
       });
     } catch (err) {
       console.log(err);
       return {
         success: false,
         msg: "Error at database",
-        err: err as string
+        err: err as string,
       };
     }
     // After all the operations are succesfull then we return the new user
     return {
       success: true,
-      user: newUser
+      user: newUser,
     };
   }
 
@@ -220,7 +220,7 @@ export class UserHandler {
     try {
       user.set({
         name: updatedUser.name,
-        verified: updatedUser.verified
+        verified: updatedUser.verified,
       });
       await user.save();
       return { success: true, msg: "Update completed" };
@@ -252,7 +252,7 @@ export class UserHandler {
       return {
         success: false,
         msg: "Unexpected error at deletion",
-        err: err as string
+        err: err as string,
       };
     }
   }

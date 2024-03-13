@@ -1,5 +1,5 @@
 # The name of the project.
-name: multiverse-ts
+name: todo-list-flutter
 # The region where the project is deployed.
 region: us-east-1
 # The version of the Genezio YAML configuration to parse.
@@ -31,17 +31,21 @@ frontend:
   # Specifies information about the SDK generation. If not specified, the SDK will not be generated for this frontend.
   sdk:
     # The language the SDK will be written in. Usually the same as the frontend language.
-    language: ts
+    language: dart
+    # The path where the SDK will be generated.  Not required for languages that export the SDK to a package manager.
+    path: lib/sdk
   # The directory that will be published to the CDN. It is relative to the path. 
-  publish: dist
+  publish: build/web
   scripts:
-    # List of scripts that build your frontend before deployment. It should populate the specified `publish` directory. 
-    build: npm run build
+    # List of scripts that build your frontend before deployment. It should populate the specified `publish` directory.
+    build:
+      - flutter build web --web-renderer html
     # List of scripts to run when starting the local development server. 
     start:
-      - npm install
-      - npm run dev
+      - flutter clean
+      - flutter pub get
+      - flutter run -d chrome
     # List of scripts to run before deploying the frontend.
     deploy:
-      - npm run install-prod-sdk
-      - npm install
+      - flutter clean
+      - flutter pub get

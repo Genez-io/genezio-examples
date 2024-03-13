@@ -29,7 +29,6 @@ Inside the project folder, you will find the following files and folders:
 ```
 ├── server/
 │   ├── index.ts
-│   ├── genezio.yaml
 │   ├── package.json
 │   └── tsconfig.json
 ├── client/
@@ -38,6 +37,7 @@ Inside the project folder, you will find the following files and folders:
 |   └── tsconfig.json
 ├── README.md
 ├── .genezioignore
+├── genezio.yaml
 ```
 
 Genezio looks for `genezio.yaml` to read the settings for deploying the project or for spinning a local dev server for testing.
@@ -74,7 +74,7 @@ Open a new terminal, navigate to the following directory, and run npm start to l
 
 ```
 cd ./client
-npm run build && npm start
+npm install && npm run build && npm start
 ```
 
 ### Deploy your project with genezio

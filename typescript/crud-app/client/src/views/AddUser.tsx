@@ -1,7 +1,7 @@
 // client/src/views/AddUser.tsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserHandler } from "@genezio-sdk/crud-app_us-east-1";
+import { UserHandler } from "@genezio-sdk/crud-app";
 
 function AddUser() {
   const [name, setName] = useState<string>("");

@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "install-prod-sdk": "npm install @genezio-sdk/crud-app_us-east-1@1.0.0-prod"
+    "install-prod-sdk": "npm install @genezio-sdk/crud-app@1.0.0-prod"
   },
   "dependencies": {
     "@genezio/vite-plugin-genezio": "^1.0.3",
@@ -28,8 +28,8 @@
     "eslint-plugin-react-refresh": "^0.4.4",
     "typescript": "^5.2.2",
     "vite": "^5.0.0"
-  },  
+  },
   "prettier": {
-  "tabWidth": 2
-}
+    "tabWidth": 2
+  }
 }

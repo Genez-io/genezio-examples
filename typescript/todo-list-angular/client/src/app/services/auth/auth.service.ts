@@ -1,29 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { User, UserLoginResponse, UserService } from '@genezio-sdk/todo-list-ts_us-east-1'
+import {
+  User,
+  UserLoginResponse,
+  UserService,
+} from '@genezio-sdk/todo-list-ts';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private authenticated: boolean = false;
 
   constructor(private router: Router) {
-    this.checkToken().then(result => {
+    this.checkToken().then((result) => {
       if (!result) {
         this.logout();
       } else {
         this.authenticated = true;
       }
-    })
+    });
   }
 
   isAuthenticated(): boolean {
-    return this.authenticated || localStorage.getItem("apiToken") != undefined;
+    return this.authenticated || localStorage.getItem('apiToken') != undefined;
   }
 
   async checkToken(): Promise<boolean> {
-    const apiToken = localStorage.getItem("apiToken");
+    const apiToken = localStorage.getItem('apiToken');
     if (!apiToken) {
       return false;
     }
@@ -39,27 +43,27 @@ export class AuthService {
   async auth(email: string, password: string): Promise<UserLoginResponse> {
     const response = await UserService.login(email, password);
     if (response.success) {
-      localStorage.setItem("apiToken", response.token!);
-      localStorage.setItem("user", JSON.stringify(response.user));
+      localStorage.setItem('apiToken', response.token!);
+      localStorage.setItem('user', JSON.stringify(response.user));
     }
     return response;
   }
 
   getUser(): User {
-    var lsUser = JSON.parse(localStorage.getItem("user")!)
+    var lsUser = JSON.parse(localStorage.getItem('user')!);
     return {
       _id: lsUser._id,
       email: lsUser.email,
-      name: lsUser.name
-    }
+      name: lsUser.name,
+    };
   }
 
   getAuthToken(): string {
-    return localStorage.getItem("apiToken")!
+    return localStorage.getItem('apiToken')!;
   }
 
   logout() {
     localStorage.clear();
-    this.router.navigate(["login"])
+    this.router.navigate(['login']);
   }
 }
