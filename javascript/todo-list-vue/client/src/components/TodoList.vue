@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { Task } from "@genezio-sdk/todo-list-vue_us-east-1";
+import { Task } from "@genezio-sdk/todo-list-vue";
 import router from "../router";
 
 export default {

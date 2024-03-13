@@ -1,5 +1,5 @@
 /**
- * This is an auto generated code. This code should not be modified since the file can be overwriten 
+ * This is an auto generated code. This code should not be modified since the file can be overwritten
  * if new genezio commands are executed.
  */
 
@@ -12,11 +12,11 @@ struct ResponseContent {
 
 class Remote {
     private var urlString: String? = nil
-    
+
     init(url: String? = nil) {
         self.urlString = url
     }
-    
+
     public func call(method: String, args: Any...) async -> Any {
         var argsArray: [Any] = []
         args.forEach { argsArray.append($0) }
@@ -31,15 +31,13 @@ class Remote {
         if (response.error != nil) {
             return response.error ?? ""
         }
-        
         return response.result ?? ""
-        
     }
-    
+
     private func makeRequest(requestContent: [String: Any], urlString: String) async -> ResponseContent {
         let url = URL(string: urlString)!
         let session = URLSession.shared
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -49,11 +47,11 @@ class Remote {
         } catch let error {
             return ResponseContent(error: error.localizedDescription)
         }
-        
+
         // make request with async await and return response
         do {
             let (data, response) = try await session.data(for: request)
-            
+
             guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
@@ -71,7 +69,6 @@ class Remote {
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: [])
                 if let dictionary = json as? [String: Any] {
-                    NSLog(dictionary.description)
                     if let error = dictionary["error"] as? [String: Any] {
                         return ResponseContent(error: error["message"] as? String ?? "")
                     }
@@ -85,7 +82,6 @@ class Remote {
         } catch let error {
             return ResponseContent(error: error.localizedDescription)
         }
-        
         return ResponseContent(error: "Unknown error")
     }
 }

@@ -11,7 +11,7 @@ import {
   Alert,
 } from "reactstrap";
 import React, { useState, useEffect } from "react";
-import { TaskService } from "@genezio-sdk/getting-started-genezio_us-east-1";
+import { TaskService } from "@genezio-sdk/getting-started-genezio";
 import { useNavigate } from "react-router-dom";
 import TaskView from "./TaskView.jsx";
 import uuid from "react-uuid";
@@ -45,7 +45,7 @@ export default (props) => {
       // eslint-disable-next-line no-inner-declarations
       async function fetchTasks() {
         const res = await TaskService.getAllTasksByUser(
-          localStorage.getItem("apiToken")
+          localStorage.getItem("apiToken"),
         );
         if (!res.success) {
           setAlertErrorMessage(
@@ -53,7 +53,7 @@ export default (props) => {
               res.err
                 ? res.err
                 : "Please check the backend logs in the project dashboard - https://app.genez.io."
-            }`
+            }`,
           );
           return;
         }
@@ -70,7 +70,7 @@ export default (props) => {
   async function handleDelete(id) {
     const res = await TaskService.deleteTask(
       localStorage.getItem("apiToken"),
-      id
+      id,
     );
     if (!res.success) {
       setAlertErrorMessage(
@@ -78,7 +78,7 @@ export default (props) => {
           res.err
             ? res.err
             : "Please check the backend logs in the project dashboard - https://app.genez.io."
-        }`
+        }`,
       );
       navigate(0);
       return;
@@ -94,7 +94,7 @@ export default (props) => {
       localStorage.getItem("apiToken"),
       id,
       title,
-      solved
+      solved,
     );
     if (!res.success) {
       setAlertErrorMessage(
@@ -102,7 +102,7 @@ export default (props) => {
           res.err
             ? res.err
             : "Please check the backend logs in the project dashboard - https://app.genez.io."
-        }`
+        }`,
       );
       navigate(0);
       return;
@@ -127,7 +127,7 @@ export default (props) => {
     }
     const res = await TaskService.createTask(
       localStorage.getItem("apiToken"),
-      taskTitle
+      taskTitle,
     );
     if (!res.success) {
       setAlertErrorMessage(
@@ -135,7 +135,7 @@ export default (props) => {
           res.err
             ? res.err
             : "Please check the backend logs in the project dashboard - https://app.genez.io."
-        }`
+        }`,
       );
       navigate(0);
       return;

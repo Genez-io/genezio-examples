@@ -1,6 +1,6 @@
 import { Button, Card, Container, Row, Col, Input } from "reactstrap";
 import React, { useState, useEffect, useRef } from "react";
-import { User } from "@genezio-sdk/todo-list_us-east-1";
+import { User } from "@genezio-sdk/todo-list";
 import { useNavigate } from "react-router-dom";
 
 export default (props) => {

@@ -1,0 +1,25 @@
+name: todo-list-swift
+region: us-east-1
+yamlVersion: 2
+backend:
+    path: server
+    language:
+        name: ts
+        packageManager: npm
+    cloudProvider: genezio
+    classes:
+        - path: task.ts
+          type: jsonrpc
+        - path: user.ts
+          type: jsonrpc
+        - path: cron.ts
+          type: jsonrpc
+          methods:
+              - name: deleteAllData
+                type: cron
+                cronString: 0 12 * * *
+frontend:
+    path: client
+    sdk:
+        language: swift
+        path: GenezioTodoList/sdk

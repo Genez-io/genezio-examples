@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { User } from "@genezio-sdk/todo-list_us-east-1";
+import { User } from "@genezio-sdk/todo-list";
 
 export default (props) => {
   const navigate = useNavigate();

@@ -1,11 +1,38 @@
+# The name of the project.
 name: hello-world
+# The region where the project is deployed.
 region: us-east-1
-language: js
-cloudProvider: genezio
-packageManager: npm
-scripts:
-  preBackendDeploy: npm install
-  preStartLocal: cd server && npm install
-workspace:
-  backend: server
-  frontend: client
+# The version of the Genezio YAML configuration to parse.
+yamlVersion: 2
+backend:
+    # The root directory of the backend.
+    path: server
+    # Information about the backend's programming language.
+    language:
+        # The name of the programming language.
+        name: js
+        # The package manager used by the backend.
+        packageManager: npm
+    # Scripts are running in the specified `path` directory.
+    scripts:
+        # List of scripts to run before deploying the backend.
+        deploy:
+            - npm install
+        # List of scripts to run before deploying the backend.
+        local:
+            - npm install
+    # The cloud provider where the backend is deployed.
+    cloudProvider: genezio
+# Information about the frontend, including the path, language, and publish directory.
+# It is optional. It can also be an array if there are multiple frontends you want to deploy.
+frontend:
+    # The folder where the frontend scripts will run.
+    path: client
+    # Specifies information about the SDK generation. If not specified, the SDK will not be generated for this frontend.
+    sdk:
+        # The language the SDK will be written in. Usually the same as the frontend language.
+        language: js
+    scripts:
+        # List of scripts to run when starting the local development server.
+        start:
+            - npm install
