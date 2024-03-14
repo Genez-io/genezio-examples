@@ -1,37 +1,25 @@
-<div align="center"> <a href="https://genez.io/">
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/genez-io/graphics/raw/HEAD/svg/Icon_Genezio_White.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/genez-io/graphics/raw/HEAD/svg/Icon_Genezio_Black.svg">
-  <img alt="genezio logo" src="https://github.com/genez-io/graphics/raw/HEAD/svg/Icon_Genezio_Black.svg" style="max-height: 50px;">
-</picture>
-
-</div>
 
 <div align="center">
 
 [![deployed with: genezio](https://img.shields.io/badge/deployed_with-genezio-6742c1.svg?labelColor=62C353&style=flat)](https://github.com/genez-io/genezio)
 
-[![Join our community](https://img.shields.io/discord/1024296197575422022?style=social&label=Join%20our%20community%20&logo=discord&labelColor=6A7EC2)](https://discord.gg/uc9H5YKjXv)
-[![Follow @geneziodev](https://img.shields.io/twitter/url/https/twitter.com/geneziodev.svg?style=social&label=Follow%20%40geneziodev)](https://twitter.com/geneziodev)
-
 </div>
 
 # Getting started with Dart and React
 
-This example will show you how to harness the speed of a Redis database to build a shopping cart functionality using TypeScript/NodeJs.
+Note: Using `dart` on the backend side is still experimental and may not work as expected.
+Please contact us if you encounter any issues using [GitHub Issues](https://github.com/Genez-io/genezio/issues) or [Discord](https://discord.com/invite/uc9H5YKjXv).
 
-The example is backed by `genezio` on the server side.
+This is an example of a todo list application that uses:
 
-A minimal frontend for the online store is implemented using React and Bootstrap.
-The great part about a minimal design, is that you can go as wild as you'd like with the frontend and tweak it further to your liking.
-
-The application is built using:
- * `Dart` for the backend
- * `React` for the frontend
- * `Mongo` for a database
+- `Dart` for the backend
+- `React` for the frontend
+- `MongoDB` to store the data
+- `genezio` for developing and deploying the project
 
 ## Prerequisites
+
+Host a Mongo Database. Follow this [tutorial](https://www.mongodb.com/basics/mongodb-atlas-tutorial) to get a free tier database.
 
 If you don't already have them, you'll need to install the following tools:
 - [Dart](https://dart.dev/get-dart)
@@ -43,44 +31,6 @@ After installing `nvm`, you can easily get the any version of `node` by running 
 `nvm` will automatically install the corresponding `npm` version.
 
 ## Project Structure
-
-Inside the project folder, you will find the following files and folders:
-
-```bash
-.
-├── README.md
-├── client
-│   ├── README.md
-│   ├── index.html
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── public
-│   │   └── genezio.svg
-│   ├── src
-│   │   ├── App.css
-│   │   ├── App.tsx
-│   │   ├── assets
-│   │   │   ├── background.jpg
-│   │   │   ├── genezio.svg
-│   │   │   └── trash.svg
-│   │   ├── index.css
-│   │   ├── main.tsx
-│   │   ├── views
-│   │   │   ├── AllTasks.tsx
-│   │   │   └── TaskView.tsx
-│   │   └── vite-env.d.ts
-│   ├── tsconfig.json
-│   ├── tsconfig.node.json
-│   └── vite.config.ts
-└── server
-    ├── analysis_options.yaml
-    ├── genezio.yaml
-    ├── lib
-    │   ├── task.dart
-    │   └── task.g.dart
-    ├── pubspec.lock
-    └── pubspec.yaml
-```
 
 `genezio` looks for `genezio.yaml` to read the settings for deploying the project or for spinning a local dev server for testing.
 
@@ -126,14 +76,13 @@ The React application is built using [Vite](https://vitejs.dev/). Vite will open
 
 If you wish to deploy your project to the Genezio infrastructure, follow these steps:
 
-Log in to Genezio using the command genezio login:
-```bash
-genezio login
-```
-
 To deploy a functional project, you need to connect a Mongo instance to it. Follow [these instructions](https://genez.io/blog/how-to-add-a-mongodb-to-your-genezio-project/) to create a Mongo database.
 
 Save the Mongo credentials in a `.env` file in the backend directory and configure the deployment command to use this file to also load the environment variables.
+
+```env
+MONGODB_URI=<your-mongo-uri>
+```
 
 Run the following command in the backend directory:
 ```bash
@@ -143,7 +92,7 @@ genezio deploy --env .env --backend
 
 Afterwards, run the following command in the frontend directory:
 ```bash
-cd server/
+cd client/
 genezio deploy --frontend
 ```
 

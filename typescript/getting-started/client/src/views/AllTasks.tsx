@@ -11,7 +11,10 @@ import {
   Alert,
 } from "reactstrap";
 import { useState, useEffect } from "react";
-import { TaskService } from "@genezio-sdk/getting-started-genezio-typescript-newest_us-east-1";
+import {
+  TaskService,
+  Task,
+} from "@genezio-sdk/getting-started-genezio-typescript";
 import { useNavigate } from "react-router-dom";
 import TaskView from "./TaskView";
 import uuid from "react-uuid";
@@ -20,7 +23,7 @@ import logo from "./logo.png";
 export default function AllTasks() {
   const navigate = useNavigate();
 
-  const [tasks, setTasks] = useState<any[] | null>(null);
+  const [tasks, setTasks] = useState<Task[] | null>(null);
   const [modalAddTask, setModalAddTask] = useState<boolean>(false);
   const toggleModalAddTask = () => {
     setModalAddTask(!modalAddTask);
@@ -63,9 +66,9 @@ export default function AllTasks() {
         token = uuid();
         localStorage.setItem("apiToken", token);
       }
-    }
-    if (!tasks && alertErrorMessage == "") {
-      fetchTasks();
+      if (!tasks && alertErrorMessage == "") {
+        fetchTasks();
+      }
     }
   }, [tasks, alertErrorMessage]);
 
@@ -122,7 +125,7 @@ export default function AllTasks() {
     }
   }
 
-  async function handleAdd(e: any) {
+  async function handleAdd(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
     setError("");
     if (!taskTitle) {
@@ -144,7 +147,7 @@ export default function AllTasks() {
       navigate(0);
       return;
     }
-    if (res.success) {
+    if (res.success && res.task) {
       setTasks([...tasks!, res.task]);
       setTaskTitle("");
       toggleModalAddTask();
@@ -214,7 +217,7 @@ export default function AllTasks() {
                 )}
 
                 {tasks != null ? (
-                  tasks!.map((task: any) => (
+                  tasks!.map((task) => (
                     <TaskView
                       key={task.id}
                       task={task}

@@ -6,12 +6,12 @@ import { GenezioDeploy, GenezioMethod } from "@genezio/types";
 
 const red_color = "\x1b[31m%s\x1b[0m";
 const missing_env_mongo_error =
-  "ERROR: Your MONGO_DB_URI environment variable is not properly set, go to https://genez.io/blog/how-to-add-a-mongodb-to-your-genezio-project/ to learn how to integrate your project with Mongo DB";
+  "ERROR: Your MONGO_DB_URI environment variable is not properly set, go to https://genezio.com/blog/how-to-add-a-mongodb-to-your-genezio-project/ to learn how to integrate your project with Mongo DB";
 const missing_env_contract_error =
-  "ERROR: Your CONTRACT_ADDRESS environment variable is not properly set, go to https://genez.io/blog/create-your-first-web3-app/ to learn how obtain a contract address";
+  "ERROR: Your CONTRACT_ADDRESS environment variable is not properly set, go to https://genezio.com/blog/create-your-first-web3-app/ to learn how obtain a contract address";
 
 const missing_env_blast_api_error =
-  "ERROR: Your BLAST_API_RPC_ENDPOINT environment variable is not properly set, go to https://genez.io/blog/create-your-first-web3-app/ to learn how to obtain a Blast API Endpoint";
+  "ERROR: Your BLAST_API_RPC_ENDPOINT environment variable is not properly set, go to https://genezio.com/blog/create-your-first-web3-app/ to learn how to obtain a Blast API Endpoint";
 
 /**
  * The Blockchain server class that will be deployed on the genezio infrastructure.

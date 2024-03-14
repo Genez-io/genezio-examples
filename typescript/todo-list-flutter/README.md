@@ -1,4 +1,4 @@
-# Getting started with Flutter and genezio
+# Todo List with NodeJs and Flutter
 
 <div align="center">
 
@@ -6,35 +6,66 @@
 
 </div>
 
-## You can check a [demo getting-started app here](https://getting-started-flutter.dev.app.genez.io/).
-
-This is an example of a todo application that uses Flutter for the frontend application and genezio for developing and deploying the backend.
-
-Note: `genezio deploy` deploys both backend and frontend. If you want to test this example out-of-the-box by running 1 command, head to the `server` directory and run `genezio deploy`.
+This is an example of a todo application that uses Flutter for the frontend, NodeJs for the backend and genezio deployment.
 
 If you want to deploy your application step-by-step, follow the guidelines below.
+
+## Prerequisites
+
+- ✅ [NodeJs](https://nodejs.org) >= 18.0.0
+- ✅ [npm](https://www.npmjs.com/)
+- ✅ [genezio](https://genezio.com/)
+- ✅ [Flutter](https://genezio.com/)
+
+1. Host a Mongo Database. Follow this [tutorial](https://genezio.com/docs/tutorials/connect-to-mongodb-atlas) to get a free tier database.
+2. Create a `server/.env` file and add the following environment variables:
+
+```env
+MONGO_DB_URI=<your-mongo-uri>
+```
 
 ## Clone the example
 
 1. Run `git clone https://github.com/Genez-io/genezio-examples`
 2. Navigate to the folder `cd ./genezio-examples/typescript/todo-list-flutter`
 
-## Initialization
-
-1. Run `npm install` in the `server/` folder to install the dependencies.
-2. Run `flutter pub get` in the `client/` folder to install the dependencies.
-
 ## Run the example locally
 
-1. Run `genezio local` in the `server/` folder to start the local server.
-2. Start the Flutter app by going to the `client/` folder and run `flutter run -d chrome`.
+1. From a first terminal, run `genezio local` in the `server/` folder to start the local server.
+2. From a second terminal, start the Flutter app by going to the `client/` folder and run `flutter run -d chrome`.
 
-## Deploy the example in the genezio infrastructure
+Note: You must have `MONGO_DB_URI` exported as an environment variable or set in the `.env` file in the `server/` folder.
 
-1. Run `genezio deploy --backend` in the `server/` folder that contains also the `genezio.yaml` file. This will deploy your code in the genezio infrastructure and it will also create an SDK that can be used to call the methods remotely.
-2. Start the Flutter app by going to the `client/todo_list` folder and run `flutter run -d chrome`.
+Flutter will start a new tab in your default browser with the todo list app that you can test locally.
 
-## Deploy the frontend in genezio Infrastructure
+## Deploy the project
 
-1. Run `flutter clean && flutter pub get && flutter build web` in the `client/todo_list` folder to build the Flutter app.
-2. Run `genezio deploy --frontend` in the `server` folder to deploy the frontend in the genezio infrastructure.
+1. Run `genezio deploy` in the `server` directory to deploy the project to the cloud.
+
+`genezio` will provide in the terminal a publicly available URL where you can access your application.
+
+Note: To remotely set the environment variables, you can deploy using `genezio deploy --env .env` command.
+
+## Genezio Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                  | Action                       |
+| :----------------------- | :--------------------------- |
+| `npm install -g genezio` | Installs genezio globally    |
+| `genezio login`          | Logs in to genezio           |
+| `genezio local`          | Starts a local server        |
+| `genezio deploy`         | Deploys a production project |
+| `genezio --help`         | Get help using genezio       |
+
+## Want to learn more?
+
+Check out:
+
+- [Official genezio documentation](https://genezio.com/docs)
+- [Genezio tutorials](https://genezio.com/blog)
+- [Discord channel](https://discord.gg/uc9H5YKjXv)
+
+## Contact
+
+If you need support or you have any questions, please join us in our [Discord channel](https://discord.com/invite/uc9H5YKjXv). We'd love to chat!

@@ -1,7 +1,19 @@
 import { Input } from "reactstrap";
-import { ReactComponent as Icon } from "./trash.svg";
+import Icon from "./trash.svg";
 
-export default function TaskView(props: any) {
+type TaskViewProps = {
+    task: {
+        id: string;
+        title: string;
+        solved: boolean;
+        url?: string;
+    };
+    onChange: (id: string, title: string, solved: boolean) => void;
+    onDelete: (id: string) => void;
+};
+
+
+export default function TaskView(props: TaskViewProps) {
   return (
     <div key={props.task.id} className="mb-3">
       <div className="d-flex align-items-center">
@@ -17,7 +29,7 @@ export default function TaskView(props: any) {
           {props.task.url ? <a href={props.task.url}>link</a> : ""}
         </p>
         <div style={{ cursor: "pointer" }}>
-          <Icon onClick={() => props.onDelete(props.task.id)} width="1rem" />
+          <img src={Icon} onClick={() => props.onDelete(props.task.id)} />
         </div>
       </div>
     </div>

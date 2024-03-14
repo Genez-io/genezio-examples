@@ -9,13 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@genezio/types": "^0.1.9",
+    "@genezio/types": "^1.0.14",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.33.0"
   },
   "devDependencies": {
-    "@types/node": "^20.8.9",
+    "@types/node": "^20.11.26",
     "@types/pg": "^8.10.7"
   }
 }

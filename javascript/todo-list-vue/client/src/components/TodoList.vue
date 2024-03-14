@@ -3,13 +3,17 @@
     <h2>Genezio Angular Todo List</h2>
     <form @submit.prevent="createTodo">
       <label for="title">Title:</label>
-      <input type="text" id="title" v-model="title" required>
+      <input type="text" id="title" v-model="title" required />
       <button type="submit">Add Todo</button>
     </form>
     <div class="todo-list">
       <div v-for="todo in todos" :key="todo._id" class="todo-item">
-        <input type="checkbox" :id="'todo-' + todo._id" v-model="todo.solved"
-        @change="markDone(todo)">
+        <input
+          type="checkbox"
+          :id="'todo-' + todo._id"
+          v-model="todo.solved"
+          @change="markDone(todo)"
+        />
         <label :for="'todo-' + todo._id">{{ todo.title }}</label>
         <button @click="deleteTodo(todo._id)">Delete</button>
       </div>
@@ -20,101 +24,106 @@
 </template>
 
 <script>
-import { Task } from '@genezio-sdk/todo-list-angular_us-east-1';
-import router from '../router';
+import { Task } from "@genezio-sdk/todo-list-vue";
+import router from "../router";
 
 export default {
   data() {
     return {
       todos: [],
-      title: '',
+      title: "",
     };
   },
   methods: {
     createTodo() {
       if (!localStorage.token || !localStorage.userId) {
-        router.push('/login');
+        router.push("/login");
         return;
       }
 
       Task.createTask(localStorage.token, this.title, localStorage.userId)
         .then((response) => {
-          if (!response.success && response.msg === 'User is not logged on') {
-            localStorage.token = '';
-            localStorage.userId = '';
-            router.push('/login');
+          if (!response.success && response.msg === "User is not logged on") {
+            localStorage.token = "";
+            localStorage.userId = "";
+            router.push("/login");
           }
 
-          this.title = '';
+          this.title = "";
           this.todos = [...this.todos, response.task];
         })
         .catch((error) => {
-          alert('An error occured.');
+          alert("An error occured.");
           console.error(error);
         });
     },
     deleteTodo(index) {
       if (!localStorage.token || !localStorage.userId) {
-        router.push('/login');
+        router.push("/login");
         return;
       }
 
-      Task.deleteTask(localStorage.token, index).then((response) => {
-        if (response.success) {
-          // eslint-disable-next-line
-          this.todos = this.todos.filter((todo) => todo._id !== index);
-        }
-      }).catch((error) => {
-        alert('An error occured.');
-        console.error(error);
-      });
+      Task.deleteTask(localStorage.token, index)
+        .then((response) => {
+          if (response.success) {
+            // eslint-disable-next-line
+            this.todos = this.todos.filter((todo) => todo._id !== index);
+          }
+        })
+        .catch((error) => {
+          alert("An error occured.");
+          console.error(error);
+        });
     },
     logout() {
-      localStorage.token = '';
-      localStorage.userId = '';
-      router.push('/login');
+      localStorage.token = "";
+      localStorage.userId = "";
+      router.push("/login");
     },
     markDone(todo) {
       if (!localStorage.token || !localStorage.userId) {
-        router.push('/login');
+        router.push("/login");
         return;
       }
 
       // eslint-disable-next-line
-      Task.updateTask(localStorage.token, todo._id, todo.title, todo.solved).then((response) => {
-        if (!response.success) {
+      Task.updateTask(localStorage.token, todo._id, todo.title, todo.solved)
+        .then((response) => {
+          if (!response.success) {
+            // eslint-disable-next-line
+            todo.solved = !todo.solved;
+            alert("Could not mark as done.");
+            return;
+          }
+          console.log("MARKED", this.todos);
+        })
+        .catch((error) => {
+          alert("Could not mark as done.");
           // eslint-disable-next-line
           todo.solved = !todo.solved;
-          alert('Could not mark as done.');
-          return;
-        }
-        console.log('MARKED', this.todos);
-      }).catch((error) => {
-        alert('Could not mark as done.');
-        // eslint-disable-next-line
-        todo.solved = !todo.solved;
-        console.error(error);
-      });
+          console.error(error);
+        });
     },
   },
   mounted() {
     if (!localStorage.token || !localStorage.userId) {
-      router.push('/login');
+      router.push("/login");
       return;
     }
 
-    Task.getAllTasksByUser(localStorage.token, localStorage.userId).then((response) => {
-      this.todos = response.tasks;
-    }).catch((error) => {
-      alert('An error occured.');
-      console.error(error);
-    });
+    Task.getAllTasksByUser(localStorage.token, localStorage.userId)
+      .then((response) => {
+        this.todos = response.tasks;
+      })
+      .catch((error) => {
+        alert("An error occured.");
+        console.error(error);
+      });
   },
 };
 </script>
 
 <style>
-
 .todo-list {
   display: flex;
   flex-direction: column;
@@ -133,4 +142,3 @@ input[type="checkbox"] {
   margin-right: 0.5rem;
 }
 </style>
-

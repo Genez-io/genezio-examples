@@ -1,0 +1,29 @@
+# The name of the project.
+name: kotlin-todo-mongo
+# The region where the project is deployed.
+region: us-east-1
+# The version of the Genezio YAML configuration to parse.
+yamlVersion: 2
+backend:
+    # The root directory of the backend.
+    path: server
+    # Information about the backend's programming language.
+    language:
+        # The name of the programming language.
+        name: kt
+    # The cloud provider where the backend is deployed.
+    cloudProvider: genezio
+    classes:
+        - path: app/src/main/kotlin/geneziokotlin/SampleClass.kt
+          name: TaskService
+# Information about the frontend, including the path, language, and publish directory.
+# It is optional. It can also be an array if there are multiple frontends you want to deploy.
+frontend:
+    # The folder where the frontend scripts will run.
+    path: client
+    # Specifies information about the SDK generation. If not specified, the SDK will not be generated for this frontend.
+    sdk:
+        # The language the SDK will be written in. Usually the same as the frontend language.
+        language: kt
+        # The path where the SDK will be generated. Not required for languages that export the SDK to a package manager.
+        path: app/src/main/java/com/genezio/sdk

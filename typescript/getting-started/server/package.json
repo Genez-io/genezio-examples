@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@genezio/types": "^0.1.9",
+    "@genezio/types": "^1.0.14",
+    "@types/node": "^20.11.25",
     "dotenv": "^16.0.3",
     "mongoose": "^8.0.0"
   }

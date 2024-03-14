@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TasksService } from 'src/app/services/tasks/tasks.service';
-import { Task } from '@genezio-sdk/todo-list-ts_us-east-1';
+import { Task } from '@genezio-sdk/todo-list-ts';
 
 @Component({
   selector: 'app-all-tasks',

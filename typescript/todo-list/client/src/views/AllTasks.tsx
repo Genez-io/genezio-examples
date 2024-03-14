@@ -13,13 +13,9 @@ import {
   Alert,
 } from "reactstrap";
 import { useState, useEffect } from "react";
-import {
-  TaskService,
-  Task,
-  GetTasksResponse,
-} from "@genezio-sdk/todo-list-ts_us-east-1";
+import { TaskService, Task, GetTasksResponse } from "@genezio-sdk/todo-list-ts";
 import { useNavigate } from "react-router-dom";
-import { User } from "@genezio-sdk/todo-list-ts_us-east-1";
+import { User } from "@genezio-sdk/todo-list-ts";
 
 export default function AllTasks() {
   const navigate = useNavigate();

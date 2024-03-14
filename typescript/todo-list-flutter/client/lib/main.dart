@@ -19,11 +19,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Todo List with Flutter',
+      title: 'Todo List',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: const MyHomePage(title: 'Todo List with Flutter'),
+      home: const MyHomePage(title: 'Todo List'),
     );
   }
 }
@@ -73,46 +73,20 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AddTaskAlertDialog(token: token);
-            },
-          );
-        },
-        tooltip: 'Add a new task',
-        child: const Icon(Icons.add),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 6.0,
-        clipBehavior: Clip.antiAlias,
-        child: SizedBox(
-          height: kBottomNavigationBarHeight,
-          child: BottomNavigationBar(
-            currentIndex: _selectedIndex,
-            selectedItemColor: Colors.deepPurple,
-            unselectedItemColor: Colors.black,
-            onTap: (index) {
-              setState(() {
-                _selectedIndex = index;
-                pageController.jumpToPage(index);
-              });
-            },
-            items: const [
-              BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.square_list),
-                  label: 'tasks',
-                  tooltip: 'List all of your tasks'),
-              BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.tag),
-                label: 'tags',
-                tooltip: 'Check your tags',
-              ),
-            ],
-          ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(
+            bottom: 20.0), // Adjust the bottom margin as needed
+        child: FloatingActionButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AddTaskAlertDialog(token: token);
+              },
+            );
+          },
+          tooltip: 'Add a new task',
+          child: const Icon(Icons.add),
         ),
       ),
     );
@@ -182,13 +156,10 @@ class _TasksState extends State<Tasks> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
               color: Colors.white,
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 5.0,
-                  offset: Offset(0, 5), // shadow direction: bottom right
-                ),
-              ],
+              border: Border.all(
+                color: Colors.deepPurple,
+                width: 1,
+              ),
             ),
             child: ListTile(
               leading: Checkbox(

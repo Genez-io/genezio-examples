@@ -8,6 +8,7 @@ import { AuthService } from './services/auth/auth.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  title: string = "todo-list";
   constructor(private authService: AuthService, private router: Router) {
     this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {

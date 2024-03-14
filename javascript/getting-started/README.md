@@ -1,4 +1,4 @@
-<div align="center"> <a href="https://genez.io/"></a>
+<div align="center"> <a href="https://genezio.com/"></a>
 <img alt="genezio logo" src="https://github.com/genez-io/graphics/raw/HEAD/svg/Icon_Genezio_Black.svg" style="max-height: 50px;">
 
 </div>
@@ -18,9 +18,9 @@ This is a simple full stack application that illustrates how genezio works.
 
 ## Prerequisites
 
-- ✅ [NodeJs](https://nodejs.org/en) >= 16.0.0
+- ✅ [NodeJs](https://nodejs.org/en) >= 18.0.0
 - ✅ [npm](https://www.npmjs.com/)
-- ✅ [genezio](https://genez.io/)
+- ✅ [genezio](https://genezio.com/)
 
 Note: We recommend using [nvm]() to install Node.js and npm.
 
@@ -118,8 +118,8 @@ All commands are run from the root of the project, from a terminal:
 
 Check out:
 
-- [Official genezio documentation](https://genez.io/docs)
-- [Web development tutorials](https://genez.io/blog)
+- [Official genezio documentation](https://genezio.com/docs)
+- [Web development tutorials](https://genezio.com/blog)
 - [Discord channel](https://discord.gg/uc9H5YKjXv)
 
 ## Contact

@@ -1,4 +1,4 @@
-<div align="center"> <a href="https://genez.io/"></a>
+<div align="center"> <a href="https://genezio.com/"></a>
 <img alt="genezio logo" src="https://github.com/genez-io/graphics/raw/HEAD/svg/Icon_Genezio_Black.svg" style="max-height: 50px;">
 
 </div>
@@ -13,12 +13,14 @@
 </div>
 
 # Simple genezio webhook example
+
 This is a simple project with a server and a client to call the webhooks.
 
 ## Prerequisites
-- ✅ [NodeJs](https://nodejs.org) >= 16.0.0
+
+- ✅ [NodeJs](https://nodejs.org) >= 18.0.0
 - ✅ [npm](https://www.npmjs.com/)
-- ✅ [genezio](https://genez.io/)
+- ✅ [genezio](https://genezio.com/)
 
 ## Project Structure
 
@@ -27,7 +29,6 @@ Inside the project folder, you will find the following files and folders:
 ```
 ├── server/
 │   ├── index.ts
-│   ├── genezio.yaml
 │   ├── package.json
 │   └── tsconfig.json
 ├── client/
@@ -36,6 +37,7 @@ Inside the project folder, you will find the following files and folders:
 |   └── tsconfig.json
 ├── README.md
 ├── .genezioignore
+├── genezio.yaml
 ```
 
 Genezio looks for `genezio.yaml` to read the settings for deploying the project or for spinning a local dev server for testing.
@@ -55,6 +57,7 @@ git clone https://github.com/Genez-io/genezio-examples
 ```
 
 Navigate to the following directory:
+
 ```
 cd ./genezio-examples/typescript/webhook
 ```
@@ -62,14 +65,16 @@ cd ./genezio-examples/typescript/webhook
 ### Test your project locally
 
 Test the project locally:
+
 ```
 genezio local
 ```
 
 Open a new terminal, navigate to the following directory, and run npm start to launch the application:
+
 ```
 cd ./client
-npm run build && npm start
+npm install && npm run build && npm start
 ```
 
 ### Deploy your project with genezio
@@ -77,41 +82,42 @@ npm run build && npm start
 If you wish to deploy your project to the Genezio infrastructure, follow these steps:
 
 Log in to Genezio using the command genezio login:
+
 ```
 genezio login
 ```
 
-Deploy your project using the genezio deploy command from the ``./genezio-examples/typescript/webhook`` directory.
+Deploy your project using the genezio deploy command from the `./genezio-examples/typescript/webhook` directory.
+
 ```
 genezio deploy
 ```
-
 
 ## Commands
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install -g genezio`  | Installs genezio globally                        |
-| `genezio login`           | Logs in to genezio                               |
-| `genezio local`           | Starts a local server                            |
-| `genezio deploy`          | Deploys a production project                     |
-| `genezio --help`          | Get help using genezio                           |
-
+| Command                  | Action                       |
+| :----------------------- | :--------------------------- |
+| `npm install -g genezio` | Installs genezio globally    |
+| `genezio login`          | Logs in to genezio           |
+| `genezio local`          | Starts a local server        |
+| `genezio deploy`         | Deploys a production project |
+| `genezio --help`         | Get help using genezio       |
 
 ## Want to learn more?
 
 Check out:
-- [Official genezio documentation](https://genez.io/docs)
-- [Web development tutorials](https://genez.io/blog)
-- [Discord channel](https://discord.gg/uc9H5YKjXv)
 
+- [Official genezio documentation](https://genezio.com/docs)
+- [Web development tutorials](https://genezio.com/blog)
+- [Discord channel](https://discord.gg/uc9H5YKjXv)
 
 ## Contact
 
 If you need support or you have any questions, please join us in our [Discord channel](). We'd love to chat!
 
 ## Built With
-- [Genezio](https://genez.io/)
+
+- [Genezio](https://genezio.com/)
 - [Node.JS](https://nodejs.org/en/)
