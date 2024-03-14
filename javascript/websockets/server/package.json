@@ -1,0 +1,16 @@
+{
+  "name": "hello-world-genezio",
+  "version": "1.0.0",
+  "description": "A hello world app using genezio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@genezio/types": "^1.0.14",
+    "@types/node": "^20.11.27",
+    "socket.io": "^4.7.5"
+  }
+}
