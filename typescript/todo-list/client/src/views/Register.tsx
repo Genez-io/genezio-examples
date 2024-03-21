@@ -1,7 +1,8 @@
 import { Button, Card, Container, Row, Col, Input } from "reactstrap";
 import { useState } from "react";
-import { UserService } from "@genezio-sdk/todo-list-ts";
 import { useNavigate } from "react-router-dom";
+import { AuthService } from "@genezio/auth";
+import { GenezioError } from "@genezio/types";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -25,25 +26,18 @@ export default function Register() {
     }
 
     setError("");
-
-    const res = await UserService.register(name, email, password);
-
-    if (!res.success) {
-      if (!res.err) {
-        setError(
-          `Unexpected error: ${
-            res.msg
-              ? res.msg
-              : "Please check the backend logs in the project dashboard - https://app.genez.io."
-          }`
-        );
-      } else {
-        setError(res.err);
-      }
+    try {
+      await AuthService.getInstance().register(email, password, name);
+    } catch (err: any) {
+      setError(
+        "Error code: " +
+          (err as GenezioError).code +
+          ": " +
+          (err as GenezioError).message
+      );
       return;
-    } else {
-      navigate("/login");
     }
+    navigate("/login");
   }
 
   return (

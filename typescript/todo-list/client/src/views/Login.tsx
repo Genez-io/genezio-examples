@@ -1,7 +1,8 @@
 import { Button, Card, Container, Row, Col, Input } from "reactstrap";
 import { useState } from "react";
-import { UserService } from "@genezio-sdk/todo-list-ts";
 import { useNavigate } from "react-router-dom";
+import { AuthService } from "@genezio/auth";
+import { GenezioError } from "@genezio/types";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -17,27 +18,21 @@ export default function Login() {
     }
 
     setError("");
-
-    const res = await UserService.login(email, password);
-
-    if (!res.success) {
-      if (!res.err) {
-        setError(
-          `Unexpected error: ${
-            res.msg
-              ? res.msg
-              : "Please check the backend logs in the project dashboard - https://app.genez.io."
-          }`
-        );
-      } else {
-        setError(res.err);
-      }
+    let res;
+    try {
+      res = await AuthService.getInstance().login(email, password);
+    } catch (err: any) {
+      setError(
+        "Error code: " +
+          (err as GenezioError).code +
+          ": " +
+          (err as GenezioError).message
+      );
       return;
-    } else {
-      localStorage.setItem("apiToken", res.token!);
-      localStorage.setItem("user", JSON.stringify(res.user));
-      navigate("/admin/all-tasks");
     }
+    localStorage.setItem("apiToken", res.token!);
+    localStorage.setItem("user", JSON.stringify(res.user));
+    navigate("/admin/all-tasks");
   }
 
   return (

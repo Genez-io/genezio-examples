@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
-import { reqAuth } from "./helper";
 import { TaskModel } from "./models/task";
-import { GenezioDeploy } from "@genezio/types";
+import { GenezioAuth, GenezioDeploy, GnzContext } from "@genezio/types";
 
 const red_color = "\x1b[31m%s\x1b[0m";
 const missing_env_error =
@@ -70,23 +69,25 @@ export class TaskService {
    * @param {*} userId The user ID.
    * @returns An object containing two properties: { success: true, tasks: tasks }
    */
-  async getAllTasksByUser(
-    token: string,
-    userId: string
-  ): Promise<GetTasksResponse> {
+  @GenezioAuth()
+  async getAllTasksByUser(context: GnzContext): Promise<GetTasksResponse> {
     if (!process.env.MONGO_DB_URI) {
       console.log(red_color, missing_env_error);
       return { success: false, tasks: [], err: missing_env_error };
     }
-    console.log(`Get all tasks by user request received with userID ${userId}`);
-
-    const authObject = await reqAuth(token);
-    if (!authObject.success) {
-      return { success: false, tasks: [] };
-    }
+    const ownerId = context.user?.userId;
+    if (!ownerId)
+      return {
+        success: false,
+        tasks: [],
+        err: "User not authentificated or token has expired",
+      };
+    console.log(
+      `Get all tasks by user request received with userID ${context.user?.userId}`
+    );
     let tasks;
     try {
-      tasks = (await TaskModel.find({ ownerId: userId })).map((task) => ({
+      tasks = (await TaskModel.find({ ownerId: ownerId })).map((task) => ({
         title: task.title,
         ownerId: task.ownerId,
         solved: task.solved,
@@ -111,23 +112,24 @@ export class TaskService {
    * @param {*} ownerId The owner's of the task ID.
    * @returns An object containing two properties: { success: true, tasks: tasks }
    */
+  @GenezioAuth()
   async createTask(
-    token: string,
-    title: string,
-    ownerId: string
+    context: GnzContext,
+    title: string
   ): Promise<GetTaskResponse> {
     if (!process.env.MONGO_DB_URI) {
       console.log(red_color, missing_env_error);
       return { success: false, err: missing_env_error };
     }
+    const ownerId = context.user?.userId;
+    if (!ownerId)
+      return {
+        success: false,
+        err: "User not authentificated or token has expired",
+      };
     console.log(
       `Create task request received for user with id ${ownerId} with title ${title}`
     );
-
-    const authObject = await reqAuth(token);
-    if (!authObject.success) {
-      return { success: false };
-    }
     let task;
     try {
       task = await TaskModel.create({
@@ -162,8 +164,9 @@ export class TaskService {
    * @param {*} solved If the task is solved or not.
    * @returns An object containing two properties: { success: true }
    */
+  @GenezioAuth()
   async updateTask(
-    token: string,
+    context: GnzContext,
     id: string,
     title: string,
     solved: boolean
@@ -172,14 +175,15 @@ export class TaskService {
       console.log(red_color, missing_env_error);
       return { success: false, err: missing_env_error };
     }
+    const ownerId = context.user?.userId;
+    if (!ownerId)
+      return {
+        success: false,
+        err: "User not authentificated or token has expired",
+      };
     console.log(
       `Update task request received with id ${id} with title ${title} and solved value ${solved}`
     );
-
-    const authObject = await reqAuth(token);
-    if (!authObject.success) {
-      return authObject;
-    }
     try {
       await TaskModel.updateOne(
         { _id: id },
@@ -205,17 +209,23 @@ export class TaskService {
    * @param {*} title The tasktitle.
    * @returns An object containing one property: { success: true }
    */
-  async deleteTask(token: string, id: string): Promise<DeleteTaskResponse> {
+  @GenezioAuth()
+  async deleteTask(
+    context: GnzContext,
+    id: string
+  ): Promise<DeleteTaskResponse> {
     if (!process.env.MONGO_DB_URI) {
       console.log(red_color, missing_env_error);
       return { success: false, err: missing_env_error };
     }
+    const ownerId = context.user?.userId;
+    if (!ownerId)
+      return {
+        success: false,
+        err: "User not authentificated or token has expired",
+      };
     console.log(`Delete task with id ${id} request received`);
 
-    const authObject = await reqAuth(token);
-    if (!authObject.success) {
-      return authObject;
-    }
     try {
       await TaskModel.deleteOne({ _id: id });
     } catch (error: any) {
