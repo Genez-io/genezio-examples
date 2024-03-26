@@ -11,17 +11,8 @@ import AllTasks from "./views/AllTasks";
 import Auth from "./layouts/Auth";
 import Admin from "./layouts/Admin";
 import React from "react";
-import { AuthService } from "@genezio/auth";
 
 export default function App() {
-  React.useEffect(() => {
-    try {
-      AuthService.getInstance().setTokenAndRegion("<token>", "<region>");
-    } catch (error: any) {
-      console.log("Error: ", error.message);
-      localStorage.clear();
-    }
-  }, []);
   return (
     <Router>
       <Routes>
