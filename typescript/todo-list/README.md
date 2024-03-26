@@ -22,6 +22,13 @@ This is a simple project with a server and a client for a quiz app. The server i
 - ✅ [npm](https://www.npmjs.com/)
 - ✅ [genezio](https://genezio.com/)
 
+1. Host a Mongo Database. Follow this [tutorial](https://genezio.com/docs/tutorials/connect-to-mongodb-atlas) to get a free tier database.
+2. Create a `server/.env` file and add the following environment variables:
+
+```env
+MONGO_DB_URI=<your-mongo-uri>
+```
+
 ## Project Structure
 
 Inside the project folder, you will find the following files and folders:
