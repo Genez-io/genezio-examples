@@ -1,0 +1,23 @@
+{
+  "name": "genezio-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "user.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@genezio/types": "^1.0.14",
+    "dotenv": "^16.0.3",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.33.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.26",
+    "@types/pg": "^8.10.7"
+  }
+}
