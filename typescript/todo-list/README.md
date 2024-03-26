@@ -29,9 +29,7 @@ Inside the project folder, you will find the following files and folders:
 ```
 ├── server/
 │   ├── models/
-│   ├── helper.ts
 │   ├── task.ts
-│   ├── user.ts
 │   ├── package.json
 │   └── tsconfig.json
 ├── client/
