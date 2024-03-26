@@ -10,7 +10,6 @@ import Register from "./views/Register";
 import AllTasks from "./views/AllTasks";
 import Auth from "./layouts/Auth";
 import Admin from "./layouts/Admin";
-import React from "react";
 
 export default function App() {
   return (

@@ -13,7 +13,11 @@ import {
   Alert,
 } from "reactstrap";
 import { useState, useEffect } from "react";
-import { TaskService, Task, GetTasksResponse } from "@genezio-sdk/todo-list-ts";
+import {
+  TaskService,
+  Task,
+  GetTasksResponse,
+} from "@genezio-sdk/todo-list-auth-mongo";
 import { useNavigate } from "react-router-dom";
 
 export default function AllTasks() {
