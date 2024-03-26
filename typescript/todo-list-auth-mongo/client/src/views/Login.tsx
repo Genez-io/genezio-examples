@@ -18,9 +18,8 @@ export default function Login() {
     }
 
     setError("");
-    let res;
     try {
-      res = await AuthService.getInstance().login(email, password);
+      await AuthService.getInstance().login(email, password);
     } catch (err: any) {
       setError(
         "Error code: " +
