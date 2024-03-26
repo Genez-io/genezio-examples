@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { TasksService } from 'src/app/services/tasks/tasks.service';
 import { Task } from '@genezio-sdk/todo-list-ts';
 
@@ -15,8 +14,7 @@ export class AllTasksComponent {
 
   constructor(
     private modalService: NgbModal,
-    private tasksService: TasksService,
-    private authService: AuthService
+    private tasksService: TasksService
   ) {}
 
   ngOnInit() {
@@ -66,9 +64,5 @@ export class AllTasksComponent {
     this.allTasks = this.allTasks.filter(function (task) {
       return task._id !== id;
     });
-  }
-
-  logout() {
-    this.authService.logout();
   }
 }

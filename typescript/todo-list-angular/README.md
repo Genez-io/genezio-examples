@@ -29,9 +29,7 @@ Inside the project folder, you will find the following files and folders:
 ```
 ├── server/
 │   ├── models/
-│   ├── helper.ts
 │   ├── task.ts
-│   ├── user.ts
 │   ├── package.json
 │   └── tsconfig.json
 ├── client/
@@ -77,7 +75,7 @@ Open a new terminal, navigate to the following directory, and run npm start to l
 
 ```
 cd ./client
-npm run install-local-sdk
+npm install
 npm start
 ```
 
