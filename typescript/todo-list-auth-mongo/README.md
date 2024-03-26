@@ -107,7 +107,7 @@ Open a new terminal, navigate to the following directory, and launch the applica
 
 ```
 cd ./client
-npm run install-local-sdk
+npm install
 npm run dev
 ```
 
