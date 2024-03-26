@@ -4,10 +4,8 @@ import App from "./App.tsx";
 import "./index.css";
 import { AuthService } from "@genezio/auth";
 
-AuthService.getInstance().setTokenAndRegion(
-  "0-jku5rahinzvfs2ci7dil6566by0vvgpq",
-  "us-east-1"
-);
+// TODO: Add your token and region from the Genezio dashboard https://app.genez.io/dashboard
+AuthService.getInstance().setTokenAndRegion("<token>", "<region>");
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

@@ -30,8 +30,6 @@ export default function Login() {
       );
       return;
     }
-    localStorage.setItem("apiToken", res.token!);
-    localStorage.setItem("user", JSON.stringify(res.user));
     navigate("/admin/all-tasks");
   }
 

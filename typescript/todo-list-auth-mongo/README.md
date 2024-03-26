@@ -71,7 +71,7 @@ This project uses the authentification service provided by Genezio. To enable it
 genezio deploy
 ```
 
-After u succesfully ran the command, you can go in the [Genezio dashboard](https://app.genez.io/dashboard) and click on the project you just deployed.
+After you succesfully ran the command, you can go in the [Genezio dashboard](https://app.genez.io/dashboard) and click on the project you just deployed.
 
 Click on the authentification button and choose MongoDB. You will need a MongoDB URI, you can learn how to obtain one from [here](https://genezio.com/blog/how-to-add-a-mongodb-to-your-genezio-project/).
 

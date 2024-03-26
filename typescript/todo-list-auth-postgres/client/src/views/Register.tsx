@@ -10,17 +10,17 @@ export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
+  const [passwordConfirmation, setpasswordConfirmation] = useState("");
 
   const [error, setError] = useState("");
 
   async function handleSubmit(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
-    if (!email || !password || !password2 || !name) {
+    if (!email || !password || !passwordConfirmation || !name) {
       setError("All fields are mandatory");
       return;
     }
-    if (password !== password2) {
+    if (password !== passwordConfirmation) {
       setError("Passwords do not match");
       return;
     }
@@ -88,8 +88,8 @@ export default function Register() {
                       className="form-control"
                       placeholder="Repeat Password"
                       type="password"
-                      value={password2}
-                      onChange={(e) => setPassword2(e.target.value)}
+                      value={passwordConfirmation}
+                      onChange={(e) => setpasswordConfirmation(e.target.value)}
                     />
                   </div>
                   <div className="text-left">

@@ -79,7 +79,7 @@ This project uses the authentification service provided by Genezio. To enable it
 genezio deploy
 ```
 
-After u succesfully ran the command, you can go in the [Genezio dashboard](https://app.genez.io/dashboard) and click on the project you just deployed.
+After you succesfully ran the command, you can go in the [Genezio dashboard](https://app.genez.io/dashboard) and click on the project you just deployed.
 
 Click on the authentification button and choose PostgreSQL. Now you can select to create a new Postgres database or use an existing one, click enable and now you should have a postgres database up and running as well as your authentification service ready to be used.
 

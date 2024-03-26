@@ -19,6 +19,7 @@ import {
   GetTasksResponse,
 } from "@genezio-sdk/todo-list-auth-postgres";
 import { useNavigate } from "react-router-dom";
+import { AuthService } from "@genezio/auth";
 
 export default function AllTasks() {
   const navigate = useNavigate();
@@ -36,14 +37,18 @@ export default function AllTasks() {
   const [taskTitle, setTaskTitle] = useState("");
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    const token = localStorage.getItem("apiToken");
-
-    if (!user || !token) {
-      navigate("/login");
-      return;
+    async function checkUserAuth() {
+      try {
+        await AuthService.getInstance().userInfo();
+      } catch (error: any) {
+        console.log(
+          `Error: message: ${error.message}, statusCode: ${error.statusCode}`
+        );
+        navigate("/login");
+        return;
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    checkUserAuth();
   }, []);
 
   useEffect(() => {
@@ -205,9 +210,8 @@ export default function AllTasks() {
             <Col sm="1" className="text-right">
               <Button
                 color="primary"
-                onClick={() => {
-                  localStorage.removeItem("apiToken");
-                  localStorage.removeItem("user");
+                onClick={async () => {
+                  await AuthService.getInstance().logout();
                   navigate("/login");
                 }}
               >
