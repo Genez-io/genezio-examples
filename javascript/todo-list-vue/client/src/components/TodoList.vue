@@ -24,7 +24,6 @@
 
 <script>
 import { Task } from "@genezio-sdk/todo-list-vue";
-import router from "../router";
 
 export default {
   data() {
