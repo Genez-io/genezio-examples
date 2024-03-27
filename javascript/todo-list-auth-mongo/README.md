@@ -80,7 +80,7 @@ After you set the MongoDB URI, you should be able to see the two providers:
 
 Click on the edit button next to the Email provider and enable it. And that's it, the Email Auth service is now enabled on this project.
 
-To use the Auth Service in your frontend, go to the `client/src/main.tsx` file and you should see a code snippet that looks something like this:
+To use the Auth Service in your frontend, go to the `client/src/main.jsx` file and you should see a code snippet that looks something like this:
 
 ```
 AuthService.getInstance().setTokenAndRegion(
@@ -119,7 +119,7 @@ Log in to Genezio using the command genezio login:
 genezio login
 ```
 
-Deploy your project using the genezio deploy command from the `./genezio-examples/typescript/todo-list-auth-mongo` directory.
+Deploy your project using the genezio deploy command from the `./genezio-examples/javacript/todo-list-auth-mongo` directory.
 
 ```
 genezio deploy --env server/.env

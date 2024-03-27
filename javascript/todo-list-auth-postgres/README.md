@@ -14,7 +14,7 @@
 
 # Simple genezio todo list example
 
-This is a simple project with a server and a client for a quiz app. The server is built with [Node.js](https://nodejs.org/en/) and MongoDB. The client is built with [React](https://reactjs.org/).
+This is a simple project with a server and a client for a todo app. The server is built with [Node.js](https://nodejs.org/en/) and MongoDB. The client is built with [React](https://reactjs.org/).
 
 ## Prerequisites
 
@@ -39,11 +39,9 @@ Inside the project folder, you will find the following files and folders:
 │   ├── models/
 │   ├── task.ts
 │   ├── package.json
-│   └── tsconfig.json
 ├── client/
 │   ├── src/
 │   ├── package.json
-|   └── tsconfig.json
 ├── genezio.yaml
 ├── README.md
 ├── .genezioignore
@@ -68,7 +66,7 @@ git clone https://github.com/Genez-io/genezio-examples
 Navigate to the following directory:
 
 ```
-cd ./genezio-examples/typescript/todo-list-auth-postgres
+cd ./genezio-examples/javascript/todo-list-auth-postgres
 ```
 
 ### Enable authentification
@@ -90,7 +88,7 @@ After you create your database, you should be able to see the two providers:
 
 Click on the edit button next to the Email provider and enable it. And that's it, the Email Auth service is now enabled on this project.
 
-To use the Auth Service in your frontend, go to the `client/src/main.tsx` file and you should see a code snippet that looks something like this:
+To use the Auth Service in your frontend, go to the `client/src/main.jsx` file and you should see a code snippet that looks something like this:
 
 ```
 AuthService.getInstance().setTokenAndRegion(
@@ -125,7 +123,7 @@ Log in to Genezio using the command genezio login:
 genezio login
 ```
 
-Deploy your project using the genezio deploy command from the `./genezio-examples/typescript/todo-list-auth-postgres` directory.
+Deploy your project using the genezio deploy command from the `./genezio-examples/javascript/todo-list-auth-postgres` directory.
 
 ```
 genezio deploy --env server/.env
