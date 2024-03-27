@@ -14,7 +14,7 @@
 
 # React todo application implemented with MongoDB and genezio
 
-This is an example of a todo application with users, auth and tasks that uses VueJS for the frontend application and Genezio for deploying and developing the backend.
+This is an example of a todo application that uses VueJS for the frontend application and Genezio for deploying and developing the backend.
 
 ## Prerequisites
 
@@ -28,10 +28,8 @@ Inside the project folder, you will find the following files and folders:
 
 ```
 ├── server/
-│   ├── helper.js
 │   ├── package.json
 │   ├── task.js
-│   ├── user.js
 │   └── models/
 ├── client/
 │   ├── src/
@@ -85,6 +83,7 @@ Open a new terminal, navigate to the following directory, and run npm start to l
 
 ```
 cd ./client
+npm install
 npm run dev
 ```
 

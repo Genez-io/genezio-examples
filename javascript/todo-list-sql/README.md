@@ -28,11 +28,8 @@ Inside the project folder, you will find the following files and folders:
 
 ```
 ├── server/
-│   ├── helper.js
 │   ├── package.json
 │   ├── task.js
-│   ├── user.js
-│   ├── config.js
 │   └── models/
 ├── client/
 │   ├── README.md
@@ -86,6 +83,7 @@ Open a new terminal, navigate to the following directory, and run npm start to l
 
 ```
 cd ./client
+npm install
 npm run dev
 ```
 

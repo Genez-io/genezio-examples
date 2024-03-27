@@ -14,7 +14,7 @@
 
 # Simple genezio todo list example
 
-This is a simple project with a server and a client for a quiz app. The server is built with [Node.js](https://nodejs.org/en/) and MongoDB. The client is built with [React](https://reactjs.org/).
+This is a simple project with a server and a client for a todo app. The server is built with [Node.js](https://nodejs.org/en/) and MongoDB. The client is built with [React](https://reactjs.org/).
 
 ## Prerequisites
 
