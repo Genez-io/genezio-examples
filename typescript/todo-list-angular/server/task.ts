@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { reqAuth } from "./helper";
 import { TaskModel } from "./models/task";
 import { GenezioDeploy } from "@genezio/types";
 
@@ -10,7 +9,6 @@ const missing_env_error =
 export type Task = {
   _id: string;
   title: string;
-  ownerId: string;
   solved: boolean;
   date: Date;
 };
@@ -54,41 +52,30 @@ export class TaskService {
       console.log(red_color, missing_env_error);
       return;
     }
-    mongoose.connect(process.env.MONGO_DB_URI || "").catch((err) => {
+    mongoose.connect(process.env.MONGO_DB_URI || "").catch((err: any) => {
       console.log(err);
       throw err;
     });
   }
 
   /**
-   * Method that returns all tasks for a giving user ID.
-   * Only authenticated users with a valid token can access this method.
+   * Method that returns all tasks.
    *
    * The method will be exported via SDK using genezio.
    *
-   * @param {*} token The user's token.
-   * @param {*} userId The user ID.
    * @returns An object containing two properties: { success: true, tasks: tasks }
    */
-  async getAllTasksByUser(
-    token: string,
-    userId: string
-  ): Promise<GetTasksResponse> {
+  async getAllTasks(): Promise<GetTasksResponse> {
     if (!process.env.MONGO_DB_URI) {
       console.log(red_color, missing_env_error);
       return { success: false, tasks: [], err: missing_env_error };
     }
-    console.log(`Get all tasks by user request received with userID ${userId}`);
+    console.log(`Get all tasks received request`);
 
-    const authObject = await reqAuth(token);
-    if (!authObject.success) {
-      return { success: false, tasks: [] };
-    }
     let tasks;
     try {
-      tasks = (await TaskModel.find({ ownerId: userId })).map((task) => ({
+      tasks = (await TaskModel.find()).map((task) => ({
         title: task.title,
-        ownerId: task.ownerId,
         solved: task.solved,
         date: task.date,
         _id: task._id.toString(),
@@ -101,38 +88,24 @@ export class TaskService {
   }
 
   /**
-   * Method that creates a task for a giving user ID.
-   * Only authenticated users with a valid token can access this method.
+   * Method that creates a task.
    *
    * The method will be exported via SDK using genezio.
    *
-   * @param {*} token The user's token.
    * @param {*} title The tasktitle.
-   * @param {*} ownerId The owner's of the task ID.
    * @returns An object containing two properties: { success: true, tasks: tasks }
    */
-  async createTask(
-    token: string,
-    title: string,
-    ownerId: string
-  ): Promise<GetTaskResponse> {
+  async createTask(title: string): Promise<GetTaskResponse> {
     if (!process.env.MONGO_DB_URI) {
       console.log(red_color, missing_env_error);
       return { success: false, err: missing_env_error };
     }
-    console.log(
-      `Create task request received for user with id ${ownerId} with title ${title}`
-    );
+    console.log(`Create task request received with title ${title}`);
 
-    const authObject = await reqAuth(token);
-    if (!authObject.success) {
-      return { success: false };
-    }
     let task;
     try {
       task = await TaskModel.create({
         title: title,
-        ownerId: ownerId,
       });
     } catch (error: any) {
       return { success: false, err: error.toString() };
@@ -142,7 +115,6 @@ export class TaskService {
       success: true,
       task: {
         title: title,
-        ownerId: ownerId,
         _id: task._id.toString(),
         solved: false,
         date: new Date(),
@@ -151,19 +123,16 @@ export class TaskService {
   }
 
   /**
-   * Method that creates a task for a giving user ID.
-   * Only authenticated users with a valid token can access this method.
+   * Method that updates a task.
    *
    * The method will be exported via SDK using genezio.
    *
-   * @param {*} token The user's token.
    * @param {*} id The task's id.
    * @param {*} title The task's title.
    * @param {*} solved If the task is solved or not.
-   * @returns An object containing two properties: { success: true }
+   * @returns An object containing one property: { success: true }
    */
   async updateTask(
-    token: string,
     id: string,
     title: string,
     solved: boolean
@@ -176,10 +145,6 @@ export class TaskService {
       `Update task request received with id ${id} with title ${title} and solved value ${solved}`
     );
 
-    const authObject = await reqAuth(token);
-    if (!authObject.success) {
-      return authObject;
-    }
     try {
       await TaskModel.updateOne(
         { _id: id },
@@ -201,21 +166,16 @@ export class TaskService {
    *
    * The method will be exported via SDK using genezio.
    *
-   * @param {*} token The user's token.
-   * @param {*} title The tasktitle.
+   * @param {*} id The task's id.
    * @returns An object containing one property: { success: true }
    */
-  async deleteTask(token: string, id: string): Promise<DeleteTaskResponse> {
+  async deleteTask(id: string): Promise<DeleteTaskResponse> {
     if (!process.env.MONGO_DB_URI) {
       console.log(red_color, missing_env_error);
       return { success: false, err: missing_env_error };
     }
     console.log(`Delete task with id ${id} request received`);
 
-    const authObject = await reqAuth(token);
-    if (!authObject.success) {
-      return authObject;
-    }
     try {
       await TaskModel.deleteOne({ _id: id });
     } catch (error: any) {

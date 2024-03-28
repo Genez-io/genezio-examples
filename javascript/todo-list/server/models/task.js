@@ -3,24 +3,19 @@ const mongoose = require("mongoose");
 const taskSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true
-  },
-  ownerId: {
-    type: String,
-    required: true
+    required: true,
   },
   solved: {
     type: Boolean,
     required: true,
-    default: false
+    default: false,
   },
   date: {
     type: Date,
     required: true,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-export const TaskModel = mongoose.models.Task || mongoose.model("Task", taskSchema);
-
-
+export const TaskModel =
+  mongoose.models.Task || mongoose.model("Task", taskSchema);

@@ -32,7 +32,7 @@ MONGO_DB_URI=<your-mongo-uri>
 ## Run the example locally
 
 1. From a first terminal, run `genezio local` in the `server/` folder to start the local server.
-2. From a second terminal, start the Flutter app by going to the `client/` folder and run `flutter run -d chrome`.
+2. From a second terminal, start the Flutter app by going to the `client/` folder and run `flutter pub get` and `flutter run -d chrome`.
 
 Note: You must have `MONGO_DB_URI` exported as an environment variable or set in the `.env` file in the `server/` folder.
 
@@ -40,11 +40,11 @@ Flutter will start a new tab in your default browser with the todo list app that
 
 ## Deploy the project
 
-1. Run `genezio deploy` in the `server` directory to deploy the project to the cloud.
+1. Run `genezio deploy` in the root directory to deploy the project to the cloud.
 
 `genezio` will provide in the terminal a publicly available URL where you can access your application.
 
-Note: To remotely set the environment variables, you can deploy using `genezio deploy --env .env` command.
+Note: To remotely set the environment variables, you can deploy using `genezio deploy --env server/.env` command.
 
 ## Genezio Commands
 
