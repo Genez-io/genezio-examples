@@ -12,8 +12,5 @@ backend:
     packageManager: npm
   scripts:
     local:
-      - cd client
-      - npm install
-      - cd ../server
       - npm install
   cloudProvider: cluster
