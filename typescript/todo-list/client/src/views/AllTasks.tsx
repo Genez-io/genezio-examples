@@ -15,18 +15,10 @@ import {
 import { useState, useEffect } from "react";
 import { TaskService, Task, GetTasksResponse } from "@genezio-sdk/todo-list-ts";
 import { useNavigate } from "react-router-dom";
-import { User } from "@genezio-sdk/todo-list-ts";
-
 export default function AllTasks() {
   const navigate = useNavigate();
 
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [user, setUser] = useState<User>({
-    name: "no name",
-    email: "no email",
-    _id: "",
-  });
-  const [token, setToken] = useState<string>("");
   const [modalAddTask, setModalAddTask] = useState(false);
   const toggleModalAddTask = () => {
     setModalAddTask(!modalAddTask);
@@ -39,41 +31,25 @@ export default function AllTasks() {
   const [taskTitle, setTaskTitle] = useState("");
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    const token = localStorage.getItem("apiToken");
-
-    if (!user || !token) {
-      navigate("/login");
-      return;
-    }
-
-    setUser(JSON.parse(localStorage.getItem("user")!));
-    setToken(token);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    TaskService.getAllTasksByUser(token, user._id).then(
-      (result: GetTasksResponse) => {
-        if (result.success) {
-          setTasks(result.tasks);
-        } else {
-          if (result.err) {
-            setAlertErrorMessage(
-              `Unexpected error: ${
-                result.err
-                  ? result.err
-                  : "Please check the backend logs in the project dashboard - https://app.genez.io."
-              }`
-            );
-          }
+    TaskService.getAllTasks().then((result: GetTasksResponse) => {
+      if (result.success) {
+        setTasks(result.tasks);
+      } else {
+        if (result.err) {
+          setAlertErrorMessage(
+            `Unexpected error: ${
+              result.err
+                ? result.err
+                : "Please check the backend logs in the project dashboard - https://app.genez.io."
+            }`
+          );
         }
       }
-    );
-  }, [user, token]);
+    });
+  }, []);
 
   async function handleDelete(id: string) {
-    const res = await TaskService.deleteTask(token, id);
+    const res = await TaskService.deleteTask(id);
     if (res.success) {
       navigate(0);
     } else {
@@ -89,7 +65,7 @@ export default function AllTasks() {
   }
 
   async function handleEdit(id: string, title: string, solved: boolean) {
-    const res = await TaskService.updateTask(token, id, title, solved);
+    const res = await TaskService.updateTask(id, title, solved);
     if (res.success) {
       const newTasks = tasks.map((task) => {
         if (task._id === id) {
@@ -116,7 +92,7 @@ export default function AllTasks() {
       setError("Title is mandatory");
       return;
     }
-    const res = await TaskService.createTask(token, taskTitle, user._id);
+    const res = await TaskService.createTask(taskTitle);
     if (res.success) {
       setTasks([...tasks, res.task!]);
       setTaskTitle("");
@@ -209,18 +185,6 @@ export default function AllTasks() {
                   </Button>
                 </Col>
               </Row>
-            </Col>
-            <Col sm="1" className="text-right">
-              <Button
-                color="primary"
-                onClick={() => {
-                  localStorage.removeItem("apiToken");
-                  localStorage.removeItem("user");
-                  navigate("/login");
-                }}
-              >
-                Logout
-              </Button>
             </Col>
           </Row>
         </Card>

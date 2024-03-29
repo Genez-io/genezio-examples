@@ -1,0 +1,20 @@
+{
+  "name": "genezio-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "task.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@genezio/types": "^1.0.14",
+    "bcryptjs": "^2.4.3",
+    "mongoose": "^6.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.26"
+  }
+}

@@ -14,13 +14,20 @@
 
 # Simple genezio todo list example
 
-This is a simple project with a server and a client for a quiz app. The server is built with [Node.js](https://nodejs.org/en/) and MongoDB. The client is built with [React](https://reactjs.org/).
+This is a simple project with a server and a client for a todo app. The server is built with [Node.js](https://nodejs.org/en/) and MongoDB. The client is built with [React](https://reactjs.org/).
 
 ## Prerequisites
 
 - ✅ [NodeJs](https://nodejs.org) >= 18.0.0
 - ✅ [npm](https://www.npmjs.com/)
 - ✅ [genezio](https://genezio.com/)
+
+1. Host a Mongo Database. Follow this [tutorial](https://genezio.com/docs/tutorials/connect-to-mongodb-atlas) to get a free tier database.
+2. Create a `server/.env` file and add the following environment variables:
+
+```env
+MONGO_DB_URI=<your-mongo-uri>
+```
 
 ## Project Structure
 
@@ -29,9 +36,7 @@ Inside the project folder, you will find the following files and folders:
 ```
 ├── server/
 │   ├── models/
-│   ├── helper.ts
 │   ├── task.ts
-│   ├── user.ts
 │   ├── package.json
 │   └── tsconfig.json
 ├── client/
@@ -77,7 +82,7 @@ Open a new terminal, navigate to the following directory, and launch the applica
 
 ```
 cd ./client
-npm run install-local-sdk
+npm install
 npm run dev
 ```
 

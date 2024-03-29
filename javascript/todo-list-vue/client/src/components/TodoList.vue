@@ -19,13 +19,11 @@
       </div>
     </div>
 
-    <button @click="logout()">Logout</button>
   </div>
 </template>
 
 <script>
 import { Task } from "@genezio-sdk/todo-list-vue";
-import router from "../router";
 
 export default {
   data() {
@@ -36,19 +34,9 @@ export default {
   },
   methods: {
     createTodo() {
-      if (!localStorage.token || !localStorage.userId) {
-        router.push("/login");
-        return;
-      }
 
-      Task.createTask(localStorage.token, this.title, localStorage.userId)
+      Task.createTask( this.title)
         .then((response) => {
-          if (!response.success && response.msg === "User is not logged on") {
-            localStorage.token = "";
-            localStorage.userId = "";
-            router.push("/login");
-          }
-
           this.title = "";
           this.todos = [...this.todos, response.task];
         })
@@ -58,15 +46,10 @@ export default {
         });
     },
     deleteTodo(index) {
-      if (!localStorage.token || !localStorage.userId) {
-        router.push("/login");
-        return;
-      }
 
-      Task.deleteTask(localStorage.token, index)
+      Task.deleteTask(index)
         .then((response) => {
           if (response.success) {
-            // eslint-disable-next-line
             this.todos = this.todos.filter((todo) => todo._id !== index);
           }
         })
@@ -75,22 +58,10 @@ export default {
           console.error(error);
         });
     },
-    logout() {
-      localStorage.token = "";
-      localStorage.userId = "";
-      router.push("/login");
-    },
     markDone(todo) {
-      if (!localStorage.token || !localStorage.userId) {
-        router.push("/login");
-        return;
-      }
-
-      // eslint-disable-next-line
-      Task.updateTask(localStorage.token, todo._id, todo.title, todo.solved)
+      Task.updateTask( todo._id, todo.title, todo.solved)
         .then((response) => {
           if (!response.success) {
-            // eslint-disable-next-line
             todo.solved = !todo.solved;
             alert("Could not mark as done.");
             return;
@@ -99,19 +70,14 @@ export default {
         })
         .catch((error) => {
           alert("Could not mark as done.");
-          // eslint-disable-next-line
           todo.solved = !todo.solved;
           console.error(error);
         });
     },
   },
   mounted() {
-    if (!localStorage.token || !localStorage.userId) {
-      router.push("/login");
-      return;
-    }
 
-    Task.getAllTasksByUser(localStorage.token, localStorage.userId)
+    Task.getAllTasks()
       .then((response) => {
         this.todos = response.tasks;
       })
