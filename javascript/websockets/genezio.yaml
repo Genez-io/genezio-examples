@@ -6,7 +6,6 @@ backend:
   classes:
     - path: ./hello.js
       name: HelloWorld
-      sockets: true
   language:
     name: ts
     packageManager: npm

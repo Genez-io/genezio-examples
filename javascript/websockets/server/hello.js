@@ -7,11 +7,8 @@ import { Server } from "socket.io";
 @GenezioDeploy()
 export class HelloWorld {
   socketListener = undefined
-  constructor(socketListener) {
-    this.socketListener = socketListener
-    // This line below is important, without it socket.io is not added to the dependencies
-    // will be fixed soon
-    Server;
+  constructor(server) {
+    this.socketListener = new Server(server)
     this.socketListener.on("connection", (socket) => {
       console.log("A user connected");
 

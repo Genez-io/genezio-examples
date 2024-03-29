@@ -1,5 +1,6 @@
 import { GenezioDeploy } from "@genezio/types";
 import {Server, Socket} from "socket.io"
+import http from 'http'
 export enum Season {
   Winter = "Winter",
   Summer = "Summer"
@@ -12,11 +13,8 @@ export enum Season {
 @GenezioDeploy()
 export class HelloWorld {
   socketListener: Server;
-  constructor(socketListener: Server) {
-    // This line below is important, without it socket.io is not added to the dependencies
-    // will be fixed soon
-    Server;
-    this.socketListener = socketListener;
+  constructor(server: http.Server) {
+    this.socketListener = new Server(server);
     this.socketListener.on("connection", (socket: Socket) => {
       console.log("A user connected");
 
