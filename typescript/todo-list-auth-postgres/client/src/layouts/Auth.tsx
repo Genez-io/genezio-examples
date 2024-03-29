@@ -3,9 +3,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Auth(props: {
-  element: React.ReactNode;
   authetificatedRedirect?: string;
   unauthetificatedRedirect?: string;
+  children?: React.ReactNode;
 }) {
   const navigate = useNavigate();
 
@@ -39,5 +39,5 @@ export default function Auth(props: {
     checkUserAuth();
   }, [navigate]);
 
-  return <>{props.element}</>;
+  return <>{props.children}</>;
 }

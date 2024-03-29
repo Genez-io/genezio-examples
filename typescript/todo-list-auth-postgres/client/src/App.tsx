@@ -18,30 +18,33 @@ export default function App() {
           path="/login"
           element={
             <Auth
-              element={<Login />}
               authetificatedRedirect="/admin/all-tasks"
               unauthetificatedRedirect="/login"
-            />
+            >
+              <Login />
+            </Auth>
           }
         />
         <Route
           path="/register"
           element={
             <Auth
-              element={<Register />}
               authetificatedRedirect="/admin/all-tasks"
               unauthetificatedRedirect="/register"
-            />
+            >
+              <Register />
+            </Auth>
           }
         />
         <Route
           path="/admin/all-tasks"
           element={
             <Auth
-              element={<AllTasks />}
               authetificatedRedirect="/admin/all-tasks"
               unauthetificatedRedirect="/login"
-            />
+            >
+              <AllTasks />
+            </Auth>
           }
         />
         <Route path="*" element={<Navigate replace to="/login" />} />
