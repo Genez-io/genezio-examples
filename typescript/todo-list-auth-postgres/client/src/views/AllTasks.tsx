@@ -37,21 +37,6 @@ export default function AllTasks() {
   const [taskTitle, setTaskTitle] = useState("");
 
   useEffect(() => {
-    async function checkUserAuth() {
-      try {
-        await AuthService.getInstance().userInfo();
-      } catch (error: any) {
-        console.log(
-          `Error: message: ${error.message}, statusCode: ${error.statusCode}`
-        );
-        navigate("/login");
-        return;
-      }
-    }
-    checkUserAuth();
-  }, []);
-
-  useEffect(() => {
     TaskService.getAllTasks().then((result: GetTasksResponse) => {
       if (result.success) {
         setTasks(result.tasks);
