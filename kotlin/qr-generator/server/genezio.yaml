@@ -1,17 +1,25 @@
 name: kotlin-qr-generator-backend
 region: eu-central-1
-sdk:
-  language: kt
-  options:
-    runtime: kotlin
-  path: ..\client\app\src\main\java\com\genezio\sdk
-classes:
-  - path: .\app\src\main\kotlin\geneziokotlin\User.kt
-    name: UserHandler
-  - path: .\app\src\main\kotlin\geneziokotlin\QRCode.kt
-    name: QRCodeHandler
-cloudProvider: aws
-
-  
-
-
+yamlVersion: 2
+backend:
+  path: .
+  language:
+    name: kt
+  scripts: {}
+  cloudProvider: genezio
+  classes:
+    - name: UserHandler
+      path: app\src\main\kotlin\geneziokotlin\User.kt
+      type: jsonrpc
+    - name: QRCodeHandler
+      path: app\src\main\kotlin\geneziokotlin\QRCode.kt
+      type: jsonrpc
+frontend:
+  # The folder where the frontend scripts will run.
+  path: ../client
+  # Specifies information about the SDK generation. If not specified, the SDK will not be generated for this frontend.
+  sdk:
+    # The language the SDK will be written in. Usually the same as the frontend language.
+    language: kt
+    # The path where the SDK will be generated. Not required for languages that export the SDK to a package manager.
+    path: app/src/main/java/com/genezio/sdk
