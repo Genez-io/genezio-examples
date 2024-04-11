@@ -1,0 +1,23 @@
+{
+    "name": "qr-generator-backend",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@genezio/types": "^1.0.14",
+        "node-fetch": "^3.3.2"
+    },
+    "prettier": {
+        "tabWidth": 2
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.15",
+        "@typescript-eslint/eslint-plugin": "^6.14.0",
+        "@typescript-eslint/parser": "^6.14.0",
+        "eslint": "^8.55.0"
+    }
+}
