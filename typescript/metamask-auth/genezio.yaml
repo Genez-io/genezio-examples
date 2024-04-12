@@ -43,4 +43,4 @@ frontend:
     start:
       - npm install
       - npm run dev
-  subdomain: peach-attractive-louse
+

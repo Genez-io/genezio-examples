@@ -10,9 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@genezio-sdk/metamask-auth-project": "^1.0.0-prod",
-    "@genezio-sdk/my-web3-project": "^1.0.0-prod",
-    "@genezio/auth": "^2.0.17-dev",
+    "@genezio/auth": "^2.0.18",
+    "@genezio/vite-plugin-genezio": "^1.0.4",
     "bootstrap": "^5.3.3",
     "ethers": "^6.11.1",
     "react": "^18.2.0",

@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthService } from "@genezio/auth";
 import { BackendService } from "@genezio-sdk/my-web3-project";
 
-AuthService.getInstance().setTokenAndRegion("0-ds6m2tusdol2ociabvmjjlk3va0apctj", "eu-central-1");
+AuthService.getInstance().setTokenAndRegion("<YOUR_TOKEN>", "<YOUR_PROJECT_REGION>");
 
 function App() {
 	// usetstate for storing and retrieving wallet details
