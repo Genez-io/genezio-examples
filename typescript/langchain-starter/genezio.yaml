@@ -19,10 +19,9 @@ backend:
   scripts:
     # List of scripts to run before deploying the backend.
     deploy:
-      - npm install --silent @lancedb/vectordb-linux-x64-gnu
-      - npm install --silent
+      - npm install
     # List of scripts to run before starting `genezio local`.
-    local: npm install --silent
+    local: npm install
   # The cloud provider where the backend is deployed.
   cloudProvider: genezio
 # Information about the frontend, including the path, language, and publish directory.
@@ -40,8 +39,8 @@ frontend:
   scripts:
     # List of scripts to run before deploying the frontend.
     deploy:
-      - npm install --silent @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
-      - npm install --silent
+      - npm install @genezio-sdk/${{projectName}}@1.0.0-${{stage}}
+      - npm install
     # List of scripts that build your frontend before deployment. It should populate the specified `publish` directory.
     build: npm run build
     # List of scripts to run when starting the local development server.
