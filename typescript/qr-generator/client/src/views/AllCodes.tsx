@@ -16,10 +16,13 @@ import { useState, useEffect } from "react";
 import { CodeService, Code, GetCodesResponse } from "@genezio-sdk/qr-generator";
 import { useNavigate } from "react-router-dom";
 import { AuthService } from "@genezio/auth";
+import axios from "axios";
 
 export default function AllCodes() {
   const navigate = useNavigate();
 
+  const apiURL =
+    "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=";
   const [codes, setCodes] = useState<Code[]>([]);
   const [codesImages, setCodesImages] = useState<string[]>([]);
   const [modalAddCode, setModalAddCode] = useState(false);
@@ -28,16 +31,20 @@ export default function AllCodes() {
     setCodeTitle("");
   };
 
-  const [error, setError] = useState("");
+  const [errorTitle, setErrorTitle] = useState("");
+  const [errorText, setErrorText] = useState("");
   const [alertErrorMessage, setAlertErrorMessage] = useState<string>("");
 
   const [codeTitle, setCodeTitle] = useState("");
   const [codeText, setCodeText] = useState("");
+  const [generatedCode, setGeneratedCode] = useState("");
 
   useEffect(() => {
     CodeService.getAllCodes().then((result: GetCodesResponse) => {
       if (result.success) {
         setCodes(result.codes);
+        const images = result.codes.map((code) => apiURL + code.codeText);
+        setCodesImages(images);
       } else {
         if (result.err) {
           setAlertErrorMessage(
@@ -52,16 +59,13 @@ export default function AllCodes() {
     });
   }, []);
 
-  useEffect(() => {
-    if (codes) {
-      console.log(codes);
-    }
-  }, [codes]);
-
   async function handleDelete(id: number) {
     const res = await CodeService.deleteCode(id);
     if (res.success) {
-      navigate(0);
+      setCodes(codes.filter((code) => code.codeId !== id));
+      setCodesImages(
+        codesImages.filter((_, index) => codes[index].codeId !== id)
+      );
     } else {
       navigate(0);
       setAlertErrorMessage(
@@ -74,45 +78,32 @@ export default function AllCodes() {
     }
   }
 
-  async function handleEdit(id: number, title: string, codeText: string) {
-    const res = await CodeService.updateCode(id, title, codeText);
-    if (res.success) {
-      const newCodes = codes.map((code) => {
-        if (code.codeId === id) {
-          code.title = title;
-          code.codeText = codeText;
-        }
-        return code;
-      });
-      setCodes(newCodes);
-    } else {
-      setAlertErrorMessage(
-        `Unexpected error: ${
-          res.err
-            ? res.err
-            : "Please check the backend logs in the project dashboard - https://app.genez.io."
-        }`
-      );
+  function generateCode(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    if (!codeText) {
+      setErrorText("Text is mandatory");
+      return;
     }
+    setGeneratedCode(apiURL + codeText);
   }
-
-  async function generateCode(codeText: string) {}
 
   async function handleAdd(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (!codeTitle) {
-      setError("Title is mandatory");
+      setErrorTitle("Title is mandatory");
       return;
     }
     if (!codeText) {
-      setError("Text is mandatory");
+      setErrorText("Text is mandatory");
       return;
     }
     const res = await CodeService.createCode(codeTitle, codeText);
-    if (res.success) {
+    if (res && res.success) {
       setCodes([...codes, res.code!]);
+      setCodesImages([...codesImages, apiURL + res.code!.codeText]);
       setCodeTitle("");
       setCodeText("");
+      setGeneratedCode("");
       toggleModalAddCode();
     } else {
       setAlertErrorMessage(
@@ -122,6 +113,31 @@ export default function AllCodes() {
             : "Please check the backend logs in the project dashboard - https://app.genez.io."
         }`
       );
+    }
+  }
+
+  async function handleDownload(id: number) {
+    const code = codes.find((code) => code.codeId === id);
+    if (code) {
+      const response = await axios.get(
+        apiURL + code.codeText + "&size=300x300",
+        {
+          responseType: "blob",
+        }
+      );
+      // Create a temporary URL for the Blob object
+      const url = URL.createObjectURL(response.data);
+
+      // Create an anchor element dynamically
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `qrcode-${code.title}.png`; // Set the filename for the downloaded image
+
+      // Programmatically click the anchor element to trigger the download
+      a.click();
+
+      // Clean up by revoking the temporary URL
+      URL.revokeObjectURL(url);
     }
   }
 
@@ -135,7 +151,7 @@ export default function AllCodes() {
         <ModalHeader toggle={toggleModalAddCode}>Add new code</ModalHeader>
         <form>
           <ModalBody>
-            <span className="text-danger">{error}</span>
+            <span className="text-danger">{errorTitle}</span>
             <div className="mb-3">
               <label>Code Title</label>
               <Input
@@ -143,9 +159,13 @@ export default function AllCodes() {
                 placeholder="Title"
                 autoComplete="Title"
                 value={codeTitle}
-                onChange={(e) => setCodeTitle(e.target.value)}
+                onChange={(e) => {
+                  setCodeTitle(e.target.value);
+                  setErrorTitle("");
+                }}
               />
             </div>
+            <span className="text-danger">{errorText}</span>
             <div className="mb-3">
               <label>Code Text</label>
               <Input
@@ -153,13 +173,28 @@ export default function AllCodes() {
                 placeholder="Text"
                 autoComplete="Text"
                 value={codeText}
-                onChange={(e) => setCodeText(e.target.value)}
+                onChange={(e) => {
+                  setCodeText(e.target.value);
+                  setErrorText("");
+                }}
               />
             </div>
+            {generatedCode ? (
+              <div className="mb-3 d-flex flex-column">
+                <label className="mb-2">Code</label>
+                <img src={generatedCode} style={{ width: "50%" }} alt="N/A" />
+              </div>
+            ) : (
+              <></>
+            )}
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={(e) => handleAdd(e)} type="submit">
-              Add
+            <Button
+              color="primary"
+              onClick={(e) => generateCode(e)}
+              type="submit"
+            >
+              Generate code
             </Button>
             <Button color="primary" onClick={(e) => handleAdd(e)} type="submit">
               Add
@@ -180,16 +215,25 @@ export default function AllCodes() {
                 <Col sm="12">
                   {codes.map((code, index) => (
                     <div key={code.codeId} className="mb-3">
-                      <p className="mb-0">
-                        <span className="h4">{code.title}</span> -{" "}
-                        <img src={codesImages[index]} alt="N/A" />
+                      <p className="mb-0 d-flex flex-column">
+                        <span className="h4">Code title: {code.title}</span>
+                        <span className="h4">Code text: {code.codeText}</span>
                       </p>
+                      <div className="mb-3">
+                        <img src={codesImages[index]} alt="N/A" />
+                      </div>
                       <ButtonGroup aria-label="Basic example">
                         <Button
                           color="danger"
                           onClick={() => handleDelete(code.codeId)}
                         >
                           Delete Code
+                        </Button>
+                        <Button
+                          color="primary"
+                          onClick={() => handleDownload(code.codeId)}
+                        >
+                          Download Code
                         </Button>
                       </ButtonGroup>
                     </div>

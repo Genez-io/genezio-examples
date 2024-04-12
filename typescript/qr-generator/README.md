@@ -12,15 +12,23 @@
 
 </div>
 
-# Simple genezio todo list example
+# Simple genezio qr generator example
 
-This is a simple project with a server and a client for a quiz app. The server is built with [Node.js](https://nodejs.org/en/) and MongoDB. The client is built with [React](https://reactjs.org/).
+This is a simple project with a server and a client for a qr code generator app. The server is built with [Node.js](https://nodejs.org/en/). The client is built with [React](https://reactjs.org/).
 
 ## Prerequisites
 
 - ✅ [NodeJs](https://nodejs.org) >= 18.0.0
 - ✅ [npm](https://www.npmjs.com/)
 - ✅ [genezio](https://genezio.com/)
+
+1. Host a Postgres Database. Follow this [tutorial](https://genezio.com/docs/features/databases) to get a free tier postgres database.
+2. If you created a postgres database using the Genezio dashboard then you can obtain the connection URL by going to the [databases dashboard](https://app.genez.io/databases/) and clicking on the `connect` button associated with your database.
+3. Create a `server/.env` file and add the following environment variables:
+
+```env
+POSTGRES_URL=<your-postgres-url>
+```
 
 ## Project Structure
 
@@ -29,7 +37,7 @@ Inside the project folder, you will find the following files and folders:
 ```
 ├── server/
 │   ├── models/
-│   ├── task.ts
+│   ├── code.ts
 │   ├── package.json
 │   └── tsconfig.json
 ├── client/
@@ -60,7 +68,7 @@ git clone https://github.com/Genez-io/genezio-examples
 Navigate to the following directory:
 
 ```
-cd ./genezio-examples/typescript/todo-list-auth-mongo
+cd ./genezio-examples/typescript/qr-generator
 ```
 
 ### Enable authentification
@@ -73,7 +81,7 @@ genezio deploy
 
 After you succesfully ran the command, you can go in the [Genezio dashboard](https://app.genez.io/dashboard) and click on the project you just deployed.
 
-Click on the authentification button and choose MongoDB. You will need a MongoDB URI, you can learn how to obtain one from [here](https://genezio.com/blog/how-to-add-a-mongodb-to-your-genezio-project/).
+Click on the authentification button and choose PostgreSQL. Now you can select to create a new Postgres database or use an existing one, click enable and now you should have a postgres database up and running as well as your authentification service ready to be used.
 
 After you set the MongoDB URI, you should be able to see the two providers:
 
@@ -94,8 +102,6 @@ AuthService.getInstance().setTokenAndRegion(
 Replace `<auth-token>` and `<region>` with the values provided in the Auth page in your genezio dashboard. After this you're good to go.
 
 ### Test your project locally
-
-Create a `.env` file in the `server` directory and add your MongoDB URI as per the `.env.template` file.
 
 Test the project locally:
 
@@ -121,7 +127,7 @@ Log in to Genezio using the command genezio login:
 genezio login
 ```
 
-Deploy your project using the genezio deploy command from the `./genezio-examples/typescript/todo-list-auth-mongo` directory.
+Deploy your project using the genezio deploy command from the `./genezio-examples/typescript/qr-generator` directory.
 
 ```
 genezio deploy --env server/.env
