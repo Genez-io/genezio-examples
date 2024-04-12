@@ -1,0 +1,28 @@
+{
+    "name": "langchain-starter-backend",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@genezio/types": "^1.0.14",
+        "@langchain/community": "^0.0.44",
+        "@langchain/openai": "^0.0.26",
+        "dotenv": "^16.4.5",
+        "langchain": "^0.1.31",
+        "vectordb": "^0.1.19"
+    },
+    "prettier": {
+        "tabWidth": 2
+    },
+    "devDependencies": {
+        "@types/node": "^20.12.7",
+        "@typescript-eslint/eslint-plugin": "^6.14.0",
+        "@typescript-eslint/parser": "^6.14.0",
+        "eslint": "^8.55.0",
+        "tsx": "^4.7.2"
+    }
+}
