@@ -11,7 +11,6 @@
     "install-prod-sdk": "npm install @genezio-sdk/stripe-integration@1.0.0-prod"
   },
   "dependencies": {
-    "@genezio/vite-plugin-genezio": "^1.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -23,7 +22,8 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "vite": "^5.0.8"
+    "vite": "^5.2.9",
+    "@genezio/vite-plugin-genezio": "^1.0.5"
   },
   "prettier": {
     "tabWidth": 2
