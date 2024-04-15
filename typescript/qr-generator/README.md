@@ -57,6 +57,8 @@ The `frontend` directory contains a simple React application that talks with the
 
 ## Run the project
 
+> :warning: **This Example will not run by just cloning the repository**: This example is meant to be used with the Genezio platform. You can still run the server and client locally, but you will not be able to use the authentification service provided by Genezio. If you want to use the authentification service, you will need to deploy the project to the Genezio platform, then set up the authentification service in the Genezio dashboard. Follow the steps below to learn how to do that.
+
 ### Clone this example
 
 Clone the repository:
@@ -83,7 +85,7 @@ After you succesfully ran the command, you can go in the [Genezio dashboard](htt
 
 Click on the authentification button and choose PostgreSQL. Now you can select to create a new Postgres database or use an existing one, click enable and now you should have a postgres database up and running as well as your authentification service ready to be used.
 
-After you set the MongoDB URI, you should be able to see the two providers:
+After you set the POSTGRES URL, you should be able to see the two providers:
 
 - Email
 - Google
