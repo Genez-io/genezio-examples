@@ -42,4 +42,3 @@ frontend:
             - npm run install-prod-sdk
             - npm install
             - npm run build
-    subdomain: yellow-grotesque-bobcat
