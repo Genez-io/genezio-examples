@@ -28,6 +28,8 @@ backend:
 frontend:
     # The folder where the frontend scripts will run.
     path: client
+    # The language the frontend is written in. Used to generate the proper Genezio SDK for this frontend.
+    language: js
     # The directory that will be published to the CDN. It is relative to the path.
     publish: dist
     scripts:
