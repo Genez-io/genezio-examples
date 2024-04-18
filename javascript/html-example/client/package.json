@@ -12,7 +12,6 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@genezio-sdk/html-example": "^1.0.0-prod",
         "copy-webpack-plugin": "^11.0.0",
         "http-server": "^14.1.1"
     },
