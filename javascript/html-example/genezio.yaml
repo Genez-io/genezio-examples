@@ -28,8 +28,6 @@ backend:
 frontend:
     # The folder where the frontend scripts will run.
     path: client
-    # The language the frontend is written in. Used to generate the proper Genezio SDK for this frontend.
-    language: js
     # The directory that will be published to the CDN. It is relative to the path.
     publish: dist
     scripts:
@@ -38,4 +36,8 @@ frontend:
             - npm install
             - npm start
         # List of scripts that build your frontend before deployment. It should populate the specified `publish` directory.
-        build: npm run build
+        build:
+            - npm run install-prod-sdk
+            - npm install
+            - npm run build
+    subdomain: yellow-grotesque-bobcat
