@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@genezio-sdk/genezio-login-metamask": "^1.0.0-prod",
     "@genezio/auth": "^2.0.18",
     "bootstrap": "^5.3.3",
     "ethers": "^6.11.1",
