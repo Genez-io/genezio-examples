@@ -1,6 +1,6 @@
 # Learn more about Genezio YAML at https://genezio.com/docs/project-structure/genezio-configuration-file/
 # The name of the project.
-name: my-web3-project
+name: genezio-login-metamask
 # The region where the project is deployed.
 region: eu-central-1
 # The version of the Genezio YAML configuration to parse.
@@ -43,4 +43,4 @@ frontend:
     start:
       - npm install
       - npm run dev
-  subdomain: gold-serious-hoverfly
+  subdomain: emerald-smart-canid

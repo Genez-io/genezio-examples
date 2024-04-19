@@ -4,15 +4,21 @@ import "./App.css";
 import { Button, Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AuthService } from "@genezio/auth";
-import { BackendService } from "@genezio-sdk/my-web3-project";
+import { BackendService } from "@genezio-sdk/genezio-login-metamask";
 
-AuthService.getInstance().setTokenAndRegion("0-cwe4dv3ybw3g6uhdpmzlsbjw3a0huvwu", "eu-central-1");
+// TODO: Replace with your own API key and region
+AuthService.getInstance().setTokenAndRegion("<YOUR_TOKEN>", "<YOUR_PROJECT_REGION>");
 
 function App() {
+    // This is the user's address and balance
+    // We will fetch this info from the blockchain
+    // Only authenticated users can access this info
     const [data, setData] = useState({
         address: null as string | null,
         balance: null as string | null,
     });
+    // This is the secured info that we will fetch from the backend
+    // Only authenticated users can access this info
     const [securedInfo, setSecuredInfo] = useState("")
 
     const getBalance = useCallback(async (address: string) => {
@@ -25,9 +31,12 @@ function App() {
             address: address,
             balance: ethers.formatEther(balance),
         });
-        }, [setData]);
+    }, [setData]);
 
     useEffect(() => {
+        // Check if the user is authenticated
+        // If the user is authenticated, fetch the user's address and balance
+        // If the user is not authenticated, redirect to the login screen
         AuthService.getInstance().userInfo().then((user) => {
             if (user.address) {
                 getBalance(user.address)
@@ -57,15 +66,13 @@ function App() {
             const greetingMessage = await BackendService.hello("Friend")
             setSecuredInfo(greetingMessage)
         } catch {
-            setData({
-                address: null,
-                balance: null,
-            })
+            logout()
         }
     }
 
     const loginWithMetamask = async () => {
-		if (window.ethereum) {
+        // Check if Metamask is installed
+        if (window.ethereum) {
             // Fetch the accounts
             const addresses = await window.ethereum.request({ method: "eth_requestAccounts" })
             const address = addresses[0]
@@ -84,7 +91,7 @@ function App() {
             await getBalance(address)
         } else {
             alert("Install Metamask extension!");
-		}
+        }
     }
 
     return (
@@ -93,37 +100,37 @@ function App() {
                 <Card.Body>
                     { !data.address ? 
                         <Card.Body>
-                        <Button
-                            onClick={loginWithMetamask}
-                            variant="primary"
+                            <Button
+                                onClick={loginWithMetamask}
+                                variant="primary"
                             >
-                            Login with Metamask 
-                        </Button>
+                                Login with Metamask 
+                            </Button>
                         </Card.Body>
                         : 
                         <Card.Body>
-                        <Card.Header>
+                            <Card.Header>
                                 <strong>Address: </strong>
                                 {data.address}
-                        </Card.Header>
-                        <Card.Text>
-                            <strong>Balance: </strong>
-                           {data.balance}
-                        </Card.Text>
-                        <Button
-                           onClick={() => logout()}
-                           variant="primary">
-                           Logout
-                        </Button>
-                        <Button
-                            onClick={getSecuredInfo}
-                            variant="primary"
+                            </Card.Header>
+                            <Card.Text>
+                                <strong>Balance: </strong>
+                                {data.balance}
+                            </Card.Text>
+                            <Button
+                                onClick={() => logout()}
+                                variant="primary">
+                                Logout
+                            </Button>
+                            <Button
+                                onClick={getSecuredInfo}
+                                variant="primary"
                             >
-                            Get Secured Info
-                        </Button>
-                        <Card.Text>
-                            {securedInfo}
-                        </Card.Text>
+                                Get Secured Info
+                            </Button>
+                            <Card.Text>
+                                {securedInfo}
+                            </Card.Text>
                         </Card.Body>
                     }
                 </Card.Body>

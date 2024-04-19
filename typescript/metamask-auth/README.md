@@ -41,4 +41,3 @@ What is the flow?
 3. Verify Signature: The platform verifies the signature using the user's public key to authenticate identity.
 4. Establish Session: Upon verification, the platform starts a session, granting access to the user.
 
-
