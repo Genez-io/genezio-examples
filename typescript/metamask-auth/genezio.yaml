@@ -43,4 +43,3 @@ frontend:
     start:
       - npm install
       - npm run dev
-  subdomain: emerald-smart-canid
