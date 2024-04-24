@@ -16,8 +16,8 @@ export class BackendService {
 
   async ask(question: string): Promise<string> {
     console.log("Attempting to answer:", question)
-    const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
+    const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
     if (!OPENAI_API_KEY) {
 			throw new Error("You need to provide an OpenAI API key. Go to https://platform.openai.com/account/api-keys to get one.");
 		}
@@ -59,12 +59,9 @@ export class BackendService {
     });
 
     const chain = setupAndRetrieval.pipe(prompt).pipe(model).pipe(outputParser)
-
-    console.log("Ready to invoke")
     const response = await chain.invoke(question);
-    console.log("Invoked successfully")
-
     console.log("Answer:", response)
+
     return response;
   }
 }

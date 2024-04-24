@@ -38,7 +38,14 @@ export async function createVector() {
       { writeMode: lancedb.WriteMode.Overwrite }
     );
 
-    const documents = await readDocuments("./data")
+    const loader = new DirectoryLoader(
+      "./data",
+      {
+        ".md": (path) => new TextLoader(path),
+        ".txt": (path) => new TextLoader(path),
+      }
+    );
+    const documents = await loader.load();
 
     const vectorStore = await LanceDB.fromDocuments(
       documents,
@@ -47,18 +54,6 @@ export async function createVector() {
     );
 
     return vectorStore;
-}
-
-async function readDocuments(directoryPath: string) {
-  const loader = new DirectoryLoader(
-    directoryPath,
-    {
-      ".md": (path) => new TextLoader(path),
-    }
-  );
-  const docs = await loader.load();
-
-  return docs
 }
 
 (async () => {
