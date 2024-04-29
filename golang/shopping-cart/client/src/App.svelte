@@ -4,7 +4,7 @@
   import axios from "axios";
 
   import type { Product } from "./models";
-  import type { CartItem } from "@genezio-sdk/shopping-cart";
+  import type { CartItem } from "./models";
   import { ShoppingCartService } from "@genezio-sdk/shopping-cart";
   import { writable } from "svelte/store";
   import { Icon } from "svelte-icons-pack";
@@ -16,7 +16,6 @@
   let isCartVisible: boolean = false;
   let cartData: CartItem[] = [];
   let purchasedQuantity: number = 0;
-  let itemsLoaded: boolean = false;
 
   // Check if the token is set in localStorage
   let token = localStorage.getItem("token") || "";
@@ -42,19 +41,14 @@
 
   // Fetch the cart contents when the cart modal is visible
   function fetchCartData() {
-    if (isCartVisible || !itemsLoaded) {
-      ShoppingCartService.getCart(token)
-        .then((cart) => {
-          console.log("Cart data:", cart);
-          cartData = cart;
-          console.log("Cart data:", cartData);
-          itemsLoaded = true;
-          purchasedQuantity = cart.length;
-        })
-        .catch((error) => {
-          console.error("Error fetching or parsing cart data:", error);
-        });
-    }
+    ShoppingCartService.getCart(token)
+      .then((cart: any) => {
+        cartData = cart;
+        purchasedQuantity = cart.length;
+      })
+      .catch((error) => {
+        console.error("Error fetching or parsing cart data:", error);
+      });
   }
 
   $: {
@@ -71,6 +65,7 @@
 
     try {
       await ShoppingCartService.addItemToCart(token, product.title);
+      fetchCartData();
       purchasedQuantity += 1;
     } catch (error) {
       console.error("Error adding item to cart:", error);
@@ -80,17 +75,18 @@
   }
 
   async function handleDeleteItem(cartItem: CartItem) {
-    deleteItemLoading[cartItem.Title] = true;
+    deleteItemLoading[cartItem.title] = true;
 
     try {
-      await ShoppingCartService.removeItemFromCart(token, cartItem.Title);
-      cartData = await ShoppingCartService.getCart(token);
+      await ShoppingCartService.removeItemFromCart(token, cartItem.title);
+      let cartDataRes: any = await ShoppingCartService.getCart(token);
+      cartData = cartDataRes;
       purchasedQuantity -= 1;
     } catch (error) {
       console.error("Error deleting item from cart:", error);
     }
 
-    deleteItemLoading[cartItem.Title] = false;
+    deleteItemLoading[cartItem.title] = false;
   }
 
   async function handleClearCart() {
@@ -98,7 +94,8 @@
 
     try {
       await ShoppingCartService.deleteCart(token);
-      cartData = await ShoppingCartService.getCart(token);
+      let cartDataRes: any = await ShoppingCartService.getCart(token);
+      cartData = cartDataRes;
       purchasedQuantity = 0;
     } catch (error) {
       console.error("Error clearing cart:", error);
@@ -166,17 +163,17 @@
         <h2 class="mb-4 center">Shopping Cart</h2>
         <ul class="list-unstyled">
           {#if cartData.length > 0}
-            {#each cartData as cartItem, index (cartItem.Title ? cartItem.Title : index)}
+            {#each cartData as cartItem, index (cartItem.title ? cartItem.title : index)}
               <li class="mb-3">
                 <div>
-                  <span>{cartItem.Title}</span>
-                  <span class="m-2">Quantity: {cartItem.Count}</span>
+                  <span>{cartItem.title}</span>
+                  <span class="m-2">Quantity: {cartItem.count}</span>
                   <button
                     class="btn btn-danger btn-sm m-2"
                     on:click={() => handleDeleteItem(cartItem)}
-                    disabled={deleteItemLoading[cartItem.Title]}
+                    disabled={deleteItemLoading[cartItem.title]}
                   >
-                    {#if deleteItemLoading[cartItem.Title]}
+                    {#if deleteItemLoading[cartItem.title]}
                       <span
                         class="spinner-border spinner-border-sm"
                         role="status"
