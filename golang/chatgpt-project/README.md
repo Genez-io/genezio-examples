@@ -12,17 +12,15 @@
 
 </div>
 
-# Rephrasing Using ChatGPT, Genezio, and ReactJS
+# Rephrasing Using ChatGPT, Genezio, and SolidJS
 
-In this project, we are creating an application that uses the ChatGPT API. It's backed by Genezio on the server side and features a React.js frontend.
+In this project, we are creating an application that uses the ChatGPT API. It's backed by Genezio on the server side and features a SolidJS frontend.
 
 ## Prerequisites
 
-- ✅ [NodeJs](https://nodejs.org/) >= 18.0.0
+- ✅ [Go](https://go.dev/)
 - ✅ [npm](https://genezio.com/)
 - ✅ [genezio](https://genezio.com/)
-
-Note: We recommend using [nvm]() to install Node.js and npm.
 
 ## Project Structure
 
@@ -30,7 +28,8 @@ Inside the project folder, you will find the following files and folders:
 
 ```
 ├── server/
-│   ├── gptCaller.js
+│   ├── backendService
+│   |   ├── backendService.go
 │   └── package.json
 ├── client/
 │   ├── dist/
@@ -66,7 +65,7 @@ git clone https://github.com/Genez-io/genezio-examples
 Navigate to the following directory:
 
 ```
-cd ./genezio-examples/javascript/chatgpt-project
+cd ./genezio-examples/golang/chatgpt-project
 ```
 
 ### Test your project locally
@@ -94,7 +93,7 @@ Log in to Genezio using the command genezio login:
 genezio login
 ```
 
-Deploy your project using the genezio deploy command from the `./genezio-examples/javascript/chatgpt-project` directory.
+Deploy your project using the genezio deploy command from the `./genezio-examples/golang/chatgpt-project` directory.
 
 ```
 genezio deploy
@@ -129,4 +128,4 @@ If you need support or you have any questions, please join us in our [Discord ch
 - [ChatGPT](https://openai.com/blog/openai-api)
 - [Genezio](https://genezio.com/)
 - [React.js](https://github.com/facebook/react)
-- [Vite.js](https://vitejs.dev/)
+- [Vite.js](https://www.solidjs.com/)

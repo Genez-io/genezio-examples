@@ -40,4 +40,4 @@ frontend:
         # List of scripts to run when starting the local development server.
         start:
             - npm install --silent
-            # - npm run dev --silent
+            - npm run dev --silent

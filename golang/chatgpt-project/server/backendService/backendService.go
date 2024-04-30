@@ -28,7 +28,7 @@ func (b GptCaller) AskChatGpt(prompt string) (string, error) {
 		Messages: []openai.ChatCompletionMessage{
 			{
 				Role: openai.ChatMessageRoleUser,
-				Content: prompt,
+				Content: "rephrase this:" + prompt,
 			},
 		},
 	}
