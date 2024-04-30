@@ -105,6 +105,13 @@
   }
 </script>
 
+<svelte:head>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  />
+</svelte:head>
+
 <div class="App">
   <div class="bg-dark text-light p-3">
     <div class="container">
@@ -128,7 +135,7 @@
     <div class="container">
       <div class="row justify-content-around">
         {#each productData.products as product (product.id)}
-          <div class="col-md-4 mb-4">
+          <div class="col-md-4 mb-4 product-card-wrapper">
             <div class="product-card">
               <img src={product.thumbnail} alt={product.title} />
               <h2>{product.title}</h2>
