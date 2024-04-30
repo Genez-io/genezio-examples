@@ -10,11 +10,12 @@
     "lint": "eslint --ext .js,.vue,.ts src"
   },
   "dependencies": {
+    "vue-router": "^4.3.2"
   },
   "devDependencies": {
+    "@genezio/vite-plugin-genezio": "^1.0.5",
     "@vitejs/plugin-vue": "^4.5.2",
     "@vue/compiler-sfc": "^3.4.15",
-    "@genezio/vite-plugin-genezio": "^1.0.5",
     "typescript": "^5.2.2",
     "vite": "^5.2.9",
     "vue": "^3.4.15",
