@@ -22,8 +22,8 @@
     </div>
   </template>
   
-  <script>
-  import { TaskService as Task } from "@genezio-sdk/todo-list";
+  <script lang="ts">
+  import { TaskService, Task} from "@genezio-sdk/todo-list";
    
   export default {
     data() {
@@ -34,11 +34,24 @@
     },
     methods: {
       createTodo() {
-  
-        Task.createTask( this.title)
+        if (!this.title) {
+          alert("Title is required.");
+          return;
+        }
+        const task : Task = {
+            title: this.title,
+            solved: false,
+            date: new Date(),
+            };
+        TaskService.createTask(task)
           .then((response) => {
             this.title = "";
-            this.todos = [...this.todos, response.task];
+            if(this.todos.length > 0){
+                this.todos = [...this.todos, response];
+            }
+            else{
+                this.todos = [response];
+            }
           })
           .catch((error) => {
             alert("An error occured.");
@@ -47,11 +60,11 @@
       },
       deleteTodo(index) {
   
-        Task.deleteTask(index)
+        TaskService.deleteTask(index)
           .then((response) => {
-            if (response.success) {
+
               this.todos = this.todos.filter((todo) => todo._id !== index);
-            }
+            
           })
           .catch((error) => {
             alert("An error occured.");
@@ -59,13 +72,13 @@
           });
       },
       markDone(todo) {
-        Task.updateTask( todo._id, todo.title, todo.solved)
+        const task : Task = {
+            title: todo.title,
+            solved: todo.solved,
+            date: todo.date,
+            };
+        TaskService.updateTask( todo._id, task)
           .then((response) => {
-            if (!response.success) {
-              todo.solved = !todo.solved;
-              alert("Could not mark as done.");
-              return;
-            }
             console.log("MARKED", this.todos);
           })
           .catch((error) => {
@@ -77,9 +90,10 @@
     },
     mounted() {
         
-      Task.getAllTasks()
+      TaskService.getAllTasks()
         .then((response) => {
-          this.todos = response.tasks;
+          this.todos = response
+          console.log(response)
         })
         .catch((error) => {
           alert("An error occured.");

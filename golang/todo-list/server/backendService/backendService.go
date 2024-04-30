@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -12,10 +13,10 @@ import (
 )
 
 type Task struct {
-	ID     primitive.ObjectID `json:"_id"`
-	Title  string             `json:"title"`
-	Solved bool               `json:"solved"`
-	Date   string             `json:"date"`
+	ID     string    `json:"_id"`
+	Title  string    `json:"title"`
+	Solved bool      `json:"solved"`
+	Date   time.Time `json:"date"`
 }
 
 // genezio: deploy
@@ -34,11 +35,6 @@ func New() TaskService {
 		panic(err)
 	}
 
-	defer func() {
-		if err := client.Disconnect(context.Background()); err != nil {
-			panic(err)
-		}
-	}()
 	return TaskService{
 		mongo: client,
 		ctx:   context.Background(),
@@ -46,19 +42,28 @@ func New() TaskService {
 }
 
 func (b TaskService) GetAllTasks() ([]Task, error) {
-	fmt.Println("We got here")
 	collection := b.mongo.Database("todo-list-ts").Collection("tasks")
 	cursor, err := collection.Find(b.ctx, bson.M{})
 	if err != nil {
+		fmt.Println(err)
 		return nil, err
 	}
 	defer cursor.Close(b.ctx)
 
 	var tasks []Task
-	if err = cursor.All(b.ctx, &tasks); err != nil {
-
-		return nil, err
+	for cursor.Next(b.ctx) {
+		var task Task
+		var result bson.M
+		if err = cursor.Decode(&result); err != nil {
+			return nil, err
+		}
+		task.ID = result["_id"].(primitive.ObjectID).Hex()
+		task.Title = result["title"].(string)
+		task.Solved = result["solved"].(bool)
+		task.Date = result["date"].(primitive.DateTime).Time()
+		tasks = append(tasks, task)
 	}
+
 	return tasks, nil
 
 }
@@ -70,7 +75,7 @@ func (b TaskService) CreateTask(task Task) (Task, error) {
 		return Task{}, err
 	}
 	fmt.Println("Inserted a single document: ", res)
-	task.ID = res.InsertedID.(primitive.ObjectID)
+	task.ID = res.InsertedID.(primitive.ObjectID).Hex()
 	return task, nil
 }
 
@@ -86,7 +91,7 @@ func (b TaskService) UpdateTask(id string, task Task) (Task, error) {
 	if err != nil {
 		return Task{}, err
 	}
-	task.ID = objectID
+	task.ID = objectID.Hex()
 	return task, nil
 
 }

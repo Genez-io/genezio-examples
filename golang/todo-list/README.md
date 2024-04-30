@@ -18,7 +18,7 @@ This is an example of a todo application that uses VueJS for the frontend applic
 
 ## Prerequisites
 
-- ✅ [NodeJs](https://nodejs.org) >= 18.0.0
+- ✅ [Go](https://go.dev/)
 - ✅ [npm](https://www.npmjs.com/)
 - ✅ [genezio](https://genezio.com/)
 
@@ -35,9 +35,10 @@ Inside the project folder, you will find the following files and folders:
 
 ```
 ├── server/
-│   ├── package.json
-│   ├── task.js
-│   └── models/
+│   ├── go.mod
+│   ├── go.sum
+│   ├── backendService
+│   |   |── backendService.go
 ├── client/
 │   ├── src/
 │   ├── public
@@ -46,7 +47,7 @@ Inside the project folder, you will find the following files and folders:
 │   ├── node_modules
 │   ├── package.json
 │   ├── package-lock.json
-│   └── vite.config.ts
+│   ├── vite.config.ts
 │   └── README.md
 ├── genezio.yaml
 ├── README.md
@@ -75,7 +76,7 @@ git clone https://github.com/Genez-io/genezio-examples
 Navigate to the following directory:
 
 ```
-cd ./genezio-examples/javascript/todo-list-vue
+cd ./genezio-examples/golang/todo-list
 ```
 
 ### Test your project locally
@@ -86,7 +87,7 @@ Test the project locally:
 genezio local
 ```
 
-Open a new terminal, navigate to the following directory, and run npm start to launch the React application:
+Open a new terminal, navigate to the following directory, and run `npm run dev` to launch the Vue application:
 
 ```
 cd ./client
@@ -104,7 +105,7 @@ Log in to Genezio using the command genezio login:
 genezio login
 ```
 
-Deploy your project using the genezio deploy command from the `./genezio-examples/javascript/todo-list-vue` directory.
+Deploy your project using the genezio deploy command from the `./genezio-examples/golang/todo-list` directory.
 
 ```
 genezio deploy
@@ -138,5 +139,5 @@ If you need support or you have any questions, please join us in our [Discord ch
 
 - [Vue](https://vuejs.org/)
 - [Genezio](https://genezio.com/)
-- [Node.JS](https://nodejs.org/en/)
+- [Go](https://go.dev/)
 - [Vite](https://vitejs.dev/)
