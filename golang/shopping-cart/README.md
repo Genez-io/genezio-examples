@@ -23,26 +23,22 @@ This example will show you how to harness the speed of a Redis database to build
 
 The example is backed by `genezio` on the server side.
 
-A minimal frontend for the online store is implemented using React and Bootstrap.
+A minimal frontend for the online store is implemented using Svelte and Bootstrap.
 The great part about a minimal design, is that you can go as wild as you'd like with the frontend and tweak it further to your liking.
 
 The application is built using:
 
-- `NodeJs` for the backend
-- `React` for the frontend
+- `Go` for the backend
+- `Svelte` for the frontend
 - `Upstash Redis` for a database
 
 ## Prerequisites
 
 If you don't already have them, you'll need to install the following tools:
 
-- [Node.js](https://nodejs.org/en/download/current) (version >= 16.0.0)
+- [Go](https://go.dev/doc/install)
 - [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - [Genezio](https://genezio.com)
-
-Note: I recommend you to use [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) to manage NodeJs and npm versions.
-After installing `nvm`, you can easily get the any version of `node` by running `nvm install <node_version>`.
-`nvm` will automatically install the corresponding `npm` version.
 
 ## Project Structure
 
@@ -57,27 +53,27 @@ Inside the project folder, you will find the following files and folders:
 │   ├── package-lock.json
 │   ├── package.json
 │   ├── src
-│   │   ├── App.css
-│   │   ├── App.tsx
-│   │   ├── index.css
-│   │   ├── main.tsx
+│   │   ├── app.css
+│   │   ├── App.svelte
+│   │   ├── main.ts
 │   │   ├── vite-env.d.ts
-│   │   └── models.tsx
+│   │   └── models.ts
 │   ├── tsconfig.node.json
 │   └── vite.config.ts
 │   └── tsconfig.json
 └── server
-    ├── package-lock.json
-    ├── package.json
-    ├── shoppingCartService.ts
-    └── tsconfig.json
+    ├── go.mod
+    ├── go.sum
+    ├── backendService
+    │   ├── backendService.go
+    └── .env.template
 ```
 
 `genezio` looks for `genezio.yaml` to read the settings for deploying the project or for spinning a local dev server for testing.
 
 The `backend` directory contains methods to store and retrieve data from a Redis instance.
 
-The `frontend` directory contains the source code for the React application.
+The `frontend` directory contains the source code for the Svelte application.
 
 To glue this two component together, an auto-generated SDK is installed in the `client/node_modules` folder.
 This can be used by simply importing it into the frontend source code like any other dependency of your project.
@@ -95,7 +91,7 @@ git clone https://github.com/Genez-io/genezio-examples
 Navigate to the following directory:
 
 ```bash
-cd ./genezio-examples/typescript/shopping-cart
+cd ./genezio-examples/golang/shopping-cart
 ```
 
 ### Test your project locally
@@ -158,7 +154,7 @@ If you need support or you have any questions, please join us in our [Discord ch
 ## Built With
 
 - [Genezio](https://genezio.com/)
-- [Node.JS](https://nodejs.org/en/)
-- [React](https://reactjs.org/)
+- [Go](https://go.dev/)
+- [Svelte](https://svelte.dev/)
 - [Vite](https://vitejs.dev/)
 - [Upstash](https://upstash.com/)
