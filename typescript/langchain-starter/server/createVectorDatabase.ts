@@ -9,7 +9,7 @@ import { TextLoader} from "langchain/document_loaders/fs/text";
 import dotenv from "dotenv";
 dotenv.config();
 
-export async function createVector() {
+export async function createVectorDatabase() {
     // Set the OpenAI API key
     const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
     if (!OPENAI_API_KEY) {
@@ -62,6 +62,6 @@ export async function createVector() {
 (async () => {
   console.log("Creating LanceDB vector table..");
   // Create the LanceDB vector table
-  await createVector();
+  await createVectorDatabase();
   console.log("Successfully created LanceDB vector table.");
 })();
