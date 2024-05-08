@@ -19,7 +19,7 @@
 
 # Shopping Cart Project
 
-This example will show you how to harness the speed of a Redis database to build a shopping cart functionality using TypeScript/NodeJs.
+This example will show you how to harness the speed of a Redis database to build a shopping cart functionality using Golang.
 
 The example is backed by `genezio` on the server side.
 
