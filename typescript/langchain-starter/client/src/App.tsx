@@ -14,7 +14,6 @@ export default function App() {
   const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-
   async function askOpenAI() {
     setIsLoading(true);
     setTimeout(async () => {

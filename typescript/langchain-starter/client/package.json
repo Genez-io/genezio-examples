@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@genezio-sdk/langchain-starter": "^1.0.0-prod",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

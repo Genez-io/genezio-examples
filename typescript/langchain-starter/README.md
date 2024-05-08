@@ -20,8 +20,8 @@ You can easily test it in Gitpod - an in-browser vscode solution:
 
 0. Run git clone `https://github.com/Genez-io/genezio-examples`.
 1. Navigate to the folder `cd ./genezio-examples/typescript/langchain-starter`.
-2. Get an OpenAI API key and save it in `server/.env`.
-3. Fetch your custom data in `server/data`. Currently this project supports only `.md` files, but you can easily change that from `server/createVectorDatabase.ts`.
+2. Get an OpenAI API key and save it in a new file called `server/.env`.
+3. Copy your custom data in `server/data/data.txt`. Currently this project supports loading data only from a text file, but you can easily change that in `server/createVectorDatabase.ts`.
 4. Populate the vector database by running `cd server && npm i && npx tsx createVectorDatabase.ts`. This will create a directory `lancedb` where the embeddings for you custom data are saved.
 5. Run `genezio deploy --env server/.env`.
 6. You can test your application using the subdomain provided in the output.
