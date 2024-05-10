@@ -8,15 +8,6 @@ import (
 
 	"time"
 )
-
-type Response struct {
-	Status  string  `json:"status"`
-	Country string  `json:"country"`
-	Lat     float64 `json:"lat"`
-	Lon     float64 `json:"lon"`
-	City    string  `json:"city"`
-}
-
 type LeaderboardEntry struct {
 	ID int `json:"id"`
 	PlayerName string `json:"playerName"`
@@ -29,7 +20,6 @@ var ErrScoreOrPlayerNameNotValid =  errors.New("Score or PlayerName is empty")
 // genezio: deploy
 type LeaderboardService struct{
 	prisma *db.PrismaClient
-	ctx context.Context
 }
 
 func New() LeaderboardService {
@@ -43,7 +33,6 @@ func New() LeaderboardService {
 	}
 	return LeaderboardService{
 		prisma : client,
-		ctx: context.Background(),
 	}
 }
 
@@ -56,7 +45,7 @@ func (b LeaderboardService) AddPlayerLeaderboard(playerName string,score int ) (
 		db.Leaderboard.PlayerName.Set(playerName),
 		db.Leaderboard.Score.Set(score),
 		db.Leaderboard.Date.Set(time.Now()),
-	).Exec(b.ctx)
+	).Exec(context.Background())
 	if err != nil {
 		return err
 	}
@@ -64,7 +53,7 @@ func (b LeaderboardService) AddPlayerLeaderboard(playerName string,score int ) (
 }
 
 func (b LeaderboardService) GetLeaderboard() ([]LeaderboardEntry, error) {
-	leaderboard, err := b.prisma.Leaderboard.FindMany().OrderBy(db.Leaderboard.Score.Order(db.DESC)).Exec(b.ctx)
+	leaderboard, err := b.prisma.Leaderboard.FindMany().OrderBy(db.Leaderboard.Score.Order(db.DESC)).Exec(context.Background())
 	if err != nil {
 		return nil, err
 	}

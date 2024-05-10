@@ -10,7 +10,6 @@ import (
 // genezio: deploy
 type GptCaller struct {
 	GptClient *openai.Client
-	ctx 	 context.Context
 }
 
 func New() GptCaller {
@@ -19,7 +18,7 @@ func New() GptCaller {
 		panic("Your OPENAI_SECRET_KEY environment variable is not properly set, go to https://genezio.com/blog/create-your-first-app-using-chatgpt/ to learn how to obtain an OpenAI key")
 	}
 	client := openai.NewClient(url)
-	return GptCaller{GptClient: client, ctx: context.Background()}
+	return GptCaller{GptClient: client}
 }
 
 func (b GptCaller) AskChatGpt(prompt string) (string, error) {
@@ -32,7 +31,7 @@ func (b GptCaller) AskChatGpt(prompt string) (string, error) {
 			},
 		},
 	}
-	resp, err := b.GptClient.CreateChatCompletion(b.ctx,req)
+	resp, err := b.GptClient.CreateChatCompletion(context.Background(),req)
 	if err != nil {
 		return "", err
 	}

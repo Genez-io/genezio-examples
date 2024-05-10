@@ -22,7 +22,6 @@ type Task struct {
 // genezio: deploy
 type TaskService struct {
 	mongo *mongo.Client
-	ctx   context.Context
 }
 
 func New() TaskService {
@@ -37,21 +36,20 @@ func New() TaskService {
 
 	return TaskService{
 		mongo: client,
-		ctx:   context.Background(),
 	}
 }
 
 func (b TaskService) GetAllTasks() ([]Task, error) {
 	collection := b.mongo.Database("todo-list-ts").Collection("tasks")
-	cursor, err := collection.Find(b.ctx, bson.M{})
+	cursor, err := collection.Find(context.Background(), bson.M{})
 	if err != nil {
 		fmt.Println(err)
 		return nil, err
 	}
-	defer cursor.Close(b.ctx)
+	defer cursor.Close(context.Background())
 
 	var tasks []Task
-	for cursor.Next(b.ctx) {
+	for cursor.Next(context.Background()) {
 		var task Task
 		var result bson.M
 		if err = cursor.Decode(&result); err != nil {
@@ -70,7 +68,7 @@ func (b TaskService) GetAllTasks() ([]Task, error) {
 
 func (b TaskService) CreateTask(task Task) (Task, error) {
 	collection := b.mongo.Database("todo-list-ts").Collection("tasks")
-	res, err := collection.InsertOne(b.ctx, task)
+	res, err := collection.InsertOne(context.Background(), task)
 	if err != nil {
 		return Task{}, err
 	}
@@ -87,7 +85,7 @@ func (b TaskService) UpdateTask(id string, task Task) (Task, error) {
 	}
 	filter := bson.M{"_id": objectID}
 	update := bson.M{"$set": bson.M{"title": task.Title, "solved": task.Solved}}
-	_, err = collection.UpdateOne(b.ctx, filter, update)
+	_, err = collection.UpdateOne(context.Background(), filter, update)
 	if err != nil {
 		return Task{}, err
 	}
@@ -103,7 +101,7 @@ func (b TaskService) DeleteTask(id string) error {
 		return err
 	}
 	filter := bson.M{"_id": objectID}
-	_, err = collection.DeleteOne(b.ctx, filter)
+	_, err = collection.DeleteOne(context.Background(), filter)
 	if err != nil {
 		return err
 	}
