@@ -1,0 +1,27 @@
+{
+  "name": "todo-list-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint --ext .js,.vue,.ts src"
+  },
+  "dependencies": {
+    "vue-router": "^4.3.2"
+  },
+  "devDependencies": {
+    "@genezio/vite-plugin-genezio": "^1.0.5",
+    "@vitejs/plugin-vue": "^4.5.2",
+    "@vue/compiler-sfc": "^3.4.15",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.9",
+    "vue": "^3.4.15",
+    "vue-tsc": "^1.8.25"
+  },
+  "prettier": {
+    "tabWidth": 2
+  }
+}

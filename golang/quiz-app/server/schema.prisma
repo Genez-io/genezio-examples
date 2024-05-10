@@ -1,0 +1,21 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Define the data source for the Prisma schema
+datasource db {
+  provider = "mysql"
+  url      = env("MYSQL_DB_URL")
+}
+
+generator db {
+  provider = "go run github.com/steebchen/prisma-client-go"
+}
+
+
+// Define the data model for the 'leaderboard' table
+model leaderboard {
+  id         Int      @id @default(autoincrement())
+  playerName String
+  score      Int
+  date       DateTime
+}
