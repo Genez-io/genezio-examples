@@ -1,0 +1,7 @@
+image: gitpod/workspace-full
+
+# Commands that will run on workspace start
+tasks:
+    - name: Install genezio
+      before: npm install -g genezio@latest
+      command: genezio --version 
