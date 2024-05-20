@@ -1,5 +1,9 @@
 # genezio-examples
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/genez-io/genezio-examples)
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/genez-io/genezio-examples)
+
 This repository contains a list of examples on how to use the `genezio` tool.
 
 In each project, you can check the installation details inside the corresponding `README` file.
