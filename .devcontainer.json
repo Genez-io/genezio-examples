@@ -19,7 +19,9 @@
     "features": {
         "github-cli": "latest"
     },
-    "postCreateCommand": "gh codespace ports visibility 5173:public 8083:public -c $CODESPACE-NAME",
+    "postCreateCommand": "/bin/bash ./.devcontainer/change_port_visibility.sh 8083 public 5173 public",
+    "postAttachCommand": "/bin/bash ./.devcontainer/change_port_visibility.sh 8083 public 5173 public",
+    "postStartCommand": "/bin/bash ./.devcontainer/change_port_visibility.sh 8083 public 5173 public",
 
     "customizations": {
         "vscode": {
