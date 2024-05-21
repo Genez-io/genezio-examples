@@ -2,8 +2,8 @@
 
 # Function to change port visibility
 change_port_visibility() {
-  local port1=$1
-  local visibility1=$2
+  local port=$1
+  local visibility=$2
   gh codespace ports visibility $port:$visibility -c $CODESPACE_NAME
 }
 
