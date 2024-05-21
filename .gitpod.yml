@@ -5,3 +5,7 @@ tasks:
     - name: Install genezio
       before: npm install -g genezio@latest
       command: genezio --version 
+ports:
+    - port: 5173-8300
+      onOpen: ignore
+      visibility: public
