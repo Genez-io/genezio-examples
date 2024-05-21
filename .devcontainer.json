@@ -16,6 +16,9 @@
         }
 
     },
+    "features": {
+        "ghcr.io/devcontainers/features/github-cli": "latest"
+    },
     "postAttachCommand": "gh codespace ports visibility 5173:public 8083:public -c $CODESPACE-NAME",
 
     "customizations": {
