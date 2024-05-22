@@ -6,6 +6,11 @@ tasks:
       before: npm install -g genezio@latest
       command: genezio --version 
 ports:
-    - port: 5173-8300
+    - name: vite-port
+      port: 5173
+      onOpen: ignore
+      visibility: public
+    - name: genezio-port
+      port: 8083
       onOpen: ignore
       visibility: public
