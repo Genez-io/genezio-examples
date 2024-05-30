@@ -42,7 +42,7 @@ export default function AllTasks() {
         console.log(
           `Error: message: ${error.message}, statusCode: ${error.statusCode}`
         );
-        navigate("/login");
+        navigate("/auth/login");
         return;
       }
     }
@@ -210,7 +210,7 @@ export default function AllTasks() {
                 color="primary"
                 onClick={async () => {
                   await AuthService.getInstance().logout();
-                  navigate("/login");
+                  navigate("/auth/login");
                 }}
               >
                 Logout

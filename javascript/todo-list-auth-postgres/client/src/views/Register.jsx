@@ -36,7 +36,7 @@ export default function Register() {
       );
       return;
     }
-    navigate("/login");
+    navigate("/auth/login");
   }
 
   return (
@@ -102,7 +102,7 @@ export default function Register() {
                   </div>
                   <div className="mt-2">
                     <span>
-                      Already have an account? <a href="/login">Login</a>
+                      Already have an account? <a href="/auth/login">Login</a>
                     </span>
                   </div>
                 </form>

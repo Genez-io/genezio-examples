@@ -9,45 +9,22 @@ import Login from "./views/Login";
 import Register from "./views/Register";
 import AllTasks from "./views/AllTasks";
 import Auth from "./layouts/Auth";
+import Admin from "./layouts/Admin";
 
 export default function App() {
   return (
     <Router>
       <Routes>
+      <Route path={`/auth/login`} element={<Auth element={<Login />} />} />
         <Route
-          path="/login"
-          element={
-            <Auth
-              authetificatedRedirect="/admin/all-tasks"
-              unauthetificatedRedirect="/login"
-            >
-              <Login />
-            </Auth>
-          }
+          path={`/auth/register`}
+          element={<Auth element={<Register />} />}
         />
         <Route
-          path="/register"
-          element={
-            <Auth
-              authetificatedRedirect="/admin/all-tasks"
-              unauthetificatedRedirect="/register"
-            >
-              <Register />
-            </Auth>
-          }
+          path={`/admin/all-tasks`}
+          element={<Admin element={<AllTasks />} />}
         />
-        <Route
-          path="/admin/all-tasks"
-          element={
-            <Auth
-              authetificatedRedirect="/admin/all-tasks"
-              unauthetificatedRedirect="/login"
-            >
-              <AllTasks />
-            </Auth>
-          }
-        />
-        <Route path="*" element={<Navigate replace to="/login" />} />
+        <Route path="*" element={<Navigate to="/auth/login" />} />
       </Routes>
     </Router>
   );
