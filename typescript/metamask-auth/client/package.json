@@ -10,8 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@genezio-sdk/genezio-login-metamask": "^1.0.0-prod",
-    "@genezio/auth": "^2.0.18",
+    "@genezio/auth": "^2.1.1",
     "bootstrap": "^5.3.3",
     "ethers": "^6.11.1",
     "react": "^18.2.0",
@@ -19,6 +18,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@genezio/vite-plugin-genezio": "^1.0.5",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
@@ -28,7 +28,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "typescript": "^5.2.2",
-    "vite": "^5.2.9",
-    "@genezio/vite-plugin-genezio": "^1.0.5"
+    "vite": "^5.2.9"
   }
 }
