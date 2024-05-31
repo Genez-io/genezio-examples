@@ -197,7 +197,7 @@ export default function AllTasks() {
                 color="primary"
                 onClick={async () => {
                   await AuthService.getInstance().logout();
-                  navigate("/login");
+                  navigate("/auth/login");
                 }}
               >
                 Logout

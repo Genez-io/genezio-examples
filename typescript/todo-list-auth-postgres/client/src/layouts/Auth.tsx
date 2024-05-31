@@ -2,42 +2,22 @@ import { AuthService } from "@genezio/auth";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Auth(props: {
-  authetificatedRedirect?: string;
-  unauthetificatedRedirect?: string;
-  children?: React.ReactNode;
-}) {
+export default function Auth(props: { element: React.ReactNode }) {
   const navigate = useNavigate();
 
   React.useEffect(() => {
     async function checkUserAuth() {
-      try {
-        await AuthService.getInstance().userInfo();
-        if (props.authetificatedRedirect) {
-          navigate(props.authetificatedRedirect);
-          return;
-        }
+      const result = await AuthService.getInstance()
+        .userInfo()
+        .catch(() => {
+          return null;
+        });
+      if (result) {
         navigate("/admin/all-tasks");
-        return;
-      } catch (error: any) {
-        if (error.message === "Invalid session token.") {
-          if (props.unauthetificatedRedirect) {
-            navigate(props.unauthetificatedRedirect);
-            return;
-          }
-          navigate("/login");
-          return;
-        }
-        console.log(
-          `Error: message: ${error.message}, statusCode: ${error.statusCode}`
-        );
-        navigate("/login");
-
-        return;
       }
     }
     checkUserAuth();
   }, [navigate]);
 
-  return <>{props.children}</>;
+  return <>{props.element}</>;
 }

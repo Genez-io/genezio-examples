@@ -75,7 +75,8 @@ export default function Login() {
                   </div>
                   <div className="mt-2">
                     <span>
-                      Don't have an account? <a href="/register">Register</a>
+                      Don't have an account?{" "}
+                      <a href="/auth/register">Register</a>
                     </span>
                   </div>
                 </form>

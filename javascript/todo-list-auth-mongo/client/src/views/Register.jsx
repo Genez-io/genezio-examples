@@ -2,7 +2,6 @@ import { Button, Card, Container, Row, Col, Input } from "reactstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthService } from "@genezio/auth";
-import { GenezioError } from "@genezio/types";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -37,7 +36,7 @@ export default function Register() {
       );
       return;
     }
-    navigate("/login");
+    navigate("/auth/login");
   }
 
   return (
@@ -103,7 +102,7 @@ export default function Register() {
                   </div>
                   <div className="mt-2">
                     <span>
-                      Already have an account? <a href="/login">Login</a>
+                      Already have an account? <a href="/auth/login">Login</a>
                     </span>
                   </div>
                 </form>

@@ -14,9 +14,7 @@ import {
 } from "reactstrap";
 import { useState, useEffect } from "react";
 import {
-  TaskService,
-  Task,
-  GetTasksResponse,
+  TaskService
 } from "@genezio-sdk/todo-list-auth-mongo";
 import { useNavigate } from "react-router-dom";
 import { AuthService } from "@genezio/auth";
@@ -44,7 +42,7 @@ export default function AllTasks() {
         console.log(
           `Error: message: ${error.message}, statusCode: ${error.statusCode}`
         );
-        navigate("/login");
+        navigate("/auth/login");
         return;
       }
     }
@@ -212,7 +210,7 @@ export default function AllTasks() {
                 color="primary"
                 onClick={async () => {
                   await AuthService.getInstance().logout();
-                  navigate("/login");
+                  navigate("/auth/login");
                 }}
               >
                 Logout
