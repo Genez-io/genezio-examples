@@ -37,21 +37,6 @@ export default function AllTasks() {
   const [taskTitle, setTaskTitle] = useState("");
 
   useEffect(() => {
-    async function checkUserAuth() {
-      try {
-        await AuthService.getInstance().userInfo();
-      } catch (error: any) {
-        console.log(
-          `Error: message: ${error.message}, statusCode: ${error.statusCode}`
-        );
-        navigate("/login");
-        return;
-      }
-    }
-    checkUserAuth();
-  }, []);
-
-  useEffect(() => {
     TaskService.getAllTasksByUser().then((result: GetTasksResponse) => {
       if (result.success) {
         setTasks(result.tasks);
@@ -212,7 +197,7 @@ export default function AllTasks() {
                 color="primary"
                 onClick={async () => {
                   await AuthService.getInstance().logout();
-                  navigate("/login");
+                  navigate("/auth/login");
                 }}
               >
                 Logout

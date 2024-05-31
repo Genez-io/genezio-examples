@@ -11,9 +11,8 @@
     "install-prod-sdk": "npm install @genezio-sdk/todo-list-auth-mongo@1.0.0-prod"
   },
   "dependencies": {
-    "@genezio-sdk/todo-list-auth-mongo": "^1.0.0-prod",
-    "@genezio/auth": "^2.0.19",
-    "@genezio/types": "^1.0.14",
+    "@genezio/auth": "^2.1.1",
+    "@genezio/types": "^1.0.19",
     "bootstrap": "^5.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
