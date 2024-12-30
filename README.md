@@ -27,6 +27,12 @@ The list of available projects can be found below.
   - [todo-list-flutter](typescript/todo-list-flutter)
   - [quiz-app-prisma](typescript/quiz-app-prisma)
   - [multiversX](typescript/multiversx)
+- Python
+  - [faas-getting-started](python/faas-getting-started)
+  - [fastapi-getting-started](python/fastapi-getting-started)
+  - [flask-getting-started](python/flask-getting-started)
+  - [django-getting-started](python/django-getting-started)
+  - [flask-chatgpt-getting-started](python/flask-chatgpt-getting-started)
 - Dart
   - [getting-started](dart/getting-started)
   - [todo-list-react-typescript](dart/todo-list-react-typescript)
